@@ -30,11 +30,7 @@ function doGet(e) {
   }
   
   return ContentService.createTextOutput(JSON.stringify(result))
-    .setMimeType(ContentService.MimeType.JSON)
-    .setHeaders({
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET, POST"
-    });
+    .setMimeType(ContentService.MimeType.JSON);
 }
 
 function doPost(e) {
@@ -44,8 +40,7 @@ function doPost(e) {
     params = JSON.parse(e.postData.contents);
   } catch (err) {
     return ContentService.createTextOutput(JSON.stringify({status: "error", message: "Invalid JSON"}))
-      .setMimeType(ContentService.MimeType.JSON)
-      .setHeaders({"Access-Control-Allow-Origin": "*"});
+      .setMimeType(ContentService.MimeType.JSON);
   }
   
   var action = params.action;
@@ -111,11 +106,10 @@ function doPost(e) {
     creditSheet.getRange(1, 1, creditValues.length, creditHeaders.length).setValues(creditValues);
     
     return ContentService.createTextOutput(JSON.stringify({status: "success", message: "Bulk initialization complete"}))
-      .setMimeType(ContentService.MimeType.JSON)
-      .setHeaders({"Access-Control-Allow-Origin": "*"});
+      .setMimeType(ContentService.MimeType.JSON);
   }
   
-  // Single Row CRUD Operations (append is fine for single rows)
+  // Single Row CRUD Operations
   if (action === "add_debit") {
     var sheet = ss.getSheetByName("Debit_Transactions");
     sheet.appendRow([
@@ -124,8 +118,7 @@ function doPost(e) {
       params.qty, params.taka, params.total, params.remarks
     ]);
     return ContentService.createTextOutput(JSON.stringify({status: "success"}))
-      .setMimeType(ContentService.MimeType.JSON)
-      .setHeaders({"Access-Control-Allow-Origin": "*"});
+      .setMimeType(ContentService.MimeType.JSON);
   }
   
   if (action === "add_credit") {
@@ -134,8 +127,7 @@ function doPost(e) {
       params.party_name, params.ledger_page, params.no, params.date, params.amount, params.remarks
     ]);
     return ContentService.createTextOutput(JSON.stringify({status: "success"}))
-      .setMimeType(ContentService.MimeType.JSON)
-      .setHeaders({"Access-Control-Allow-Origin": "*"});
+      .setMimeType(ContentService.MimeType.JSON);
   }
   
   if (action === "edit_profile") {
@@ -151,8 +143,7 @@ function doPost(e) {
       }
     }
     return ContentService.createTextOutput(JSON.stringify({status: "success"}))
-      .setMimeType(ContentService.MimeType.JSON)
-      .setHeaders({"Access-Control-Allow-Origin": "*"});
+      .setMimeType(ContentService.MimeType.JSON);
   }
   
   if (action === "edit_debit" || action === "delete_debit") {
@@ -183,8 +174,7 @@ function doPost(e) {
       }
     }
     return ContentService.createTextOutput(JSON.stringify({status: "success"}))
-      .setMimeType(ContentService.MimeType.JSON)
-      .setHeaders({"Access-Control-Allow-Origin": "*"});
+      .setMimeType(ContentService.MimeType.JSON);
   }
   
   if (action === "edit_credit" || action === "delete_credit") {
@@ -207,11 +197,9 @@ function doPost(e) {
       }
     }
     return ContentService.createTextOutput(JSON.stringify({status: "success"}))
-      .setMimeType(ContentService.MimeType.JSON)
-      .setHeaders({"Access-Control-Allow-Origin": "*"});
+      .setMimeType(ContentService.MimeType.JSON);
   }
   
   return ContentService.createTextOutput(JSON.stringify({status: "error", message: "Action not found"}))
-    .setMimeType(ContentService.MimeType.JSON)
-    .setHeaders({"Access-Control-Allow-Origin": "*"});
+    .setMimeType(ContentService.MimeType.JSON);
 }
