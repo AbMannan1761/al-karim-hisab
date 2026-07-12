@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আল করিম হিসাব পোর্টাল</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #366092;
+            --primary-hover: #2b4d75;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #2d3748;
+            --text-muted: #718096;
+            --border: #e2e8f0;
+            --success: #2e7d32;
+            --danger: #c62828;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border);
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-family: 'Outfit', sans-serif;
+            color: var(--primary);
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            min-height: calc(100vh - 90px);
+        }
+
+        /* Sidebar styling */
+        .sidebar {
+            width: 320px;
+            background-color: var(--card-bg);
+            border-right: 1px solid var(--border);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .sidebar h2 {
+            font-size: 18px;
+            color: var(--text);
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 8px;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: border 0.2s;
+        }
+
+        .search-box:focus {
+            border-color: var(--primary);
+        }
+
+        .client-list {
+            list-style: none;
+            overflow-y: auto;
+            flex-grow: 1;
+            max-height: 70vh;
+        }
+
+        .client-item {
+            padding: 12px;
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.2s;
+            margin-bottom: 4px;
+        }
+
+        .client-item:hover {
+            background-color: #f1f5f9;
+            color: var(--primary);
+        }
+
+        .client-item.active {
+            background-color: #e2e8f0;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .client-item-name {
+            font-size: 15px;
+            margin-bottom: 3px;
+        }
+
+        .client-item-meta {
+            font-size: 11px;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Main Content Panel */
+        .main-content {
+            flex-grow: 1;
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        .no-selection {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            color: var(--text-muted);
+            font-size: 18px;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* Profile Banner */
+        .profile-banner {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .profile-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            font-size: 14px;
+        }
+
+        .profile-label {
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .profile-value {
+            font-weight: 600;
+        }
+
+        /* KPI Grid */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .kpi-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .kpi-title {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .kpi-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Tables layout */
+        .tables-grid {
+            display: grid;
+            grid-template-columns: 7fr 3fr;
+            gap: 20px;
+        }
+
+        .table-section {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            overflow-x: auto;
+        }
+
+        .table-section h3 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: var(--text);
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        th {
+            background-color: #f8fafc;
+            color: var(--text-muted);
+            text-align: left;
+            padding: 10px;
+            font-weight: 600;
+            border-bottom: 2px solid var(--border);
+        }
+
+        td {
+            padding: 10px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        tr:hover {
+            background-color: #f8fafc;
+        }
+
+        .amount-col {
+            text-align: right;
+            font-weight: 600;
+        }
+
+        /* Responsive styling */
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                min-height: auto;
+                max-height: 40vh;
+            }
+            .main-content {
+                padding: 15px;
+            }
+            .kpi-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            .tables-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>📖 আল করিম হিসাব (Al Karim Hisab)</h1>
+        <p>ডিজিটাইজড লেজার ভিউয়ার পোর্টাল</p>
+    </header>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>👥 গ্রাহক তালিকা</h2>
+            <input type="text" id="searchInput" class="search-box" placeholder="গ্রাহকের নাম বা ঠিকানা লিখুন...">
+            <ul id="clientList" class="client-list">
+                <!-- Clients will load here -->
+            </ul>
+        </div>
+
+        <!-- Main Workspace -->
+        <div class="main-content" id="workspace">
+            <div class="no-selection" id="noSelectionView">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-muted);">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                <p>হিসাব খতিয়ান দেখার জন্য বামপাশের তালিকা থেকে একজন গ্রাহক সিলেক্ট করুন।</p>
+            </div>
+
+            <div id="ledgerView" style="display: none;">
+                <!-- Profile Banner -->
+                <div class="profile-banner">
+                    <div class="profile-title" id="clientName">গ্রাহকের নাম</div>
+                    <div class="profile-grid">
+                        <div>
+                            <div class="profile-label">ঠিকানা</div>
+                            <div class="profile-value" id="clientAddress">ঠিকানা</div>
+                        </div>
+                        <div>
+                            <div class="profile-label">লেজার পৃষ্ঠা</div>
+                            <div class="profile-value" id="clientPage">লেজার পৃষ্ঠা</div>
+                        </div>
+                        <div>
+                            <div class="profile-label">ফোন নম্বর (OCR)</div>
+                            <div class="profile-value" id="clientPhone">ফোন নম্বর</div>
+                        </div>
+                        <div>
+                            <div class="profile-label">ইনডেক্স মন্তব্য</div>
+                            <div class="profile-value" id="clientNotes">মন্তব্য</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KPIs -->
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <div class="kpi-title">Debit / Total Purchases (মোট ক্রয়)</div>
+                        <div class="kpi-value" id="kpiTotalDebit">0.00 ৳</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-title">Credit / Total Payments (মোট পরিশোধ)</div>
+                        <div class="kpi-value" style="color: var(--success);" id="kpiTotalCredit">0.00 ৳</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-title">Outstanding / Balance (বকেয়া)</div>
+                        <div class="kpi-value" id="kpiOutstanding">0.00 ৳</div>
+                    </div>
+                </div>
+
+                <!-- Tables -->
+                <div class="tables-grid">
+                    <!-- Debit Left Table -->
+                    <div class="table-section">
+                        <h3>📈 ডেবিট এন্ট্রি সমূহ (Debit - Bills/Sales)</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>নং</th>
+                                    <th>তারিখ</th>
+                                    <th>বিঃ কাঃ</th>
+                                    <th>বিবরণ</th>
+                                    <th>সাইজ</th>
+                                    <th>মডেল</th>
+                                    <th>পরিমাণ</th>
+                                    <th>দর</th>
+                                    <th class="amount-col">মোট</th>
+                                    <th>মন্তব্য</th>
+                                </tr>
+                            </thead>
+                            <tbody id="debitTableBody">
+                                <!-- Debit rows -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Credit Right Table -->
+                    <div class="table-section">
+                        <h3>📉 ক্রেডিট এন্ট্রি সমূহ (Credit - Payments)</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>নং</th>
+                                    <th>তারিখ</th>
+                                    <th class="amount-col">পরিমাণ</th>
+                                    <th>মন্তব্য</th>
+                                </tr>
+                            </thead>
+                            <tbody id="creditTableBody">
+                                <!-- Credit rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let indexData = [];
+
+        // Formatting Currency Helper
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('bn-BD', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(amount) + ' ৳';
+        }
+
+        // Clean numbers
+        function cleanNum(val) {
+            if (val === null || val === undefined) return 0;
+            let str = String(val).trim().replace(/,/g, '');
+            if (!str || str === '〃' || str === '"') return 0;
+            let parsed = parseFloat(str);
+            return isNaN(parsed) ? 0 : parsed;
+        }
+
+        // Load Index JSON on start
+        window.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const response = await fetch('data/json/index_data.json');
+                if (!response.ok) throw new Error('Index data load failed');
+                indexData = await response.json();
+                renderClientList(indexData);
+            } catch (err) {
+                console.error(err);
+                alert('ইনডেক্স ডেটা লোড করতে ব্যর্থ হয়েছে। নিশ্চিত করুন ফাইলগুলো রিপোজিটরিতে সঠিক জায়গায় আছে।');
+            }
+        });
+
+        // Search filtering
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const filtered = indexData.filter(c => 
+                c.party_name.toLowerCase().includes(query) || 
+                c.address.toLowerCase().includes(query)
+            );
+            renderClientList(filtered);
+        });
+
+        // Render Sidebar List
+        function renderClientList(list) {
+            const listContainer = document.getElementById('clientList');
+            listContainer.innerHTML = '';
+
+            list.forEach(client => {
+                const li = document.createElement('li');
+                li.className = 'client-item';
+                li.innerHTML = `
+                    <div class="client-item-name">${client.party_name}</div>
+                    <div class="client-item-meta">
+                        <span>পৃষ্ঠা: ${client.page}</span>
+                        <span>${client.address || ''}</span>
+                    </div>
+                `;
+                li.addEventListener('click', () => selectClient(client, li));
+                listContainer.appendChild(li);
+            });
+        }
+
+        // Select Client & Load Details
+        async function selectClient(client, liElement) {
+            // Set active class in sidebar
+            document.querySelectorAll('.client-item').forEach(item => item.classList.remove('active'));
+            liElement.classList.add('active');
+
+            const ledgerPage = parseInt(client.page);
+            const pdfPageNum = Math.floor(ledgerPage / 2);
+
+            try {
+                // Fetch left & right pages from GitHub JSONs
+                let leftData = { party_name: '', phone: '', debit_table: [] };
+                let rightData = { party_name: '', phone: '', credit_table: [] };
+
+                try {
+                    const resLeft = await fetch(`data/json/page_${pdfPageNum}_left.json`);
+                    if (resLeft.ok) leftData = await resLeft.json();
+                } catch (e) { console.warn('Left page not found', e); }
+
+                try {
+                    const resRight = await fetch(`data/json/page_${pdfPageNum}_right.json`);
+                    if (resRight.ok) rightData = await resRight.json();
+                } catch (e) { console.warn('Right page not found', e); }
+
+                // Update Profile Info
+                document.getElementById('clientName').innerText = client.party_name;
+                document.getElementById('clientAddress').innerText = client.address || 'N/A';
+                document.getElementById('clientPage').innerText = `${ledgerPage} (PDF: ${pdfPageNum})`;
+                document.getElementById('clientPhone').innerText = leftData.phone || 'N/A';
+                document.getElementById('clientNotes').innerText = client.notes || 'N/A';
+
+                // Render Debit Table
+                const debitBody = document.getElementById('debitTableBody');
+                debitBody.innerHTML = '';
+                let totalDebit = 0;
+
+                const debitTable = leftData.debit_table || [];
+                if (debitTable.length === 0) {
+                    debitBody.innerHTML = `<tr><td colspan="10" style="text-align: center; color: var(--text-muted);">কোনো বিক্রয় রেকর্ড পাওয়া যায়নি।</td></tr>`;
+                } else {
+                    debitTable.forEach(row => {
+                        let total = cleanNum(row.total);
+                        let qty = cleanNum(row.qty);
+                        let rate = cleanNum(row.taka);
+                        if (total === 0 && qty > 0 && rate > 0) total = qty * rate;
+
+                        totalDebit += total;
+
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                            <td>${row.no || ''}</td>
+                            <td>${row.date || ''}</td>
+                            <td>${row.bi_ka || ''}</td>
+                            <td>${row.description || ''}</td>
+                            <td>${row.size || ''}</td>
+                            <td>${row.model || ''}</td>
+                            <td>${row.qty || ''}</td>
+                            <td>${row.taka || ''}</td>
+                            <td class="amount-col">${total > 0 ? total.toLocaleString('bn-BD', {minimumFractionDigits:2}) : ''}</td>
+                            <td>${row.remarks || ''}</td>
+                        `;
+                        debitBody.appendChild(tr);
+                    });
+                }
+
+                // Render Credit Table
+                const creditBody = document.getElementById('creditTableBody');
+                creditBody.innerHTML = '';
+                let totalCredit = 0;
+
+                const creditTable = rightData.credit_table || [];
+                if (creditTable.length === 0) {
+                    creditBody.innerHTML = `<tr><td colspan="4" style="text-align: center; color: var(--text-muted);">কোনো পেমেন্ট রেকর্ড পাওয়া যায়নি।</td></tr>`;
+                } else {
+                    creditTable.forEach(row => {
+                        let amount = cleanNum(row.amount);
+                        totalCredit += amount;
+
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                            <td>${row.no || ''}</td>
+                            <td>${row.date || ''}</td>
+                            <td class="amount-col">${amount > 0 ? amount.toLocaleString('bn-BD', {minimumFractionDigits:2}) : ''}</td>
+                            <td>${row.remarks || ''}</td>
+                        `;
+                        creditBody.appendChild(tr);
+                    });
+                }
+
+                // Update KPIs
+                document.getElementById('kpiTotalDebit').innerText = formatCurrency(totalDebit);
+                document.getElementById('kpiTotalCredit').innerText = formatCurrency(totalCredit);
+                
+                const balance = totalDebit - totalCredit;
+                const outstandingKPI = document.getElementById('kpiOutstanding');
+                outstandingKPI.innerText = formatCurrency(balance);
+                if (balance > 0) {
+                    outstandingKPI.style.color = 'var(--danger)';
+                } else {
+                    outstandingKPI.style.color = 'var(--success)';
+                }
+
+                // Show Ledger View and Hide No Selection
+                document.getElementById('noSelectionView').style.display = 'none';
+                document.getElementById('ledgerView').style.display = 'block';
+
+            } catch (err) {
+                console.error(err);
+                alert('গ্রাহকের লেনদেনের বিবরণী লোড করতে সমস্যা হয়েছে।');
+            }
+        }
+    </script>
+</body>
+</html>
