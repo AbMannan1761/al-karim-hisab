@@ -1,0 +1,49 @@
+{
+  "party_name": "আবির সাং",
+  "phone": "",
+  "ledger_page_number": "66",
+  "debit_table": [
+    {
+      "no": "1",
+      "date": "10.05.25",
+      "bi_ka": "BTP",
+      "description": "ফতুয়া",
+      "size": "80/88",
+      "model": "F.05",
+      "pd": "858",
+      "bill": "570",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "2",
+      "date": "10.05.25",
+      "bi_ka": "BTP",
+      "description": "ফতুয়া",
+      "size": "80/88",
+      "model": "F.09",
+      "pd": "828",
+      "bill": "570",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "3",
+      "date": "21.05.25",
+      "bi_ka": "BTR",
+      "description": "ভটিক প্যান্ট",
+      "size": "18/26",
+      "model": "F.10",
+      "pd": "1515",
+      "bill": "572",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    }
+  ]
+}

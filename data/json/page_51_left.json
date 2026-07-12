@@ -1,0 +1,63 @@
+{
+  "party_name": "রামিবা ভাই, ইষ্টখোলা (সদর)",
+  "phone": "",
+  "ledger_page_number": "102",
+  "debit_table": [
+    {
+      "no": "1",
+      "date": "08.06.25",
+      "bi_ka": "B+K+H",
+      "description": "ফাতান পাঃ",
+      "size": "22/32",
+      "model": "C.06",
+      "pd": "198",
+      "bill": "",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "2",
+      "date": "12.06.25",
+      "bi_ka": "B+127H",
+      "description": "ফাতান পাঃ",
+      "size": "22/32",
+      "model": "C.52",
+      "pd": "245",
+      "bill": "",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "3",
+      "date": "09.10.25",
+      "bi_ka": "B+K+H",
+      "description": "ফাতান পাঃ",
+      "size": "24/26",
+      "model": "K.882",
+      "pd": "204",
+      "bill": "",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "4",
+      "date": "09.10.25",
+      "bi_ka": "B+K+H",
+      "description": "ফাতান পাঃ",
+      "size": "24/26",
+      "model": "C.56",
+      "pd": "274",
+      "bill": "",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    }
+  ]
+}

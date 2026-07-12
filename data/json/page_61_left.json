@@ -1,0 +1,49 @@
+{
+  "party_name": "আমান ভাই",
+  "phone": "",
+  "ledger_page_number": "122",
+  "debit_table": [
+    {
+      "no": "1",
+      "date": "09.02.24",
+      "bi_ka": "B+k+H",
+      "description": "বাবু",
+      "size": "80/88",
+      "model": "K.60",
+      "pd": "285",
+      "bill": "208",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "2",
+      "date": "09.02.24",
+      "bi_ka": "B+k+H",
+      "description": "বাবু",
+      "size": "80/88",
+      "model": "K.60",
+      "pd": "227",
+      "bill": "208",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "3",
+      "date": "09.02.24",
+      "bi_ka": "B+k+H",
+      "description": "বাবু",
+      "size": "80/88",
+      "model": "K.60",
+      "pd": "268",
+      "bill": "208",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "party_name": "সসুন কান্ত তুয়াং",
+  "phone": "",
+  "ledger_page_number": "56",
+  "debit_table": [
+    {
+      "no": "1",
+      "date": "26.08.24",
+      "bi_ka": "B+K+H",
+      "description": "কাডান, পাঃ",
+      "size": "80/88",
+      "model": "C.28",
+      "pd": "229",
+      "bill": "",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "2",
+      "date": "07.02.24",
+      "bi_ka": "B+K+H",
+      "description": "কাডান, ম",
+      "size": "80/88",
+      "model": "C.107",
+      "pd": "229",
+      "bill": "",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "3",
+      "date": "02.02.24",
+      "bi_ka": "B+K+H",
+      "description": "চমক",
+      "size": "80/88",
+      "model": "F.20",
+      "pd": "80",
+      "bill": "",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "4",
+      "date": "26.02.24",
+      "bi_ka": "B+K+H",
+      "description": "কাডান",
+      "size": "80/88",
+      "model": "287",
+      "pd": "287",
+      "bill": "",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "5",
+      "date": "26.02.24",
+      "bi_ka": "B+K+H",
+      "description": "কাডান",
+      "size": "80/88",
+      "model": "287",
+      "pd": "287",
+      "bill": "",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "6",
+      "date": "02.20.24",
+      "bi_ka": "B+K+H",
+      "description": "সদা বেইজ",
+      "size": "80/88",
+      "model": "K.441",
+      "pd": "471",
+      "bill": "",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    }
+  ]
+}

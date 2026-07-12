@@ -1,0 +1,91 @@
+{
+  "party_name": "আল করিম (নিজ)",
+  "phone": "",
+  "ledger_page_number": "146",
+  "debit_table": [
+    {
+      "no": "1",
+      "date": "20.10.23",
+      "bi_ka": "B+K+H",
+      "description": "সুতি",
+      "size": "80/88",
+      "model": "F.282",
+      "pd": "148",
+      "bill": "280",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "2",
+      "date": "04.11.23",
+      "bi_ka": "B+K+H",
+      "description": "সুতি",
+      "size": "80/88",
+      "model": "F.222",
+      "pd": "162",
+      "bill": "280",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "3",
+      "date": "06.11.23",
+      "bi_ka": "B+K+H",
+      "description": "সুতি",
+      "size": "80/88",
+      "model": "F.206",
+      "pd": "228",
+      "bill": "282",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "4",
+      "date": "28.11.23",
+      "bi_ka": "B+K+H",
+      "description": "সুতি",
+      "size": "80/88",
+      "model": "F.226",
+      "pd": "222",
+      "bill": "280",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "5",
+      "date": "28.11.23",
+      "bi_ka": "B+K+H",
+      "description": "সুতি",
+      "size": "80/88",
+      "model": "F.226",
+      "pd": "222",
+      "bill": "",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "6",
+      "date": "29.11.23",
+      "bi_ka": "B+K+H",
+      "description": "চয়না",
+      "size": "80/88",
+      "model": "F.222",
+      "pd": "220",
+      "bill": "282",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    }
+  ]
+}

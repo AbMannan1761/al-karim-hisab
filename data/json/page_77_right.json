@@ -1,0 +1,97 @@
+{
+  "party_name": "N/A",
+  "phone": "N/A",
+  "ledger_page_number": "155",
+  "credit_table": [
+    {
+      "no": "1",
+      "date": "N/A",
+      "amount": "8200",
+      "remarks": ""
+    },
+    {
+      "no": "2",
+      "date": "N/A",
+      "amount": "6220",
+      "remarks": ""
+    },
+    {
+      "no": "3",
+      "date": "N/A",
+      "amount": "6650",
+      "remarks": ""
+    },
+    {
+      "no": "4",
+      "date": "N/A",
+      "amount": "1250",
+      "remarks": ""
+    },
+    {
+      "no": "5",
+      "date": "N/A",
+      "amount": "2800",
+      "remarks": ""
+    },
+    {
+      "no": "6",
+      "date": "N/A",
+      "amount": "2000",
+      "remarks": ""
+    },
+    {
+      "no": "7",
+      "date": "N/A",
+      "amount": "2440",
+      "remarks": ""
+    },
+    {
+      "no": "8",
+      "date": "N/A",
+      "amount": "2440",
+      "remarks": ""
+    },
+    {
+      "no": "9",
+      "date": "N/A",
+      "amount": "6220",
+      "remarks": ""
+    },
+    {
+      "no": "10",
+      "date": "N/A",
+      "amount": "2880",
+      "remarks": ""
+    },
+    {
+      "no": "11",
+      "date": "N/A",
+      "amount": "4400",
+      "remarks": ""
+    },
+    {
+      "no": "12",
+      "date": "N/A",
+      "amount": "4860",
+      "remarks": ""
+    },
+    {
+      "no": "13",
+      "date": "N/A",
+      "amount": "4860",
+      "remarks": ""
+    },
+    {
+      "no": "14",
+      "date": "N/A",
+      "amount": "5840",
+      "remarks": ""
+    },
+    {
+      "no": "15",
+      "date": "N/A",
+      "amount": "4400",
+      "remarks": ""
+    }
+  ]
+}

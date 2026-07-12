@@ -1,0 +1,121 @@
+{
+  "party_name": "N/A",
+  "phone": "N/A",
+  "ledger_page_number": "173",
+  "credit_table": [
+    {
+      "no": "1",
+      "date": "N/A",
+      "amount": "9650",
+      "remarks": "৫৮৭৫০"
+    },
+    {
+      "no": "2",
+      "date": "N/A",
+      "amount": "5460",
+      "remarks": "৫৭৪৪০"
+    },
+    {
+      "no": "3",
+      "date": "N/A",
+      "amount": "8410",
+      "remarks": "৬৩২৬০"
+    },
+    {
+      "no": "4",
+      "date": "N/A",
+      "amount": "4950",
+      "remarks": "৬৩৪৬০"
+    },
+    {
+      "no": "5",
+      "date": "N/A",
+      "amount": "8460",
+      "remarks": "৬২২৭০"
+    },
+    {
+      "no": "6",
+      "date": "N/A",
+      "amount": "980",
+      "remarks": "৬২৪০৯০"
+    },
+    {
+      "no": "7",
+      "date": "N/A",
+      "amount": "2820",
+      "remarks": "৬২৭৬৫০"
+    },
+    {
+      "no": "8",
+      "date": "N/A",
+      "amount": "2960",
+      "remarks": "৬৬৬৯৫০"
+    },
+    {
+      "no": "9",
+      "date": "N/A",
+      "amount": "680",
+      "remarks": "৬৪ ০২৬০"
+    },
+    {
+      "no": "10",
+      "date": "N/A",
+      "amount": "2880",
+      "remarks": "৬৪১ ২৭০"
+    },
+    {
+      "no": "11",
+      "date": "N/A",
+      "amount": "5400",
+      "remarks": "৬৪৯০৭০"
+    },
+    {
+      "no": "12",
+      "date": "N/A",
+      "amount": "17020",
+      "remarks": "৬৬৪৮০৬০"
+    },
+    {
+      "no": "13",
+      "date": "N/A",
+      "amount": "4950",
+      "remarks": "৬৬৯১৮০"
+    },
+    {
+      "no": "14",
+      "date": "N/A",
+      "amount": "18940",
+      "remarks": "৬৮৫৫৫২০"
+    },
+    {
+      "no": "15",
+      "date": "N/A",
+      "amount": "16560",
+      "remarks": "৬৯৯২৯০"
+    },
+    {
+      "no": "16",
+      "date": "N/A",
+      "amount": "2040",
+      "remarks": "৭০২৬২০"
+    },
+    {
+      "no": "17",
+      "date": "N/A",
+      "amount": "18800",
+      "remarks": "৭০৬২০০"
+    },
+    {
+      "no": "18",
+      "date": "N/A",
+      "amount": "2200",
+      "remarks": "৭০৮৬০০"
+    },
+    {
+      "no": "19",
+      "date": "N/A",
+      "amount": "6500",
+      "remarks": "৭০৯৯০০"
+    }
+  ]
+}

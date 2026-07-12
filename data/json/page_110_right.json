@@ -1,0 +1,25 @@
+{
+  "party_name": "নাল",
+  "phone": "N/A",
+  "ledger_page_number": "199",
+  "credit_table": [
+    {
+      "no": "1",
+      "date": "N/A",
+      "amount": "18580",
+      "remarks": "৮২৯৫৮০"
+    },
+    {
+      "no": "2",
+      "date": "N/A",
+      "amount": "1980",
+      "remarks": "৮২২২০০"
+    },
+    {
+      "no": "3",
+      "date": "N/A",
+      "amount": "16680",
+      "remarks": "৮৪২৮১০"
+    }
+  ]
+}

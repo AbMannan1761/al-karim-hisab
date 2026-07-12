@@ -1,0 +1,22 @@
+# Virtual Environment
+.venv/
+venv/
+ENV/
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Large files
+*.pdf
+*.zip
+
+# Local config & IDEs
+.gemini/
+.vscode/
+.idea/
+.DS_Store
+
+# Data output (optional - remove if you want to back up JSONs to Github)
+# data/json/

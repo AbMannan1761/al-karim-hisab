@@ -1,0 +1,49 @@
+{
+  "party_name": "নাজ গার্মেন্টস্ কালিগঞ্জ",
+  "phone": "",
+  "ledger_page_number": "198",
+  "debit_table": [
+    {
+      "no": "1",
+      "date": "20.06.26",
+      "bi_ka": "B+K+H+P",
+      "description": "সার্ট মক্স",
+      "size": "40/88",
+      "model": "F-286",
+      "pd": "207",
+      "bill": "652",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "2",
+      "date": "22.06.26",
+      "bi_ka": "B+K+H",
+      "description": "মস্কমক্স",
+      "size": "40/88",
+      "model": "F285",
+      "pd": "206",
+      "bill": "658",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "5",
+      "date": "",
+      "bi_ka": "5",
+      "description": "5",
+      "size": "5",
+      "model": "F280",
+      "pd": "225",
+      "bill": "5",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    }
+  ]
+}

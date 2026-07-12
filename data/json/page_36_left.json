@@ -1,0 +1,21 @@
+{
+  "party_name": "আযীম চন্দ",
+  "phone": "",
+  "ledger_page_number": "72",
+  "debit_table": [
+    {
+      "no": "1",
+      "date": "18.04.25",
+      "bi_ka": "বিক্রয়",
+      "description": "প্যান্ট শার্ট",
+      "size": "40/44",
+      "model": "-",
+      "pd": "নও",
+      "bill": "1700",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    }
+  ]
+}

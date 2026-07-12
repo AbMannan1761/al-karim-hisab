@@ -1,0 +1,63 @@
+{
+  "party_name": "জহেরা পাঞ্জাবী-তুরাটন",
+  "phone": "",
+  "ledger_page_number": "196",
+  "debit_table": [
+    {
+      "no": "1",
+      "date": "14.2.26",
+      "bi_ka": "B+K+H",
+      "description": "কটনসুতি",
+      "size": "20/36",
+      "model": "F-202",
+      "pd": "350",
+      "bill": "284",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "2",
+      "date": "19.2.26",
+      "bi_ka": "B+K+H",
+      "description": "কটনসুতি",
+      "size": "80/88",
+      "model": "F-60",
+      "pd": "22",
+      "bill": "82",
+      "qty": "",
+      "taka": "",
+      "total": "686",
+      "remarks": ""
+    },
+    {
+      "no": "3",
+      "date": "20.3.26",
+      "bi_ka": "B+K+H",
+      "description": "সাদা কটন",
+      "size": "80/88",
+      "model": "F-480",
+      "pd": "82",
+      "bill": "227",
+      "qty": "",
+      "taka": "",
+      "total": "716",
+      "remarks": ""
+    },
+    {
+      "no": "4",
+      "date": "20.3.26",
+      "bi_ka": "B+K+H",
+      "description": "সুতি",
+      "size": "80/88",
+      "model": "F-90",
+      "pd": "",
+      "bill": "",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    }
+  ]
+}

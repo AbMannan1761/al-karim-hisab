@@ -1,0 +1,450 @@
+[
+  {
+    "no": 1,
+    "party_name": "সাধন চন্দ্র",
+    "page": 6,
+    "address": "আড়িয়া, সদর",
+    "notes": ""
+  },
+  {
+    "no": 2,
+    "party_name": "রূক মনোজ সাং",
+    "page": 6,
+    "address": "সিকদারপুর, সদর",
+    "notes": ""
+  },
+  {
+    "no": 3,
+    "party_name": "মনজ সাং",
+    "page": 10,
+    "address": "হাটখোলা, সদর",
+    "notes": ""
+  },
+  {
+    "no": 4,
+    "party_name": "আনোয়ারা সাং",
+    "page": 12,
+    "address": "হাটখোলা, সদর",
+    "notes": ""
+  },
+  {
+    "no": 5,
+    "party_name": "প্রদীপ সাং",
+    "page": 14,
+    "address": "খাঁজা মহা কানি",
+    "notes": ""
+  },
+  {
+    "no": 6,
+    "party_name": "জালাল সাং",
+    "page": 16,
+    "address": "মহড়ী, পোঃ সদর",
+    "notes": ""
+  },
+  {
+    "no": 7,
+    "party_name": "আবিদ হামজা",
+    "page": 18,
+    "address": "মাসনা বিঃ সদর",
+    "notes": ""
+  },
+  {
+    "no": 8,
+    "party_name": "মাসুদ সাং",
+    "page": 20,
+    "address": "আমিন ভবন সদর",
+    "notes": "২১৯/২০২০ সাদা"
+  },
+  {
+    "no": 9,
+    "party_name": "এন প্রিয়াংমায়া",
+    "page": 22,
+    "address": "হাজি করিম সাং সদর",
+    "notes": ""
+  },
+  {
+    "no": 10,
+    "party_name": "জেঃ কুমার সাং",
+    "page": 24,
+    "address": "স্কুল কলোনী, সদর",
+    "notes": "২২৬/৬৬/২৪"
+  },
+  {
+    "no": 11,
+    "party_name": "এন জামা সাং",
+    "page": 26,
+    "address": "হাসিন সাং, সদর",
+    "notes": ""
+  },
+  {
+    "no": 12,
+    "party_name": "আহাম্মিক সাং",
+    "page": 28,
+    "address": "হাটখোলা, সদর",
+    "notes": ""
+  },
+  {
+    "no": 13,
+    "party_name": "জয়নুল সাং",
+    "page": 30,
+    "address": "হাসিন সাং, সদর",
+    "notes": ""
+  },
+  {
+    "no": 14,
+    "party_name": "রিনাফিয়া সাং",
+    "page": 32,
+    "address": "আনসার মাসিক কানি",
+    "notes": ""
+  },
+  {
+    "no": 15,
+    "party_name": "পিঃএম সাং",
+    "page": 34,
+    "address": "হাটখোলা, সদর",
+    "notes": ""
+  },
+  {
+    "no": 16,
+    "party_name": "আনসার সাং (অঃ মিঃ)",
+    "page": 36,
+    "address": "হাটখোলা, সদর",
+    "notes": ""
+  },
+  {
+    "no": 17,
+    "party_name": "জালি সাং",
+    "page": 38,
+    "address": "হাটখোলা, সদর",
+    "notes": ""
+  },
+  {
+    "no": 18,
+    "party_name": "মনজু সাং",
+    "page": 40,
+    "address": "হাসিন সাং, সদর",
+    "notes": ""
+  },
+  {
+    "no": 19,
+    "party_name": "সুমিম সাং",
+    "page": 42,
+    "address": "হাটখোলা, সদর",
+    "notes": ""
+  },
+  {
+    "no": 20,
+    "party_name": "মায়িম সাং",
+    "page": 44,
+    "address": "হাটখোলা, সদর",
+    "notes": ""
+  },
+  {
+    "no": 21,
+    "party_name": "সুজন সাং",
+    "page": 46,
+    "address": "কার্বিস সাং, সদর",
+    "notes": ""
+  },
+  {
+    "no": 22,
+    "party_name": "জিহান সাং",
+    "page": 48,
+    "address": "হাটখোলা, সদর",
+    "notes": ""
+  },
+  {
+    "no": 23,
+    "party_name": "আনিক সাং",
+    "page": 50,
+    "address": "হাটখোলা, সদর",
+    "notes": ""
+  },
+  {
+    "no": 24,
+    "party_name": "প্রীতি সাং",
+    "page": 52,
+    "address": "মাসিম সাং, সদর",
+    "notes": ""
+  },
+  {
+    "no": 25,
+    "party_name": "আব্দুস সাং",
+    "page": 54,
+    "address": "হাটখোলা, সদর",
+    "notes": ""
+  },
+  {
+    "no": 26,
+    "party_name": "সসুন কান্ত তুয়াং",
+    "page": 56,
+    "address": "সখলী, কান্দাওয়ানা, সদর",
+    "notes": ""
+  },
+  {
+    "no": 27,
+    "party_name": "কবির চন্দ",
+    "page": 58,
+    "address": "মাসনা বিলিয়, সদর",
+    "notes": ""
+  },
+  {
+    "no": 28,
+    "party_name": "আল্লাহ দান",
+    "page": 60,
+    "address": "হাটখোলা, সদর",
+    "notes": ""
+  },
+  {
+    "no": 29,
+    "party_name": "নীয়ামত চন্দ",
+    "page": 62,
+    "address": "কটন মিন্নুস",
+    "notes": ""
+  },
+  {
+    "no": 30,
+    "party_name": "লালা পান্না সাং",
+    "page": 64,
+    "address": "সাকিনুল্লা",
+    "notes": ""
+  },
+  {
+    "no": 31,
+    "party_name": "আবির সাং",
+    "page": 66,
+    "address": "কালিপদ",
+    "notes": ""
+  },
+  {
+    "no": 32,
+    "party_name": "রূপসী বালিকা",
+    "page": 68,
+    "address": "স্কুল কঃ সদর, স্কুল",
+    "notes": ""
+  },
+  {
+    "no": 33,
+    "party_name": "আযীম চন্দ",
+    "page": 72,
+    "address": "সামলানল্লা",
+    "notes": ""
+  },
+  {
+    "no": 1,
+    "party_name": "সিনাথিয়াস শাহঃ",
+    "page": 74,
+    "address": "রামস মাঃ সদর",
+    "notes": "১ mark after party name, client number crossed out."
+  },
+  {
+    "no": 2,
+    "party_name": "জুমা শাহঃ",
+    "page": 76,
+    "address": "ইস্টেজেল সদর",
+    "notes": "Client number crossed out."
+  },
+  {
+    "no": 3,
+    "party_name": "রুনালি শাহঃ",
+    "page": 76,
+    "address": "কার্তিক মাঃ সদর",
+    "notes": "Client number crossed out."
+  },
+  {
+    "no": 4,
+    "party_name": "মীরজাম ভাই",
+    "page": 80,
+    "address": "ইস্টেজেল, সদর",
+    "notes": "Client number crossed out."
+  },
+  {
+    "no": 5,
+    "party_name": "নজরুল ভাই",
+    "page": 82,
+    "address": "ইস্টেজেল, সদর",
+    "notes": "Client number crossed out."
+  },
+  {
+    "no": 6,
+    "party_name": "ইমুলা শাহঃ",
+    "page": 84,
+    "address": "আলহাস মাঃ কালিগঞ্জ",
+    "notes": "Client number crossed out."
+  },
+  {
+    "no": 7,
+    "party_name": "বাহাল শাহঃ",
+    "page": 86,
+    "address": "কার্তিক মাঃ সদর",
+    "notes": "Client number crossed out."
+  },
+  {
+    "no": 8,
+    "party_name": "রশীদ ভাই",
+    "page": 90,
+    "address": "সুভানা মাঃ সদর",
+    "notes": "Client number crossed out."
+  },
+  {
+    "no": 9,
+    "party_name": "সাহাবু শাহেদস",
+    "page": 92,
+    "address": "ইস্টেজেল, সদর",
+    "notes": "Client number crossed out."
+  },
+  {
+    "no": 10,
+    "party_name": "ইমাদ শাহঃ",
+    "page": 94,
+    "address": "ইস্টেজেল, সদর",
+    "notes": "Client number crossed out."
+  },
+  {
+    "no": 11,
+    "party_name": "রুবাইসেন শাহঃ",
+    "page": 96,
+    "address": "রামস মাঃ সদর",
+    "notes": "Client number crossed out."
+  },
+  {
+    "no": 12,
+    "party_name": "আব্দুল ভাই",
+    "page": 98,
+    "address": "ইস্টেজেল, সদর",
+    "notes": "Client number crossed out."
+  },
+  {
+    "no": 13,
+    "party_name": "আরিযান ভাই",
+    "page": 100,
+    "address": "কালিগঞ্জ",
+    "notes": "Client number crossed out."
+  },
+  {
+    "no": 14,
+    "party_name": "রামিবা ভাই",
+    "page": 102,
+    "address": "ইস্টেজেল, সদর",
+    "notes": "Client number crossed out."
+  },
+  {
+    "no": 15,
+    "party_name": "রুক আার",
+    "page": 104,
+    "address": "রাজবাড়ী, সারসবাড়ী",
+    "notes": "Client number crossed out."
+  },
+  {
+    "no": 16,
+    "party_name": "মাসুম সাহেদস",
+    "page": 222,
+    "address": "দ্বিতীয় মার্কেট: সদর",
+    "notes": "Client number crossed out."
+  },
+  {
+    "no": 30,
+    "party_name": "তাজুয়া সাহেদস",
+    "page": 206,
+    "address": "ছয়ঘুন",
+    "notes": ""
+  },
+  {
+    "no": 31,
+    "party_name": "জাহিনারা সাহেদস",
+    "page": 224,
+    "address": "হাক্স, মার্কেট!",
+    "notes": "০৪ written after party name."
+  },
+  {
+    "no": 32,
+    "party_name": "বেনমা (মামুস ভাই)",
+    "page": 226,
+    "address": "ইজরাবেল মার্কেট: সদর",
+    "notes": ""
+  },
+  {
+    "no": 33,
+    "party_name": "আলি সাহেদস",
+    "page": 228,
+    "address": "মুনকমপ্রা",
+    "notes": ""
+  },
+  {
+    "no": 34,
+    "party_name": "আইছিয়াল সাহেদস",
+    "page": 220,
+    "address": "কালিগঞ্জ",
+    "notes": "Client number crossed out."
+  },
+  {
+    "no": 35,
+    "party_name": "আমান ভাই",
+    "page": 222,
+    "address": "ইজরাবেল মার্কেট: সদর",
+    "notes": "Client number crossed out."
+  },
+  {
+    "no": 36,
+    "party_name": "মাহবুব ভাই",
+    "page": 229,
+    "address": "কালিগঞ্জ",
+    "notes": "Client number crossed out."
+  },
+  {
+    "no": 37,
+    "party_name": "নিজান সাহেদস",
+    "page": 218,
+    "address": "কালিগঞ্জ",
+    "notes": "Client number crossed out."
+  },
+  {
+    "no": 38,
+    "party_name": "আজমেরি (জুনির ভাই)",
+    "page": 230,
+    "address": "ইজরাবেল: সদর",
+    "notes": "Client number crossed out."
+  },
+  {
+    "no": 39,
+    "party_name": "আন্দা ভাই",
+    "page": 262,
+    "address": "আলহালহুর",
+    "notes": "Client number crossed out."
+  },
+  {
+    "no": 40,
+    "party_name": "S.K. পান্জাবি",
+    "page": 264,
+    "address": "কুমিল্লা ট্রাওয়া",
+    "notes": "Client number crossed out."
+  },
+  {
+    "no": 41,
+    "party_name": "সাম ভাই",
+    "page": 242,
+    "address": "কালিগঞ্জ",
+    "notes": "Client number crossed out."
+  },
+  {
+    "no": 42,
+    "party_name": "আলকাবির (নিজ্ব)",
+    "page": 246,
+    "address": "ইজরাবেল: সদর",
+    "notes": "Client number crossed out."
+  },
+  {
+    "no": 43,
+    "party_name": "এস.এম. সাহেদস",
+    "page": 242,
+    "address": "কালিগঞ্জ",
+    "notes": "Client number crossed out."
+  },
+  {
+    "no": 44,
+    "party_name": "মহিদুল ভাই",
+    "page": 244,
+    "address": "নারায়নগঞ্জ",
+    "notes": "Client number crossed out."
+  }
+]

@@ -1,0 +1,77 @@
+{
+  "party_name": "সুমিম গার্মেন্টস, ইষ্ট-গোয়াল সদরঘাট",
+  "phone": null,
+  "ledger_page_number": "42",
+  "debit_table": [
+    {
+      "no": "1",
+      "date": "24.08.25",
+      "bi_ka": "B+K+H",
+      "description": "সুতি লাখনু",
+      "size": "32/36",
+      "model": "A-22",
+      "pd": "NN",
+      "bill": "98",
+      "qty": null,
+      "taka": null,
+      "total": null,
+      "remarks": ""
+    },
+    {
+      "no": "2",
+      "date": "24.08.25",
+      "bi_ka": "B+K+H",
+      "description": "সুতি লাখনু",
+      "size": "30/32",
+      "model": "A-22",
+      "pd": "228",
+      "bill": null,
+      "qty": null,
+      "taka": null,
+      "total": null,
+      "remarks": ""
+    },
+    {
+      "no": "3",
+      "date": "06.09.25",
+      "bi_ka": "B+K+H",
+      "description": "সুতি প্রিন্ট",
+      "size": "30/32",
+      "model": "F-680",
+      "pd": "244",
+      "bill": null,
+      "qty": null,
+      "taka": null,
+      "total": null,
+      "remarks": ""
+    },
+    {
+      "no": "4",
+      "date": "16.09.25",
+      "bi_ka": "B+K+",
+      "description": "গ্যারান্টিজ",
+      "size": "34/36",
+      "model": "F-690",
+      "pd": "382",
+      "bill": null,
+      "qty": null,
+      "taka": null,
+      "total": null,
+      "remarks": ""
+    },
+    {
+      "no": "5",
+      "date": "24.09.25",
+      "bi_ka": "B+K+H",
+      "description": "কটন প্যান্ট",
+      "size": "32/36",
+      "model": "A-11",
+      "pd": "50",
+      "bill": null,
+      "qty": null,
+      "taka": null,
+      "total": null,
+      "remarks": ""
+    }
+  ]
+}

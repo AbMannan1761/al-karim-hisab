@@ -1,0 +1,139 @@
+{
+  "party_name": "নগদ জমা",
+  "phone": "",
+  "ledger_page_number": "175",
+  "credit_table": [
+    {
+      "no": "1",
+      "date": "",
+      "amount": "450",
+      "remarks": "36550"
+    },
+    {
+      "no": "2",
+      "date": "",
+      "amount": "6300",
+      "remarks": "32450"
+    },
+    {
+      "no": "3",
+      "date": "",
+      "amount": "4080",
+      "remarks": "36530"
+    },
+    {
+      "no": "4",
+      "date": "",
+      "amount": "7200",
+      "remarks": "32900"
+    },
+    {
+      "no": "5",
+      "date": "",
+      "amount": "5550",
+      "remarks": "36260"
+    },
+    {
+      "no": "6",
+      "date": "",
+      "amount": "16260",
+      "remarks": "352520"
+    },
+    {
+      "no": "7",
+      "date": "",
+      "amount": "5600",
+      "remarks": "384120"
+    },
+    {
+      "no": "8",
+      "date": "",
+      "amount": "5600",
+      "remarks": "385120"
+    },
+    {
+      "no": "9",
+      "date": "",
+      "amount": "5400",
+      "remarks": "390520"
+    },
+    {
+      "no": "10",
+      "date": "",
+      "amount": "8400",
+      "remarks": "398920"
+    },
+    {
+      "no": "11",
+      "date": "",
+      "amount": "9450",
+      "remarks": "388450"
+    },
+    {
+      "no": "12",
+      "date": "",
+      "amount": "9450",
+      "remarks": "394040"
+    },
+    {
+      "no": "13",
+      "date": "",
+      "amount": "9450",
+      "remarks": "402600"
+    },
+    {
+      "no": "14",
+      "date": "",
+      "amount": "9450",
+      "remarks": "402160"
+    },
+    {
+      "no": "15",
+      "date": "",
+      "amount": "5600",
+      "remarks": "418460"
+    },
+    {
+      "no": "16",
+      "date": "",
+      "amount": "9450",
+      "remarks": "426020"
+    },
+    {
+      "no": "17",
+      "date": "",
+      "amount": "8400",
+      "remarks": "432420"
+    },
+    {
+      "no": "18",
+      "date": "",
+      "amount": "8820",
+      "remarks": "440280"
+    },
+    {
+      "no": "19",
+      "date": "",
+      "amount": "8820",
+      "remarks": "441060"
+    },
+    {
+      "no": "20",
+      "date": "",
+      "amount": "6920",
+      "remarks": "451280"
+    },
+    {
+      "no": "21",
+      "date": "",
+      "amount": "7200",
+      "remarks": "464480"
+    },
+    {
+      "no": "22",
+      "date": "",
+      "amount": "10420",
+      "remarks": "498990"
+    }
+  ]
+}

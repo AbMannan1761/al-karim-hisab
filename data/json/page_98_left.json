@@ -1,0 +1,49 @@
+{
+  "party_name": "নাজ গার্মেন্টস কালিরগঞ্জ",
+  "phone": null,
+  "ledger_page_number": "196",
+  "debit_table": [
+    {
+      "no": "1",
+      "date": "20.02.26",
+      "bi_ka": "B+K+H+P",
+      "description": "সার্ট ম্যন",
+      "size": "80/88",
+      "model": "F-276",
+      "pd": "267",
+      "bill": "652",
+      "qty": null,
+      "taka": null,
+      "total": null,
+      "remarks": null
+    },
+    {
+      "no": "2",
+      "date": "22.02.26",
+      "bi_ka": "B+K+H",
+      "description": "ম্যনল্যন",
+      "size": "80/88",
+      "model": "F276",
+      "pd": "260",
+      "bill": "658",
+      "qty": null,
+      "taka": null,
+      "total": null,
+      "remarks": null
+    },
+    {
+      "no": "3",
+      "date": "22.02.26",
+      "bi_ka": "B+K+H",
+      "description": "ম্যনল্যন",
+      "size": "80/88",
+      "model": "F260",
+      "pd": "228",
+      "bill": "658",
+      "qty": null,
+      "taka": null,
+      "total": null,
+      "remarks": null
+    }
+  ]
+}

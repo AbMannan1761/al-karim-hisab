@@ -1,0 +1,35 @@
+{
+  "party_name": "লিয়াকত ভাই কটন মিলস",
+  "phone": "",
+  "ledger_page_number": "62",
+  "debit_table": [
+    {
+      "no": "1",
+      "date": "05.05.25",
+      "bi_ka": "B+K+H",
+      "description": "প্যান্টশার্ট",
+      "size": "40/44",
+      "model": "F.22",
+      "pd": "160",
+      "bill": "",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "2",
+      "date": "05.05.25",
+      "bi_ka": "B+K+H",
+      "description": "প্যান্টশার্ট",
+      "size": "40/44",
+      "model": "F.20",
+      "pd": "182",
+      "bill": "",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    }
+  ]
+}

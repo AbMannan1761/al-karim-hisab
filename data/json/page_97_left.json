@@ -1,0 +1,63 @@
+{
+  "party_name": "জহেরা পানভান্ডার",
+  "phone": "",
+  "ledger_page_number": "196",
+  "debit_table": [
+    {
+      "no": "1",
+      "date": "14.2.26",
+      "bi_ka": "ব+ক+হ",
+      "description": "কটন সুতি",
+      "size": "20/64",
+      "model": "F-202",
+      "pd": "350",
+      "bill": "",
+      "qty": "215",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "2",
+      "date": "22.2.26",
+      "bi_ka": "ব+ক+হ",
+      "description": "কটন সুতি",
+      "size": "80/88",
+      "model": "F-60",
+      "pd": "22",
+      "bill": "",
+      "qty": "",
+      "taka": "",
+      "total": "656",
+      "remarks": ""
+    },
+    {
+      "no": "3",
+      "date": "20.6.26",
+      "bi_ka": "ব+ক+হ",
+      "description": "সাডার কটন",
+      "size": "80/88",
+      "model": "F-880",
+      "pd": "82",
+      "bill": "",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "4",
+      "date": "20.6.26",
+      "bi_ka": "ব+ক+হ",
+      "description": "সুতি",
+      "size": "80/88",
+      "model": "F-90",
+      "pd": "227",
+      "bill": "",
+      "qty": "",
+      "taka": "",
+      "total": "676",
+      "remarks": ""
+    }
+  ]
+}

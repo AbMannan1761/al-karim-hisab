@@ -1,0 +1,77 @@
+{
+  "party_name": "মাহবুব ট্রেডার্স, কালিনগঞ্জ",
+  "phone": "",
+  "ledger_page_number": "124",
+  "debit_table": [
+    {
+      "no": "1",
+      "date": "02.02.24",
+      "bi_ka": "B+K+H",
+      "description": "টাকা",
+      "size": "20/60",
+      "model": "R.6",
+      "pd": "288",
+      "bill": "20",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "2",
+      "date": "26.02.24",
+      "bi_ka": "B+K",
+      "description": "টাকা",
+      "size": "28/26",
+      "model": "D.60",
+      "pd": "92",
+      "bill": "20",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "3",
+      "date": "08.02.24",
+      "bi_ka": "B+K+H",
+      "description": "টাকা",
+      "size": "20/60",
+      "model": "C-35",
+      "pd": "288",
+      "bill": "2",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "4",
+      "date": "08.02.24",
+      "bi_ka": "B+K+H",
+      "description": "টাকা",
+      "size": "20/60",
+      "model": "C.56",
+      "pd": "20",
+      "bill": "2",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "5",
+      "date": "28.02.24",
+      "bi_ka": "B+K+H",
+      "description": "টাকা",
+      "size": "20/60",
+      "model": "F-280",
+      "pd": "288",
+      "bill": "27",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    }
+  ]
+}

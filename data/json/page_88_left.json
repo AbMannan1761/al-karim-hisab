@@ -1,0 +1,35 @@
+{
+  "party_name": "সেতু গার্মেন্টস",
+  "phone": "",
+  "ledger_page_number": "176",
+  "debit_table": [
+    {
+      "no": "1",
+      "date": "20.12.24",
+      "bi_ka": "B+K+H",
+      "description": "প্যান্ট",
+      "size": "80/88",
+      "model": "F-265",
+      "pd": "56",
+      "bill": "54",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "2",
+      "date": "06.02.26",
+      "bi_ka": "B+K+H",
+      "description": "ফ্রক",
+      "size": "80/88",
+      "model": "F-298",
+      "pd": "92",
+      "bill": "100",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    }
+  ]
+}

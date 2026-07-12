@@ -1,0 +1,63 @@
+{
+  "party_name": "সাবিনা গার্মেন্টস (মালিক মঃ সদরঘাট)",
+  "phone": "",
+  "ledger_page_number": "88",
+  "debit_table": [
+    {
+      "no": "1",
+      "date": "12.09.23",
+      "bi_ka": "B+K+H",
+      "description": "প্যান্ট/প্যান্ট",
+      "size": "80/88",
+      "model": "12.06",
+      "pd": "309",
+      "bill": "",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "2",
+      "date": "27.09.23",
+      "bi_ka": "B+K+H",
+      "description": "শার্ট, প্যান্ট",
+      "size": "80/88",
+      "model": "c.08",
+      "pd": "355",
+      "bill": "",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "3",
+      "date": "27.09.23",
+      "bi_ka": "B+K+H",
+      "description": "শার্ট, প্যান্ট",
+      "size": "80/88",
+      "model": "c.08",
+      "pd": "358",
+      "bill": "",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "4",
+      "date": "27.09.23",
+      "bi_ka": "B+K+H",
+      "description": "শার্ট, প্যান্ট",
+      "size": "80/88",
+      "model": "c.08",
+      "pd": "390",
+      "bill": "",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    }
+  ]
+}

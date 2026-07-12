@@ -1,0 +1,115 @@
+{
+  "party_name": "অজ্ঞাত",
+  "phone": "N/A",
+  "ledger_page_number": "171",
+  "credit_table": [
+    {
+      "no": "1",
+      "date": "N/A",
+      "amount": "11000",
+      "remarks": "দর ৮০"
+    },
+    {
+      "no": "2",
+      "date": "N/A",
+      "amount": "8670",
+      "remarks": "দর ৯০"
+    },
+    {
+      "no": "3",
+      "date": "N/A",
+      "amount": "16400",
+      "remarks": "দর ২০০"
+    },
+    {
+      "no": "4",
+      "date": "N/A",
+      "amount": "8550",
+      "remarks": "দর ৮০"
+    },
+    {
+      "no": "5",
+      "date": "N/A",
+      "amount": "19760",
+      "remarks": "দর ৯০"
+    },
+    {
+      "no": "6",
+      "date": "N/A",
+      "amount": "16560",
+      "remarks": "দর ৮০"
+    },
+    {
+      "no": "7",
+      "date": "N/A",
+      "amount": "18960",
+      "remarks": "দর ৮০"
+    },
+    {
+      "no": "8",
+      "date": "N/A",
+      "amount": "6470",
+      "remarks": "দর ৭০"
+    },
+    {
+      "no": "9",
+      "date": "N/A",
+      "amount": "6540",
+      "remarks": "দর ৮০"
+    },
+    {
+      "no": "10",
+      "date": "N/A",
+      "amount": "11640",
+      "remarks": "দর ৯০"
+    },
+    {
+      "no": "11",
+      "date": "N/A",
+      "amount": "12500",
+      "remarks": "দর ২০০"
+    },
+    {
+      "no": "12",
+      "date": "N/A",
+      "amount": "16800",
+      "remarks": "দর ২০০"
+    },
+    {
+      "no": "13",
+      "date": "N/A",
+      "amount": "14900",
+      "remarks": "দর ২৪০"
+    },
+    {
+      "no": "14",
+      "date": "N/A",
+      "amount": "11040",
+      "remarks": "দর ৮০"
+    },
+    {
+      "no": "15",
+      "date": "N/A",
+      "amount": "14240",
+      "remarks": "দর ৮০"
+    },
+    {
+      "no": "16",
+      "date": "N/A",
+      "amount": "10500",
+      "remarks": "দর ২০০"
+    },
+    {
+      "no": "17",
+      "date": "N/A",
+      "amount": "17640",
+      "remarks": "দর ৬০"
+    },
+    {
+      "no": "18",
+      "date": "N/A",
+      "amount": "14560",
+      "remarks": "দর ৮০"
+    }
+  ]
+}

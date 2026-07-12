@@ -1,0 +1,21 @@
+{
+  "party_name": "রুনালী শাহঃ",
+  "phone": "",
+  "ledger_page_number": "76",
+  "debit_table": [
+    {
+      "no": "1",
+      "date": "22.08.24",
+      "bi_ka": "বিক্রয়",
+      "description": "চমক, পপ",
+      "size": "40/44",
+      "model": "F.50",
+      "pd": "163",
+      "bill": "37",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "party_name": "সিনাথিয়াস শাহ",
+  "phone": null,
+  "ledger_page_number": "75",
+  "credit_table": [
+    {
+      "no": "1",
+      "date": null,
+      "amount": "14800",
+      "remarks": "14800"
+    },
+    {
+      "no": "2",
+      "date": null,
+      "amount": "5860",
+      "remarks": "20660"
+    },
+    {
+      "no": "3",
+      "date": null,
+      "amount": "4020",
+      "remarks": "24680"
+    },
+    {
+      "no": "4",
+      "date": null,
+      "amount": "1760",
+      "remarks": "26440"
+    },
+    {
+      "no": "5",
+      "date": null,
+      "amount": "6540",
+      "remarks": "32980"
+    }
+  ]
+}

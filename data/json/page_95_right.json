@@ -1,0 +1,31 @@
+{
+  "party_name": "নগদ টাকা",
+  "phone": null,
+  "ledger_page_number": "193",
+  "credit_table": [
+    {
+      "no": "1",
+      "date": null,
+      "amount": "211240",
+      "remarks": "নগদ টাকা"
+    },
+    {
+      "no": "2",
+      "date": null,
+      "amount": "185660",
+      "remarks": "নগদ টাকা"
+    },
+    {
+      "no": "3",
+      "date": null,
+      "amount": "271840",
+      "remarks": "নগদ টাকা"
+    },
+    {
+      "no": "4",
+      "date": null,
+      "amount": "127720",
+      "remarks": "নগদ টাকা"
+    }
+  ]
+}

@@ -1,0 +1,193 @@
+{
+  "party_name": "নথিপত্র",
+  "phone": "N/A",
+  "ledger_page_number": "185",
+  "credit_table": [
+    {
+      "no": "1",
+      "date": "3585",
+      "amount": "3600",
+      "remarks": "৩৬৫৫৫"
+    },
+    {
+      "no": "2",
+      "date": "5950",
+      "amount": "36245",
+      "remarks": ""
+    },
+    {
+      "no": "3",
+      "date": "7020",
+      "amount": "36846",
+      "remarks": ""
+    },
+    {
+      "no": "4",
+      "date": "4620",
+      "amount": "37675",
+      "remarks": ""
+    },
+    {
+      "no": "5",
+      "date": "5960",
+      "amount": "38582",
+      "remarks": ""
+    },
+    {
+      "no": "6",
+      "date": "4620",
+      "amount": "38415",
+      "remarks": ""
+    },
+    {
+      "no": "7",
+      "date": "9980",
+      "amount": "38258",
+      "remarks": ""
+    },
+    {
+      "no": "8",
+      "date": "5600",
+      "amount": "40295",
+      "remarks": ""
+    },
+    {
+      "no": "9",
+      "date": "11520",
+      "amount": "41671",
+      "remarks": ""
+    },
+    {
+      "no": "10",
+      "date": "4620",
+      "amount": "41806",
+      "remarks": ""
+    },
+    {
+      "no": "11",
+      "date": "5280",
+      "amount": "42626",
+      "remarks": ""
+    },
+    {
+      "no": "12",
+      "date": "3600",
+      "amount": "42681",
+      "remarks": ""
+    },
+    {
+      "no": "13",
+      "date": "4620",
+      "amount": "46205",
+      "remarks": ""
+    },
+    {
+      "no": "14",
+      "date": "5400",
+      "amount": "46658",
+      "remarks": ""
+    },
+    {
+      "no": "15",
+      "date": "9200",
+      "amount": "44608",
+      "remarks": ""
+    },
+    {
+      "no": "16",
+      "date": "2280",
+      "amount": "45288",
+      "remarks": ""
+    },
+    {
+      "no": "17",
+      "date": "5080",
+      "amount": "45025",
+      "remarks": ""
+    },
+    {
+      "no": "18",
+      "date": "9200",
+      "amount": "46554",
+      "remarks": ""
+    },
+    {
+      "no": "19",
+      "date": "3600",
+      "amount": "46722",
+      "remarks": ""
+    },
+    {
+      "no": "20",
+      "date": "5960",
+      "amount": "49841",
+      "remarks": ""
+    },
+    {
+      "no": "21",
+      "date": "22050",
+      "amount": "48624",
+      "remarks": ""
+    },
+    {
+      "no": "22",
+      "date": "2000",
+      "amount": "45924",
+      "remarks": ""
+    },
+    {
+      "no": "23",
+      "date": "5600",
+      "amount": "50554",
+      "remarks": ""
+    },
+    {
+      "no": "24",
+      "date": "1650",
+      "amount": "51420",
+      "remarks": ""
+    },
+    {
+      "no": "25",
+      "date": "5960",
+      "amount": "52065",
+      "remarks": ""
+    },
+    {
+      "no": "26",
+      "date": "4620",
+      "amount": "52874",
+      "remarks": ""
+    },
+    {
+      "no": "27",
+      "date": "5500",
+      "amount": "56984",
+      "remarks": ""
+    },
+    {
+      "no": "28",
+      "date": "7600",
+      "amount": "59675",
+      "remarks": ""
+    },
+    {
+      "no": "29",
+      "date": "7200",
+      "amount": "58656",
+      "remarks": ""
+    },
+    {
+      "no": "30",
+      "date": "5050",
+      "amount": "55218",
+      "remarks": ""
+    },
+    {
+      "no": "31",
+      "date": "5960",
+      "amount": "56440",
+      "remarks": ""
+    }
+  ]
+}

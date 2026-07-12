@@ -1,0 +1,43 @@
+{
+  "party_name": "N/A",
+  "phone": "N/A",
+  "ledger_page_number": "125",
+  "credit_table": [
+    {
+      "no": "1",
+      "date": "14.08.24",
+      "amount": "1398",
+      "remarks": "নগদ"
+    },
+    {
+      "no": "2",
+      "date": "18.08.24",
+      "amount": "1398",
+      "remarks": "নগদ"
+    },
+    {
+      "no": "3",
+      "date": "20.08.24",
+      "amount": "1398",
+      "remarks": "নগদ"
+    },
+    {
+      "no": "4",
+      "date": "22.08.24",
+      "amount": "1339",
+      "remarks": "নগদ"
+    },
+    {
+      "no": "5",
+      "date": "24.08.24",
+      "amount": "1339",
+      "remarks": "নগদ"
+    },
+    {
+      "no": "6",
+      "date": "25.08.24",
+      "amount": "1339",
+      "remarks": "নগদ"
+    }
+  ]
+}

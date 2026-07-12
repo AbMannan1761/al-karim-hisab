@@ -1,0 +1,21 @@
+{
+  "party_name": "আল-রাকিব (ক্যান্টিনপড়া)",
+  "phone": "",
+  "ledger_page_number": "70",
+  "debit_table": [
+    {
+      "no": "1",
+      "date": "18.05.25",
+      "bi_ka": "বাকী",
+      "description": "ফ্যানটুট পাঃ",
+      "size": "4088",
+      "model": "S-26",
+      "pd": "276",
+      "bill": "3778",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    }
+  ]
+}

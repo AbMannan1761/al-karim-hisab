@@ -1,0 +1,169 @@
+{
+  "party_name": "নাল",
+  "phone": "N/A",
+  "ledger_page_number": "113",
+  "credit_table": [
+    {
+      "no": "১",
+      "date": "22.6.24",
+      "amount": "2000",
+      "remarks": ""
+    },
+    {
+      "no": "২",
+      "date": "28.6.24",
+      "amount": "2000",
+      "remarks": ""
+    },
+    {
+      "no": "৩",
+      "date": "8.7.24",
+      "amount": "2000",
+      "remarks": ""
+    },
+    {
+      "no": "৪",
+      "date": "12.7.24",
+      "amount": "2000",
+      "remarks": ""
+    },
+    {
+      "no": "৫",
+      "date": "22.7.24",
+      "amount": "2000",
+      "remarks": ""
+    },
+    {
+      "no": "৬",
+      "date": "28.7.24",
+      "amount": "2000",
+      "remarks": ""
+    },
+    {
+      "no": "৭",
+      "date": "2.10.24",
+      "amount": "6000",
+      "remarks": ""
+    },
+    {
+      "no": "৮",
+      "date": "26.10.24",
+      "amount": "2000",
+      "remarks": ""
+    },
+    {
+      "no": "৯",
+      "date": "26.10.24",
+      "amount": "2000",
+      "remarks": ""
+    },
+    {
+      "no": "১০",
+      "date": "30.10.24",
+      "amount": "8000",
+      "remarks": ""
+    },
+    {
+      "no": "১১",
+      "date": "4.11.24",
+      "amount": "6000",
+      "remarks": ""
+    },
+    {
+      "no": "১২",
+      "date": "16.11.24",
+      "amount": "2000",
+      "remarks": ""
+    },
+    {
+      "no": "১৩",
+      "date": "20.11.24",
+      "amount": "2000",
+      "remarks": ""
+    },
+    {
+      "no": "১৪",
+      "date": "29.11.24",
+      "amount": "2000",
+      "remarks": ""
+    },
+    {
+      "no": "১৫",
+      "date": "4.12.24",
+      "amount": "2000",
+      "remarks": ""
+    },
+    {
+      "no": "১৬",
+      "date": "22.12.24",
+      "amount": "2000",
+      "remarks": ""
+    },
+    {
+      "no": "১৭",
+      "date": "27.12.24",
+      "amount": "2000",
+      "remarks": ""
+    },
+    {
+      "no": "১৮",
+      "date": "28.12.24",
+      "amount": "2000",
+      "remarks": ""
+    },
+    {
+      "no": "১৯",
+      "date": "2.1.25",
+      "amount": "2000",
+      "remarks": ""
+    },
+    {
+      "no": "২০",
+      "date": "6.1.25",
+      "amount": "2000",
+      "remarks": ""
+    },
+    {
+      "no": "২১",
+      "date": "14.1.25",
+      "amount": "2000",
+      "remarks": ""
+    },
+    {
+      "no": "২২",
+      "date": "20.1.25",
+      "amount": "2000",
+      "remarks": ""
+    },
+    {
+      "no": "২৩",
+      "date": "22.1.25",
+      "amount": "2000",
+      "remarks": ""
+    },
+    {
+      "no": "২৪",
+      "date": "23.1.25",
+      "amount": "2000",
+      "remarks": ""
+    },
+    {
+      "no": "২৫",
+      "date": "22.2.25",
+      "amount": "2000",
+      "remarks": ""
+    },
+    {
+      "no": "২৬",
+      "date": "24.2.25",
+      "amount": "6000",
+      "remarks": ""
+    },
+    {
+      "no": "২৭",
+      "date": "",
+      "amount": "56000",
+      "remarks": "মোট"
+    }
+  ]
+}

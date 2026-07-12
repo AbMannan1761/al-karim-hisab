@@ -1,0 +1,21 @@
+{
+  "party_name": "জান্নাত শপ",
+  "phone": "null",
+  "ledger_page_number": "106",
+  "debit_table": [
+    {
+      "no": "1",
+      "date": "22.06.20",
+      "bi_ka": "বিক্রয়",
+      "description": "স্মার্ট প্যান",
+      "size": "null",
+      "model": "null",
+      "pd": "null",
+      "bill": "22",
+      "qty": "null",
+      "taka": "null",
+      "total": "null",
+      "remarks": "null"
+    }
+  ]
+}

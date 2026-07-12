@@ -1,0 +1,31 @@
+{
+  "party_name": "N/A",
+  "phone": "N/A",
+  "ledger_page_number": "193",
+  "credit_table": [
+    {
+      "no": "78",
+      "date": "N/A",
+      "amount": "7540",
+      "remarks": "299240"
+    },
+    {
+      "no": "80",
+      "date": "N/A",
+      "amount": "7740",
+      "remarks": "186580"
+    },
+    {
+      "no": "81",
+      "date": "N/A",
+      "amount": "2150",
+      "remarks": "271680"
+    },
+    {
+      "no": "90",
+      "date": "N/A",
+      "amount": "2870",
+      "remarks": "129920"
+    }
+  ]
+}

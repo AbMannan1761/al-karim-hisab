@@ -1,0 +1,63 @@
+{
+  "party_name": "জাহানারা গামেন্টস",
+  "phone": "",
+  "ledger_page_number": "132",
+  "debit_table": [
+    {
+      "no": "",
+      "date": "25.02.26",
+      "bi_ka": "B+K+H",
+      "description": "এ্যারান",
+      "size": "34/38",
+      "model": "F-57",
+      "pd": "17",
+      "bill": "195",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "",
+      "date": "26.02.26",
+      "bi_ka": "B+K+H",
+      "description": "উলকান",
+      "size": "40/44",
+      "model": "F-266",
+      "pd": "227",
+      "bill": "196",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "",
+      "date": "26.02.26",
+      "bi_ka": "B+K+H",
+      "description": "উলকান",
+      "size": "42",
+      "model": "F-266",
+      "pd": "36",
+      "bill": "196",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "",
+      "date": "28.02.26",
+      "bi_ka": "B+K+H",
+      "description": "উলকান",
+      "size": "40/44",
+      "model": "F-229",
+      "pd": "240",
+      "bill": "197",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    }
+  ]
+}

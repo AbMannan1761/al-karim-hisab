@@ -1,0 +1,217 @@
+{
+  "party_name": "প্রদীপ সাং",
+  "phone": "",
+  "ledger_page_number": "15",
+  "credit_table": [
+    {
+      "no": 1,
+      "date": "24.04.25",
+      "amount": 2000,
+      "remarks": ""
+    },
+    {
+      "no": 2,
+      "date": "04.05.25",
+      "amount": 3000,
+      "remarks": ""
+    },
+    {
+      "no": 3,
+      "date": "22.05.25",
+      "amount": 2000,
+      "remarks": ""
+    },
+    {
+      "no": 4,
+      "date": "29.07.25",
+      "amount": 5000,
+      "remarks": ""
+    },
+    {
+      "no": 5,
+      "date": "02.08.25",
+      "amount": 3000,
+      "remarks": ""
+    },
+    {
+      "no": 6,
+      "date": "09.08.25",
+      "amount": 3000,
+      "remarks": ""
+    },
+    {
+      "no": 7,
+      "date": "26.08.25",
+      "amount": 2000,
+      "remarks": ""
+    },
+    {
+      "no": 8,
+      "date": "22.09.25",
+      "amount": 3000,
+      "remarks": ""
+    },
+    {
+      "no": 9,
+      "date": "26.09.25",
+      "amount": 2000,
+      "remarks": ""
+    },
+    {
+      "no": 10,
+      "date": "04.02.26",
+      "amount": 3000,
+      "remarks": ""
+    },
+    {
+      "no": 11,
+      "date": "12.02.26",
+      "amount": 3000,
+      "remarks": ""
+    },
+    {
+      "no": 12,
+      "date": "14.02.26",
+      "amount": 500,
+      "remarks": ""
+    },
+    {
+      "no": 13,
+      "date": "26.09.25",
+      "amount": 3000,
+      "remarks": ""
+    },
+    {
+      "no": 14,
+      "date": "20.02.26",
+      "amount": 500,
+      "remarks": ""
+    },
+    {
+      "no": 15,
+      "date": "23.02.26",
+      "amount": 5000,
+      "remarks": ""
+    },
+    {
+      "no": 16,
+      "date": "26.09.25",
+      "amount": 2000,
+      "remarks": ""
+    },
+    {
+      "no": "",
+      "date": "27.02.26",
+      "amount": 3000,
+      "remarks": ""
+    },
+    {
+      "no": "",
+      "date": "28.02.26",
+      "amount": 4000,
+      "remarks": ""
+    },
+    {
+      "no": "",
+      "date": "29.02.26",
+      "amount": 3000,
+      "remarks": ""
+    },
+    {
+      "no": "",
+      "date": "20.02.26",
+      "amount": 3000,
+      "remarks": ""
+    },
+    {
+      "no": "",
+      "date": "22.02.26",
+      "amount": 3000,
+      "remarks": ""
+    },
+    {
+      "no": "",
+      "date": "22.02.26",
+      "amount": 4000,
+      "remarks": ""
+    },
+    {
+      "no": "",
+      "date": "23.02.26",
+      "amount": 3000,
+      "remarks": ""
+    },
+    {
+      "no": "",
+      "date": "24.02.26",
+      "amount": 500,
+      "remarks": ""
+    },
+    {
+      "no": "",
+      "date": "20.02.26",
+      "amount": 500,
+      "remarks": ""
+    },
+    {
+      "no": "",
+      "date": "26.02.26",
+      "amount": 3000,
+      "remarks": ""
+    },
+    {
+      "no": "",
+      "date": "25.02.26",
+      "amount": 2000,
+      "remarks": ""
+    },
+    {
+      "no": "",
+      "date": "27.12.25",
+      "amount": 3000,
+      "remarks": ""
+    },
+    {
+      "no": "",
+      "date": "28.12.25",
+      "amount": 3000,
+      "remarks": ""
+    },
+    {
+      "no": "",
+      "date": "29.12.25",
+      "amount": 3000,
+      "remarks": ""
+    },
+    {
+      "no": "",
+      "date": "30.12.25",
+      "amount": 3000,
+      "remarks": ""
+    },
+    {
+      "no": "",
+      "date": "31.12.25",
+      "amount": 3000,
+      "remarks": ""
+    },
+    {
+      "no": "",
+      "date": "28-12-25",
+      "amount": 6000,
+      "remarks": ""
+    },
+    {
+      "no": "",
+      "date": "2-2-26",
+      "amount": 6000,
+      "remarks": ""
+    },
+    {
+      "no": "",
+      "date": "",
+      "amount": 8000,
+      "remarks": ""
+    }
+  ]
+}

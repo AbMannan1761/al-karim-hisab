@@ -1,0 +1,109 @@
+{
+  "party_name": "নজরুল ভাই",
+  "phone": null,
+  "ledger_page_number": "83",
+  "credit_table": [
+    {
+      "no": "40",
+      "date": null,
+      "amount": "8920",
+      "remarks": ""
+    },
+    {
+      "no": "40",
+      "date": null,
+      "amount": "7460",
+      "remarks": ""
+    },
+    {
+      "no": "40",
+      "date": null,
+      "amount": "8440",
+      "remarks": ""
+    },
+    {
+      "no": "40",
+      "date": null,
+      "amount": "8920",
+      "remarks": ""
+    },
+    {
+      "no": "40",
+      "date": null,
+      "amount": "7240",
+      "remarks": ""
+    },
+    {
+      "no": "50",
+      "date": null,
+      "amount": "7500",
+      "remarks": ""
+    },
+    {
+      "no": "40",
+      "date": null,
+      "amount": "6400",
+      "remarks": ""
+    },
+    {
+      "no": "50",
+      "date": null,
+      "amount": "8400",
+      "remarks": ""
+    },
+    {
+      "no": "50",
+      "date": null,
+      "amount": "6080",
+      "remarks": ""
+    },
+    {
+      "no": "40",
+      "date": null,
+      "amount": "8400",
+      "remarks": ""
+    },
+    {
+      "no": "50",
+      "date": null,
+      "amount": "7600",
+      "remarks": ""
+    },
+    {
+      "no": "55",
+      "date": null,
+      "amount": "8225",
+      "remarks": ""
+    },
+    {
+      "no": "55",
+      "date": null,
+      "amount": "8455",
+      "remarks": ""
+    },
+    {
+      "no": "50",
+      "date": null,
+      "amount": "6000",
+      "remarks": ""
+    },
+    {
+      "no": "50",
+      "date": null,
+      "amount": "6000",
+      "remarks": ""
+    },
+    {
+      "no": "50",
+      "date": null,
+      "amount": "7600",
+      "remarks": ""
+    },
+    {
+      "no": "60",
+      "date": null,
+      "amount": "8620",
+      "remarks": ""
+    }
+  ]
+}

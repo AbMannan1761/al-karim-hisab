@@ -1,0 +1,31 @@
+{
+  "party_name": "রামিবা ভাই",
+  "phone": "",
+  "ledger_page_number": "103",
+  "credit_table": [
+    {
+      "no": "1",
+      "date": "",
+      "amount": "22660",
+      "remarks": ""
+    },
+    {
+      "no": "2",
+      "date": "",
+      "amount": "24780",
+      "remarks": ""
+    },
+    {
+      "no": "3",
+      "date": "",
+      "amount": "20200",
+      "remarks": ""
+    },
+    {
+      "no": "4",
+      "date": "",
+      "amount": "6900",
+      "remarks": ""
+    }
+  ]
+}

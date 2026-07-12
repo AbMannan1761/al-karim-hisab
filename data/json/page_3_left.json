@@ -1,0 +1,77 @@
+{
+  "party_name": "রাকিব ড়ই",
+  "phone": "01966674699",
+  "ledger_page_number": "6",
+  "debit_table": [
+    {
+      "no": "1",
+      "date": "17.04.25",
+      "bi_ka": "B+K+H",
+      "description": "সাদা সবুজ",
+      "size": "40/44",
+      "model": "S.M",
+      "pd": "",
+      "bill": "",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "2",
+      "date": "20.04.25",
+      "bi_ka": "B+K+H",
+      "description": "রাম সাদা",
+      "size": "40/44",
+      "model": "S.M",
+      "pd": "",
+      "bill": "",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "6",
+      "date": "28.09.25",
+      "bi_ka": "B+K+H",
+      "description": "ক্রীম হালকা",
+      "size": "40/44",
+      "model": "S.M",
+      "pd": "",
+      "bill": "",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "4",
+      "date": "28.09.25",
+      "bi_ka": "B+K+H",
+      "description": "ক্রীম হালকা",
+      "size": "20/30",
+      "model": "S.M",
+      "pd": "",
+      "bill": "",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    },
+    {
+      "no": "2",
+      "date": "28.09.25",
+      "bi_ka": "B+K+H",
+      "description": "ক্রীম হালকা",
+      "size": "20/30",
+      "model": "S.M",
+      "pd": "",
+      "bill": "",
+      "qty": "",
+      "taka": "",
+      "total": "",
+      "remarks": ""
+    }
+  ]
+}

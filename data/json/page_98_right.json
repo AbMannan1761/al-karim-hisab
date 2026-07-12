@@ -1,0 +1,25 @@
+{
+  "party_name": "নাল",
+  "phone": "নাল",
+  "ledger_page_number": "199",
+  "credit_table": [
+    {
+      "no": "17",
+      "date": "নাল",
+      "amount": "18540",
+      "remarks": "মোট টাকা"
+    },
+    {
+      "no": "18",
+      "date": "নাল",
+      "amount": "19810",
+      "remarks": "মোট টাকা"
+    },
+    {
+      "no": "19",
+      "date": "নাল",
+      "amount": "16650",
+      "remarks": "মোট টাকা"
+    }
+  ]
+}
