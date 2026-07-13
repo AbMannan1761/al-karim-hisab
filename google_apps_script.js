@@ -482,31 +482,39 @@ function sortSheetsMenu() {
 
 function sortSheets(ss) {
   var sheets = ss.getSheets();
-  var mainSheets = ["Client_Index", "Debit_Transactions", "Credit_Transactions"];
   
-  var mainList = [];
+  var mainList = new Array(3); // index 0: Client Index, index 1: Debit, index 2: Credit
   var clientList = [];
   
   sheets.forEach(function(sheet) {
-    var name = sheet.getName();
-    if (mainSheets.indexOf(name) !== -1) {
-      mainList.push({name: name, sheet: sheet});
+    var rawName = sheet.getName();
+    var normName = rawName.toLowerCase().replace(/[\s_-]/g, "");
+    
+    if (normName.indexOf("clientindex") !== -1 || normName.indexOf("গ্রাহকসূচী") !== -1) {
+      mainList[0] = {name: rawName, sheet: sheet};
+    } else if (normName.indexOf("debit") !== -1 || normName.indexOf("ডেবিট") !== -1) {
+      mainList[1] = {name: rawName, sheet: sheet};
+    } else if (normName.indexOf("credit") !== -1 || normName.indexOf("ক্রেডিট") !== -1) {
+      mainList[2] = {name: rawName, sheet: sheet};
     } else {
-      clientList.push({name: name, sheet: sheet});
+      clientList.push({name: rawName, sheet: sheet});
     }
   });
   
-  // Sort main sheets in order: Client_Index, Debit_Transactions, Credit_Transactions
-  mainList.sort(function(a, b) {
-    return mainSheets.indexOf(a.name) - mainSheets.indexOf(b.name);
-  });
+  // Filter out any missing main sheets from the list
+  var cleanMainList = [];
+  for (var i = 0; i < mainList.length; i++) {
+    if (mainList[i]) {
+      cleanMainList.push(mainList[i]);
+    }
+  }
   
   // Sort client sheets alphabetically by name (Bengali locales supported)
   clientList.sort(function(a, b) {
     return a.name.localeCompare(b.name, 'bn');
   });
   
-  var sortedList = mainList.concat(clientList);
+  var sortedList = cleanMainList.concat(clientList);
   
   // Move sheets to their sorted positions
   for (var i = 0; i < sortedList.length; i++) {
