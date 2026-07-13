@@ -33,9 +33,15 @@
         }
 
         header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            z-index: 1000;
             background-color: var(--card-bg);
             border-bottom: 1px solid var(--border);
-            padding: 12px 24px;
+            padding: 8px 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -44,21 +50,70 @@
         header h1 {
             font-family: 'Outfit', sans-serif;
             color: var(--primary);
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 700;
         }
 
         header p {
             color: var(--text-muted);
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 500;
+        }
+
+        .header-left {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-summary {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            background: #f8fafc;
+            padding: 6px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .summary-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+        .summary-item:not(:last-child) {
+            border-right: 1px solid var(--border);
+        }
+
+        .summary-label {
+            font-size: 10px;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+
+        .summary-value {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .summary-value.success {
+            color: var(--success);
+        }
+
+        .summary-value.danger {
+            color: var(--danger);
         }
 
         .container {
             display: flex;
             max-width: 1500px;
-            margin: 0 auto;
-            min-height: calc(100vh - 54px);
+            margin: 60px auto 0 auto;
+            min-height: calc(100vh - 60px);
         }
 
         /* Sidebar styling */
@@ -70,6 +125,9 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
+            height: calc(100vh - 60px);
+            position: sticky;
+            top: 60px;
         }
 
         .sidebar h2 {
@@ -302,10 +360,25 @@
     </style>
 </head>
 <body>
-
     <header>
-        <h1>📖 আল করিম হিসাব (Al Karim Hisab)</h1>
-        <p>ডিজিটাইজড লেজার ভিউয়ার পোর্টাল</p>
+        <div class="header-left">
+            <h1>📖 আল করিম হিসাব (Al Karim Hisab)</h1>
+            <p>ডিজিটাইজড লেজার ভিউয়ার পোর্টাল</p>
+        </div>
+        <div class="header-summary" id="headerSummary">
+            <div class="summary-item">
+                <span class="summary-label">সর্বমোট বিক্রয়</span>
+                <span class="summary-value" id="globalSales">০.০০ ৳</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-label">সর্বমোট আদায়</span>
+                <span class="summary-value success" id="globalPayments">০.০০ ৳</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-label">সর্বমোট বকেয়া</span>
+                <span class="summary-value danger" id="globalReceivables">০.০০ ৳</span>
+            </div>
+        </div>
     </header>
 
     <div class="container">
@@ -464,6 +537,39 @@
             return prefix + translateToBengaliDigits(formatted) + (isCurrency ? ' ৳' : '');
         }
 
+        // Calculate and display global totals
+        function calculateGlobalSummary() {
+            let totalSales = 0;
+            let totalPayments = 0;
+
+            if (sheetsDB) {
+                (sheetsDB.Debit_Transactions || []).forEach(row => {
+                    totalSales += cleanNum(row["Total"]);
+                });
+                (sheetsDB.Credit_Transactions || []).forEach(row => {
+                    totalPayments += cleanNum(row["Amount"]);
+                });
+            } else {
+                document.getElementById('globalSales').innerText = 'N/A';
+                document.getElementById('globalPayments').innerText = 'N/A';
+                document.getElementById('globalReceivables').innerText = 'N/A';
+                return;
+            }
+
+            const totalReceivables = totalSales - totalPayments;
+
+            document.getElementById('globalSales').innerText = formatNumberBengali(totalSales, true);
+            document.getElementById('globalPayments').innerText = formatNumberBengali(totalPayments, true);
+            
+            const recvEl = document.getElementById('globalReceivables');
+            recvEl.innerText = formatNumberBengali(totalReceivables, true);
+            if (totalReceivables > 0) {
+                recvEl.className = 'summary-value danger';
+            } else {
+                recvEl.className = 'summary-value success';
+            }
+        }
+
         // Load Settings and Data on start
         window.addEventListener('DOMContentLoaded', async () => {
             try {
@@ -491,6 +597,7 @@
                             page: parseInt(cleanNum(row["Ledger Page"] || 0)),
                             notes: String(row["Notes"] || "")
                         }));
+                        calculateGlobalSummary();
                         renderClientList(indexData);
                         return;
                     }
@@ -501,6 +608,7 @@
                 const response = await fetch('data/json/index_data.json');
                 if (!response.ok) throw new Error('Index data load failed');
                 indexData = await response.json();
+                calculateGlobalSummary();
                 renderClientList(indexData);
             } catch (err) {
                 console.error(err);
