@@ -335,15 +335,33 @@
 
         /* Responsive styling */
         @media (max-width: 900px) {
+            header {
+                position: relative;
+                height: auto;
+                flex-direction: column;
+                gap: 12px;
+                padding: 15px;
+                align-items: flex-start;
+            }
+            .header-summary {
+                width: 100%;
+                justify-content: space-around;
+            }
             .container {
                 flex-direction: column;
+                margin-top: 0;
+                min-height: auto;
             }
             .sidebar {
                 width: 100%;
                 border-right: none;
                 border-bottom: 1px solid var(--border);
-                min-height: auto;
-                max-height: 35vh;
+                position: static;
+                height: auto;
+                max-height: none;
+            }
+            .client-list {
+                max-height: 200px;
             }
             .main-content {
                 padding: 10px;
