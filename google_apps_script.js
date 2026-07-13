@@ -240,6 +240,9 @@ function syncClientSheetsMenu() {
 }
 
 function syncClientSheets(ss, targetClientName) {
+  // First propagate any name updates from Client_Index to Debit_Transactions and Credit_Transactions
+  syncNamesInTransactions(ss);
+  
   var indexSheet = ss.getSheetByName("Client_Index");
   if (!indexSheet) return;
   var indexData = indexSheet.getDataRange().getValues();
@@ -521,5 +524,64 @@ function sortSheets(ss) {
     var targetSheet = sortedList[i].sheet;
     ss.setActiveSheet(targetSheet);
     ss.moveActiveSheet(i + 1);
+  }
+}
+
+function syncNamesInTransactions(ss) {
+  var indexSheet = ss.getSheetByName("Client_Index");
+  if (!indexSheet) return;
+  var indexData = indexSheet.getDataRange().getValues();
+  
+  // Create a mapping from page number (both even page and odd page) to the party name
+  var pageToNameMap = {};
+  for (var i = 1; i < indexData.length; i++) {
+    var partyName = String(indexData[i][1] || "").trim();
+    var ledgerPage = parseInt(indexData[i][3], 10);
+    if (!partyName || isNaN(ledgerPage)) continue;
+    
+    pageToNameMap[ledgerPage] = partyName;      // Left (Debit) page
+    pageToNameMap[ledgerPage + 1] = partyName;  // Right (Credit) page
+  }
+  
+  // 1. Sync names in Debit_Transactions
+  var debitSheet = ss.getSheetByName("Debit_Transactions");
+  if (debitSheet) {
+    var debitRange = debitSheet.getDataRange();
+    var debitData = debitRange.getValues();
+    var updated = false;
+    for (var r = 1; r < debitData.length; r++) {
+      var rowPage = parseInt(debitData[r][1], 10); // Column B is ledger_page
+      if (isNaN(rowPage)) continue;
+      
+      var correctName = pageToNameMap[rowPage];
+      if (correctName && debitData[r][0] !== correctName) { // Column A is party_name
+        debitData[r][0] = correctName;
+        updated = true;
+      }
+    }
+    if (updated) {
+      debitRange.setValues(debitData);
+    }
+  }
+  
+  // 2. Sync names in Credit_Transactions
+  var creditSheet = ss.getSheetByName("Credit_Transactions");
+  if (creditSheet) {
+    var creditRange = creditSheet.getDataRange();
+    var creditData = creditRange.getValues();
+    var updated = false;
+    for (var r = 1; r < creditData.length; r++) {
+      var rowPage = parseInt(creditData[r][1], 10); // Column B is ledger_page
+      if (isNaN(rowPage)) continue;
+      
+      var correctName = pageToNameMap[rowPage];
+      if (correctName && creditData[r][0] !== correctName) { // Column A is party_name
+        creditData[r][0] = correctName;
+        updated = true;
+      }
+    }
+    if (updated) {
+      creditRange.setValues(creditData);
+    }
   }
 }
