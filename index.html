@@ -8,15 +8,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #366092;
-            --primary-hover: #2b4d75;
-            --bg: #f3f4f6;
+            --primary: #3b82f6;
+            --primary-dark: #1d4ed8;
+            --primary-hover: #1e40af;
+            --primary-light: #eff6ff;
+            --bg: #f8fafc;
             --card-bg: #ffffff;
-            --text: #1f2937;
-            --text-muted: #6b7280;
-            --border: #e5e7eb;
-            --success: #15803d;
-            --danger: #b91c1c;
+            --text: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --success: #10b981;
+            --success-light: #ecfdf5;
+            --danger: #ef4444;
+            --danger-light: #fef2f2;
+            --shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.05), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
+            --shadow-md: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.08);
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
@@ -30,6 +37,7 @@
             background-color: var(--bg);
             color: var(--text);
             line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
         }
 
         header {
@@ -37,21 +45,24 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 60px;
+            height: 70px;
             z-index: 1000;
-            background-color: var(--card-bg);
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
             padding: 8px 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.02);
         }
 
         header h1 {
             font-family: 'Outfit', sans-serif;
-            color: var(--primary);
+            color: var(--primary-dark);
             font-size: 20px;
             font-weight: 700;
+            letter-spacing: -0.5px;
         }
 
         header p {
@@ -67,11 +78,11 @@
 
         .header-summary {
             display: flex;
-            gap: 20px;
+            gap: 16px;
             align-items: center;
-            background: #f8fafc;
-            padding: 6px 16px;
-            border-radius: 8px;
+            background: #f1f5f9;
+            padding: 6px 20px;
+            border-radius: 30px;
             border: 1px solid var(--border);
         }
 
@@ -83,22 +94,22 @@
         }
 
         .summary-item:not(:last-child) {
-            border-right: 1px solid var(--border);
+            border-right: 1px solid #cbd5e1;
         }
 
         .summary-label {
-            font-size: 10px;
+            font-size: 9px;
             color: var(--text-muted);
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-bottom: 2px;
+            margin-bottom: 1px;
         }
 
         .summary-value {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
-            color: var(--primary);
+            color: var(--text);
         }
 
         .summary-value.success {
@@ -111,81 +122,106 @@
 
         .container {
             display: flex;
-            max-width: 1500px;
-            margin: 60px auto 0 auto;
-            min-height: calc(100vh - 60px);
+            max-width: 1600px;
+            margin: 70px auto 0 auto;
+            min-height: calc(100vh - 70px);
         }
 
         /* Sidebar styling */
         .sidebar {
-            width: 280px;
+            width: 300px;
             background-color: var(--card-bg);
             border-right: 1px solid var(--border);
-            padding: 15px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            height: calc(100vh - 60px);
+            gap: 16px;
+            height: calc(100vh - 70px);
             position: sticky;
-            top: 60px;
+            top: 70px;
         }
 
         .sidebar h2 {
-            font-size: 15px;
+            font-size: 14px;
             color: var(--text);
-            border-bottom: 2px solid var(--border);
-            padding-bottom: 6px;
-            font-weight: 600;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .search-box {
             width: 100%;
-            padding: 8px 12px;
-            border: 1px solid var(--border);
-            border-radius: 6px;
+            padding: 10px 14px;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
             font-size: 13px;
             outline: none;
-            transition: border 0.15s;
+            transition: var(--transition);
+            background-color: #f1f5f9;
         }
 
         .search-box:focus {
             border-color: var(--primary);
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
         }
 
         .client-list {
             list-style: none;
             overflow-y: auto;
             flex-grow: 1;
-            max-height: 75vh;
+            padding-right: 4px;
+        }
+
+        .client-list::-webkit-scrollbar {
+            width: 5px;
+        }
+        .client-list::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .client-list::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        .client-list::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
         }
 
         .client-item {
-            padding: 8px 10px;
-            border-bottom: 1px solid var(--border);
+            padding: 10px 12px;
             cursor: pointer;
-            border-radius: 4px;
-            transition: all 0.15s;
-            margin-bottom: 2px;
+            border-radius: 10px;
+            transition: var(--transition);
+            margin-bottom: 6px;
+            border-left: 3px solid transparent;
+            background-color: transparent;
         }
 
         .client-item:hover {
-            background-color: #f3f4f6;
-            color: var(--primary);
+            background-color: var(--primary-light);
+            color: var(--primary-dark);
+            transform: translateX(4px);
         }
 
         .client-item.active {
-            background-color: #e5e7eb;
-            color: var(--primary);
+            background-color: var(--primary-light);
+            color: var(--primary-dark);
             font-weight: 600;
+            border-left: 3px solid var(--primary);
+            box-shadow: var(--shadow);
         }
 
         .client-item-name {
             font-size: 13px;
+            font-weight: 600;
             margin-bottom: 2px;
         }
 
         .client-item-meta {
-            font-size: 10px;
+            font-size: 10.5px;
             color: var(--text-muted);
             display: flex;
             justify-content: space-between;
@@ -194,8 +230,9 @@
         /* Main Content Panel */
         .main-content {
             flex-grow: 1;
-            padding: 15px 20px;
+            padding: 24px;
             overflow-y: auto;
+            background-color: var(--bg);
         }
 
         .no-selection {
@@ -206,131 +243,174 @@
             color: var(--text-muted);
             font-size: 15px;
             flex-direction: column;
-            gap: 8px;
+            gap: 12px;
+            text-align: center;
+        }
+
+        .no-selection svg {
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.7; }
         }
 
         /* Profile Banner */
         .profile-banner {
             background-color: var(--card-bg);
             border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 15px 20px;
-            margin-bottom: 12px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            border-radius: 14px;
+            padding: 20px 24px;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow);
         }
 
         .profile-title {
             font-size: 18px;
             font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 8px;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .profile-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 12px;
-            font-size: 12px;
+            gap: 16px;
+            font-size: 13px;
         }
 
         .profile-label {
             color: var(--text-muted);
-            font-weight: 500;
-            margin-bottom: 1px;
+            font-weight: 600;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
         }
 
         .profile-value {
             font-weight: 600;
+            color: var(--text);
         }
 
         /* KPI Grid */
         .kpi-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin-bottom: 15px;
+            gap: 16px;
+            margin-bottom: 20px;
         }
 
         .kpi-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 12px 15px;
-            text-align: center;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            border-radius: 14px;
+            padding: 16px 20px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .kpi-card.debit {
+            border-top: 4px solid var(--primary);
+        }
+        .kpi-card.credit {
+            border-top: 4px solid var(--success);
+        }
+        .kpi-card.outstanding {
+            border-top: 4px solid var(--danger);
         }
 
         .kpi-title {
-            font-size: 11px;
+            font-size: 10px;
             color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 0.3px;
-            margin-bottom: 4px;
-            font-weight: 500;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+            font-weight: 600;
         }
 
         .kpi-value {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--primary);
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--text);
         }
 
         /* Tables layout */
         .tables-grid {
             display: grid;
             grid-template-columns: 7fr 3fr;
-            gap: 15px;
+            gap: 20px;
         }
 
         .table-section {
             background-color: var(--card-bg);
             border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 15px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: var(--shadow);
             overflow-x: auto;
+            transition: var(--transition);
         }
 
         .table-section h3 {
             font-size: 14px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             color: var(--text);
             border-bottom: 2px solid var(--border);
-            padding-bottom: 6px;
+            padding-bottom: 8px;
             display: flex;
             align-items: center;
             gap: 6px;
-            font-weight: 600;
+            font-weight: 700;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 12px;
+            font-size: 12.5px;
         }
 
         th {
-            background-color: #f9fafb;
+            background-color: #f8fafc;
             color: var(--text-muted);
             text-align: left;
-            padding: 6px 8px;
+            padding: 8px 10px;
             font-weight: 600;
             border-bottom: 2px solid var(--border);
+            text-transform: uppercase;
+            font-size: 10px;
+            letter-spacing: 0.5px;
         }
 
         td {
-            padding: 6px 8px;
+            padding: 8px 10px;
             border-bottom: 1px solid var(--border);
-            color: var(--text);
+            color: #334155;
         }
 
-        tr:hover {
-            background-color: #f9fafb;
+        tr:hover td {
+            background-color: #f8fafc;
+            color: var(--primary-dark);
         }
 
         .amount-col {
             text-align: right;
-            font-weight: 600;
+            font-weight: 700;
         }
 
         /* Responsive styling */
@@ -364,15 +444,15 @@
                 max-height: 200px;
             }
             .main-content {
-                padding: 10px;
+                padding: 16px;
             }
             .kpi-grid {
                 grid-template-columns: 1fr;
-                gap: 8px;
+                gap: 12px;
             }
             .tables-grid {
                 grid-template-columns: 1fr;
-                gap: 15px;
+                gap: 20px;
             }
         }
     </style>
@@ -448,15 +528,15 @@
 
                 <!-- KPIs -->
                 <div class="kpi-grid">
-                    <div class="kpi-card">
+                    <div class="kpi-card debit">
                         <div class="kpi-title">Debit / Total Purchases (মোট ক্রয়)</div>
                         <div class="kpi-value" id="kpiTotalDebit">০.০০ ৳</div>
                     </div>
-                    <div class="kpi-card">
+                    <div class="kpi-card credit">
                         <div class="kpi-title">Credit / Total Payments (মোট পরিশোধ)</div>
                         <div class="kpi-value" style="color: var(--success);" id="kpiTotalCredit">০.০০ ৳</div>
                     </div>
-                    <div class="kpi-card">
+                    <div class="kpi-card outstanding">
                         <div class="kpi-title">Outstanding / Balance (বকেয়া)</div>
                         <div class="kpi-value" id="kpiOutstanding">০.০০ ৳</div>
                     </div>
