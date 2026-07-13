@@ -45,6 +45,7 @@ def load_data():
     
     # We will also keep track of debit/credit sums per ledger page
     page_sums = {}
+    page_phones = {}
 
     print("Compiling JSON files...")
     for page_num in range(3, 111):
@@ -60,6 +61,8 @@ def load_data():
             transcribed_name = str(data.get("party_name") or "").strip()
             phone = str(data.get("phone") or "").strip()
             ledger_page = str(data.get("ledger_page_number") or left_ledger).strip()
+            if phone:
+                page_phones[left_ledger] = phone
             
             # Find expected index info
             idx_infos = index_map.get(left_ledger, [])
@@ -165,7 +168,8 @@ def load_data():
             "Total Debit (Sales)": debit_sum,
             "Total Credit (Payments)": credit_sum,
             "Outstanding Balance": debit_sum - credit_sum,
-            "Notes (Index)": idx_entry.get("notes", "")
+            "Notes (Index)": idx_entry.get("notes", ""),
+            "Phone": page_phones.get(p_num, "")
         })
 
     return summary_rows, debit_rows, credit_rows
@@ -173,14 +177,15 @@ def load_data():
 def export():
     summary_rows, debit_rows, credit_rows = load_data()
     
-    df_summary = pd.DataFrame(summary_rows)
+    # Exclude Phone from Client Summary sheet
+    df_summary_excel = pd.DataFrame([{k: v for k, v in row.items() if k != "Phone"} for row in summary_rows])
     df_debit = pd.DataFrame(debit_rows)
     df_credit = pd.DataFrame(credit_rows)
     
     print(f"Exporting to {OUTPUT_EXCEL}...")
     
     with pd.ExcelWriter(OUTPUT_EXCEL, engine="openpyxl") as writer:
-        df_summary.to_excel(writer, sheet_name="Client Summary", index=False)
+        df_summary_excel.to_excel(writer, sheet_name="Client Summary", index=False)
         df_debit.to_excel(writer, sheet_name="Debit Entries (Sales)", index=False)
         df_credit.to_excel(writer, sheet_name="Credit Entries (Payments)", index=False)
         
@@ -191,51 +196,293 @@ def export():
         font_family = "Segoe UI"
         header_font = Font(name=font_family, size=11, bold=True, color="FFFFFF")
         header_fill = PatternFill(start_color="366092", end_color="366092", fill_type="solid")
-        title_font = Font(name=font_family, size=11, bold=False)
         border_side = Side(border_style="thin", color="D3D3D3")
         cell_border = Border(left=border_side, right=border_side, top=border_side, bottom=border_side)
         
-        for name in workbook.sheetnames:
-            sheet = workbook[name]
+        # Create individual client sheets
+        for client in summary_rows:
+            client_name = client.get("Party Name", "")
+            client_page = client.get("Ledger Page", 0)
+            if not client_page:
+                continue
+                
+            client_pdf_page = client_page // 2
             
-            # Format header row
-            for col_idx in range(1, sheet.max_column + 1):
-                cell = sheet.cell(row=1, column=col_idx)
-                cell.font = header_font
-                cell.fill = header_fill
+            # Format sheet name: P{page_num} - {sanitized_name} (max 31 chars)
+            clean_name = "".join(c for c in client_name if c not in r"\/?:*[]")
+            sheet_name = f"P{client_page} - {clean_name}"
+            if len(sheet_name) > 31:
+                sheet_name = sheet_name[:31]
+                
+            # Filter debits and credits for this client's page
+            client_debits = [r for r in debit_rows if r.get("PDF Page") == client_pdf_page]
+            client_credits = [r for r in credit_rows if r.get("PDF Page") == client_pdf_page]
+            
+            sheet = workbook.create_sheet(title=sheet_name)
+            
+            # 1. Header Banner
+            sheet.merge_cells("A1:Q1")
+            banner_cell = sheet["A1"]
+            banner_cell.value = "আল করিম হিসাব - গ্রাহক খতিয়ান (Al Karim Hisab - Client Ledger)"
+            banner_cell.font = Font(name=font_family, size=14, bold=True, color="FFFFFF")
+            banner_cell.fill = PatternFill(start_color="366092", end_color="366092", fill_type="solid")
+            banner_cell.alignment = Alignment(horizontal="center", vertical="center")
+            sheet.row_dimensions[1].height = 40
+            
+            # 2. Metadata Block (Row 3-5)
+            sheet["A3"] = "গ্রাহকের নাম (Name):"
+            sheet["A3"].font = Font(name=font_family, size=10, bold=True)
+            sheet["B3"] = client_name
+            sheet["B3"].font = Font(name=font_family, size=10)
+            
+            sheet["G3"] = "লেজার পৃষ্ঠা (Page):"
+            sheet["G3"].font = Font(name=font_family, size=10, bold=True)
+            sheet["H3"] = client_page
+            sheet["H3"].font = Font(name=font_family, size=10)
+            
+            sheet["A4"] = "ঠিকানা (Address):"
+            sheet["A4"].font = Font(name=font_family, size=10, bold=True)
+            sheet["B4"] = client.get("Address", "")
+            sheet["B4"].font = Font(name=font_family, size=10)
+            
+            sheet["G4"] = "ফোন নম্বর (Phone):"
+            sheet["G4"].font = Font(name=font_family, size=10, bold=True)
+            sheet["H4"] = client.get("Phone", "N/A") or "N/A"
+            sheet["H4"].font = Font(name=font_family, size=10)
+            
+            sheet["A5"] = "মন্তব্য (Notes):"
+            sheet["A5"].font = Font(name=font_family, size=10, bold=True)
+            sheet["B5"] = client.get("Notes (Index)", "")
+            sheet["B5"].font = Font(name=font_family, size=10)
+            
+            # 3. KPI Summary cards (Row 7-8)
+            kpi_fill = PatternFill(start_color="F2F5F8", end_color="F2F5F8", fill_type="solid")
+            kpi_border = Border(left=Side(style='thin', color='B0C4DE'),
+                                right=Side(style='thin', color='B0C4DE'),
+                                top=Side(style='thin', color='B0C4DE'),
+                                bottom=Side(style='thin', color='B0C4DE'))
+            
+            # Card 1: Total Sales (A7:C8)
+            sheet.merge_cells("A7:C7")
+            sheet.merge_cells("A8:C8")
+            sheet["A7"] = "সর্বমোট বিক্রয় (Total Purchases)"
+            sheet["A7"].font = Font(name=font_family, size=9, color="555555")
+            sheet["A7"].alignment = Alignment(horizontal="center")
+            
+            # Card 2: Total Payments (E7:G8)
+            sheet.merge_cells("E7:G7")
+            sheet.merge_cells("E8:G8")
+            sheet["E7"] = "সর্বমোট আদায় (Total Payments)"
+            sheet["E7"].font = Font(name=font_family, size=9, color="555555")
+            sheet["E7"].alignment = Alignment(horizontal="center")
+            
+            # Card 3: Outstanding (I7:K8)
+            sheet.merge_cells("I7:K7")
+            sheet.merge_cells("I8:K8")
+            sheet["I7"] = "অবशिष्ट বকেয়া (Outstanding)"
+            sheet["I7"].font = Font(name=font_family, size=9, color="555555")
+            sheet["I7"].alignment = Alignment(horizontal="center")
+            
+            for r in [7, 8]:
+                for c in range(1, 4):
+                    sheet.cell(row=r, column=c).fill = kpi_fill
+                    sheet.cell(row=r, column=c).border = kpi_border
+                for c in range(5, 8):
+                    sheet.cell(row=r, column=c).fill = kpi_fill
+                    sheet.cell(row=r, column=c).border = kpi_border
+                for c in range(9, 12):
+                    sheet.cell(row=r, column=c).fill = kpi_fill
+                    sheet.cell(row=r, column=c).border = kpi_border
+            
+            # 4. Table Headers (Row 10)
+            sheet.merge_cells("A10:L10")
+            cell_debit_hdr = sheet["A10"]
+            cell_debit_hdr.value = "ডেবিট এন্ট্রি সমূহ (Debit - Bills/Sales)"
+            cell_debit_hdr.font = Font(name=font_family, size=11, bold=True, color="FFFFFF")
+            cell_debit_hdr.fill = PatternFill(start_color="366092", end_color="366092", fill_type="solid")
+            cell_debit_hdr.alignment = Alignment(horizontal="center", vertical="center")
+            
+            sheet.merge_cells("N10:Q10")
+            cell_credit_hdr = sheet["N10"]
+            cell_credit_hdr.value = "ক্রেডিট এন্ট্রি সমূহ (Credit - Payments)"
+            cell_credit_hdr.font = Font(name=font_family, size=11, bold=True, color="FFFFFF")
+            cell_credit_hdr.fill = PatternFill(start_color="2E7D32", end_color="2E7D32", fill_type="solid")
+            cell_credit_hdr.alignment = Alignment(horizontal="center", vertical="center")
+            sheet.row_dimensions[10].height = 24
+            
+            # Column Headers (Row 11)
+            debit_headers = ["No", "Date", "Details (বিঃ কাঃ)", "Description", "Size", "Model", "PD", "Bill No", "Qty", "Rate (Taka)", "Total", "Remarks"]
+            credit_headers = ["No", "Date", "Amount", "Remarks"]
+            
+            for col_idx, text in enumerate(debit_headers, start=1):
+                cell = sheet.cell(row=11, column=col_idx, value=text)
+                cell.font = Font(name=font_family, size=10, bold=True, color="FFFFFF")
+                cell.fill = PatternFill(start_color="5C82AD", end_color="5C82AD", fill_type="solid")
                 cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
+                
+            for col_idx, text in enumerate(credit_headers, start=14):
+                cell = sheet.cell(row=11, column=col_idx, value=text)
+                cell.font = Font(name=font_family, size=10, bold=True, color="FFFFFF")
+                cell.fill = PatternFill(start_color="4E9F5D", end_color="4E9F5D", fill_type="solid")
+                cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
+            sheet.row_dimensions[11].height = 24
             
-            # Auto-fit column widths
-            for col in sheet.columns:
-                max_len = 0
-                col_letter = get_column_letter(col[0].column)
-                for cell in col:
-                    cell.font = Font(name=font_family, size=10)
-                    cell.border = cell_border
-                    
-                    # Formatting values
-                    if cell.row > 1:
-                        # Right-align numeric columns
-                        if isinstance(cell.value, (int, float)):
+            # 5. Data Rows (Row 12+)
+            max_rows = max(len(client_debits), len(client_credits))
+            for i in range(max_rows):
+                row_idx = 12 + i
+                
+                # Write Debit
+                if i < len(client_debits):
+                    row_data = client_debits[i]
+                    debit_values = [
+                        row_data.get("No", ""),
+                        row_data.get("Date", ""),
+                        row_data.get("Details (বিঃ কাঃ)", ""),
+                        row_data.get("Description", ""),
+                        row_data.get("Size", ""),
+                        row_data.get("Model", ""),
+                        row_data.get("PD", ""),
+                        row_data.get("Bill No", ""),
+                        row_data.get("Qty", ""),
+                        row_data.get("Rate (Taka)", ""),
+                        row_data.get("Total", ""),
+                        row_data.get("Remarks", "")
+                    ]
+                    for col_idx, val in enumerate(debit_values, start=1):
+                        cell = sheet.cell(row=row_idx, column=col_idx, value=val)
+                        if col_idx in [9, 10, 11] and isinstance(val, (int, float)):
+                            cell.number_format = "#,##0.00"
                             cell.alignment = Alignment(horizontal="right")
-                            # Format as currency/number
-                            if name == "Client Summary" and cell.column in [6, 7, 8]:
-                                cell.number_format = "#,##0.00"
-                            elif name == "Debit Entries (Sales)" and cell.column in [15, 16, 17]:
-                                cell.number_format = "#,##0.00"
-                            elif name == "Credit Entries (Payments)" and cell.column in [9]:
-                                cell.number_format = "#,##0.00"
                         else:
                             cell.alignment = Alignment(horizontal="left", vertical="center")
                             
-                    val_str = str(cell.value or "")
-                    if len(val_str) > max_len:
-                        max_len = len(val_str)
-                
-                sheet.column_dimensions[col_letter].width = max(max_len + 3, 12)
+                # Write Credit
+                if i < len(client_credits):
+                    row_data = client_credits[i]
+                    credit_values = [
+                        row_data.get("No", ""),
+                        row_data.get("Date", ""),
+                        row_data.get("Amount", ""),
+                        row_data.get("Remarks", "")
+                    ]
+                    for col_idx, val in enumerate(credit_values, start=14):
+                        cell = sheet.cell(row=row_idx, column=col_idx, value=val)
+                        if col_idx == 16 and isinstance(val, (int, float)):
+                            cell.number_format = "#,##0.00"
+                            cell.alignment = Alignment(horizontal="right")
+                        else:
+                            cell.alignment = Alignment(horizontal="left", vertical="center")
             
-            # Set header row height
-            sheet.row_dimensions[1].height = 28
+            debit_end_row = 11 + len(client_debits)
+            credit_end_row = 11 + len(client_credits)
+            
+            # Debit Total Row
+            debit_total_row = debit_end_row + 1
+            sheet.cell(row=debit_total_row, column=10, value="Total:").font = Font(name=font_family, size=10, bold=True)
+            sheet.cell(row=debit_total_row, column=10).alignment = Alignment(horizontal="right")
+            total_debit_cell = sheet.cell(row=debit_total_row, column=11, value=f"=SUM(K12:K{debit_end_row})")
+            total_debit_cell.font = Font(name=font_family, size=10, bold=True)
+            total_debit_cell.number_format = "#,##0.00"
+            total_debit_cell.alignment = Alignment(horizontal="right")
+            
+            # Credit Total Row
+            credit_total_row = credit_end_row + 1
+            sheet.cell(row=credit_total_row, column=15, value="Total:").font = Font(name=font_family, size=10, bold=True)
+            sheet.cell(row=credit_total_row, column=15).alignment = Alignment(horizontal="right")
+            total_credit_cell = sheet.cell(row=credit_total_row, column=16, value=f"=SUM(P12:P{credit_end_row})")
+            total_credit_cell.font = Font(name=font_family, size=10, bold=True)
+            total_credit_cell.number_format = "#,##0.00"
+            total_credit_cell.alignment = Alignment(horizontal="right")
+            
+            # Apply borders
+            thin_border = Border(left=Side(style='thin', color='D3D3D3'),
+                                 right=Side(style='thin', color='D3D3D3'),
+                                 top=Side(style='thin', color='D3D3D3'),
+                                 bottom=Side(style='thin', color='D3D3D3'))
+            
+            double_bottom_border = Border(left=Side(style='thin', color='D3D3D3'),
+                                          right=Side(style='thin', color='D3D3D3'),
+                                          top=Side(style='thin', color='D3D3D3'),
+                                          bottom=Side(style='double', color='000000'))
+                                          
+            for r in range(11, debit_total_row + 1):
+                for c in range(1, 13):
+                    sheet.cell(row=r, column=c).border = thin_border
+            sheet.cell(row=debit_total_row, column=11).border = double_bottom_border
+            
+            for r in range(11, credit_total_row + 1):
+                for c in range(14, 18):
+                    sheet.cell(row=r, column=c).border = thin_border
+            sheet.cell(row=credit_total_row, column=16).border = double_bottom_border
+            
+            # 6. Set KPI Values referencing total cells
+            sheet["A8"] = f"=K{debit_total_row}"
+            sheet["A8"].font = Font(name=font_family, size=14, bold=True, color="366092")
+            sheet["A8"].alignment = Alignment(horizontal="center")
+            sheet["A8"].number_format = "#,##0.00"
+            
+            sheet["E8"] = f"=P{credit_total_row}"
+            sheet["E8"].font = Font(name=font_family, size=14, bold=True, color="2E7D32")
+            sheet["E8"].alignment = Alignment(horizontal="center")
+            sheet["E8"].number_format = "#,##0.00"
+            
+            sheet["I8"] = "=A8-E8"
+            sheet["I8"].font = Font(name=font_family, size=14, bold=True, color="C62828")
+            sheet["I8"].alignment = Alignment(horizontal="center")
+            sheet["I8"].number_format = "#,##0.00"
+            
+        # Format columns and layout for all sheets
+        for name in workbook.sheetnames:
+            sheet = workbook[name]
+            
+            if name in ["Client Summary", "Debit Entries (Sales)", "Credit Entries (Payments)"]:
+                # Format header row
+                for col_idx in range(1, sheet.max_column + 1):
+                    cell = sheet.cell(row=1, column=col_idx)
+                    cell.font = header_font
+                    cell.fill = header_fill
+                    cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
+                
+                # Auto-fit column widths
+                for col in sheet.columns:
+                    max_len = 0
+                    col_letter = get_column_letter(col[0].column)
+                    for cell in col:
+                        cell.font = Font(name=font_family, size=10)
+                        cell.border = cell_border
+                        
+                        # Formatting values
+                        if cell.row > 1:
+                            if isinstance(cell.value, (int, float)):
+                                cell.alignment = Alignment(horizontal="right")
+                                if name == "Client Summary" and cell.column in [6, 7, 8]:
+                                    cell.number_format = "#,##0.00"
+                                elif name == "Debit Entries (Sales)" and cell.column in [15, 16, 17]:
+                                    cell.number_format = "#,##0.00"
+                                elif name == "Credit Entries (Payments)" and cell.column in [9]:
+                                    cell.number_format = "#,##0.00"
+                            else:
+                                cell.alignment = Alignment(horizontal="left", vertical="center")
+                                
+                        val_str = str(cell.value or "")
+                        if len(val_str) > max_len:
+                            max_len = len(val_str)
+                    
+                    sheet.column_dimensions[col_letter].width = max(max_len + 3, 12)
+                
+                sheet.row_dimensions[1].height = 28
+            else:
+                # Client-specific sheet auto-fit (row >= 10)
+                for col in sheet.columns:
+                    max_len = 0
+                    col_letter = get_column_letter(col[0].column)
+                    for cell in col:
+                        if cell.row >= 10:
+                            val_str = str(cell.value or "")
+                            if len(val_str) > max_len:
+                                max_len = len(val_str)
+                    sheet.column_dimensions[col_letter].width = max(max_len + 3, 12)
             
     print("Excel file created successfully!")
 

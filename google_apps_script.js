@@ -105,6 +105,7 @@ function doPost(e) {
     });
     creditSheet.getRange(1, 1, creditValues.length, creditHeaders.length).setValues(creditValues);
     
+    syncClientSheets(ss);
     return ContentService.createTextOutput(JSON.stringify({status: "success", message: "Bulk initialization complete"}))
       .setMimeType(ContentService.MimeType.JSON);
   }
@@ -134,14 +135,29 @@ function doPost(e) {
     var sheet = ss.getSheetByName("Client_Index");
     var data = sheet.getDataRange().getValues();
     var clientNo = params.client_no;
+    var oldName = "";
+    var newName = params.party_name;
+    var rowIdx = -1;
     for (var i = 1; i < data.length; i++) {
       if (String(data[i][0]) === String(clientNo)) {
-        sheet.getRange(i+1, 2).setValue(params.party_name);
+        oldName = String(data[i][1]).trim();
+        sheet.getRange(i+1, 2).setValue(newName);
         sheet.getRange(i+1, 3).setValue(params.address);
         sheet.getRange(i+1, 6).setValue(params.notes);
+        rowIdx = i;
         break;
       }
     }
+    if (oldName && oldName !== newName && rowIdx !== -1) {
+      var oldCleanName = oldName.replace(/[\\\/\?\:\*\[\]]/g, "");
+      var oldSheetName = "P" + data[rowIdx][3] + " - " + oldCleanName;
+      if (oldSheetName.length > 31) oldSheetName = oldSheetName.substring(0, 31);
+      var oldSheet = ss.getSheetByName(oldSheetName);
+      if (oldSheet) {
+        ss.deleteSheet(oldSheet);
+      }
+    }
+    syncClientSheets(ss, newName);
     return ContentService.createTextOutput(JSON.stringify({status: "success"}))
       .setMimeType(ContentService.MimeType.JSON);
   }
@@ -202,4 +218,214 @@ function doPost(e) {
   
   return ContentService.createTextOutput(JSON.stringify({status: "error", message: "Action not found"}))
     .setMimeType(ContentService.MimeType.JSON);
+}
+
+function onOpen() {
+  var ui = SpreadsheetApp.getUi();
+  ui.createMenu('Al Karim Tools')
+      .addItem('Sync Client Sheets', 'syncClientSheetsMenu')
+      .addToUi();
+}
+
+function syncClientSheetsMenu() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  ss.toast('Syncing client sheets... this may take a moment.', 'Sync Status', -1);
+  syncClientSheets(ss);
+  ss.toast('Sync complete!', 'Sync Status', 5);
+}
+
+function syncClientSheets(ss, targetClientName) {
+  var indexSheet = ss.getSheetByName("Client_Index");
+  if (!indexSheet) return;
+  var indexData = indexSheet.getDataRange().getValues();
+  
+  var fontName = "Segoe UI";
+  
+  for (var i = 1; i < indexData.length; i++) {
+    var clientNo = indexData[i][0];
+    var partyName = String(indexData[i][1] || "").trim();
+    var address = String(indexData[i][2] || "").trim();
+    var ledgerPage = indexData[i][3];
+    var notes = String(indexData[i][5] || "").trim();
+    
+    if (!partyName || !ledgerPage) continue;
+    
+    // If targetClientName is provided, only process that specific client
+    if (targetClientName && partyName !== targetClientName) {
+      continue;
+    }
+    
+    var cleanName = partyName.replace(/[\\\/\?\:\*\[\]]/g, "");
+    var sheetName = "P" + ledgerPage + " - " + cleanName;
+    if (sheetName.length > 31) {
+      sheetName = sheetName.substring(0, 31);
+    }
+    
+    var sheet = ss.getSheetByName(sheetName);
+    if (!sheet) {
+      sheet = ss.insertSheet(sheetName);
+    } else {
+      sheet.clear();
+      sheet.clearFormats();
+    }
+    
+    // 1. Header Banner
+    sheet.getRange("A1:Q1").merge();
+    var bannerCell = sheet.getRange("A1");
+    bannerCell.setValue("আল করিম হিসাব - গ্রাহক খতিয়ান (Al Karim Hisab - Client Ledger)");
+    bannerCell.setFontColor("#FFFFFF")
+              .setBackground("#366092")
+              .setFontFamily(fontName)
+              .setFontSize(14)
+              .setFontWeight("bold")
+              .setHorizontalAlignment("center")
+              .setVerticalAlignment("middle");
+    sheet.setRowHeight(1, 40);
+    
+    // 2. Metadata Block (Row 3-5)
+    sheet.getRange("A3").setValue("গ্রাহকের নাম (Name):").setFontWeight("bold").setFontFamily(fontName).setFontSize(10);
+    sheet.getRange("B3").setValue(partyName).setFontFamily(fontName).setFontSize(10);
+    
+    sheet.getRange("G3").setValue("লেজার পৃষ্ঠা (Page):").setFontWeight("bold").setFontFamily(fontName).setFontSize(10);
+    sheet.getRange("H3").setValue(ledgerPage).setFontFamily(fontName).setFontSize(10);
+    
+    sheet.getRange("A4").setValue("ঠিকানা (Address):").setFontWeight("bold").setFontFamily(fontName).setFontSize(10);
+    sheet.getRange("B4").setValue(address).setFontFamily(fontName).setFontSize(10);
+    
+    sheet.getRange("G4").setValue("ফোন নম্বর (Phone):").setFontWeight("bold").setFontFamily(fontName).setFontSize(10);
+    sheet.getRange("H4").setValue("N/A").setFontFamily(fontName).setFontSize(10);
+    
+    sheet.getRange("A5").setValue("মন্তব্য (Notes):").setFontWeight("bold").setFontFamily(fontName).setFontSize(10);
+    sheet.getRange("B5").setValue(notes).setFontFamily(fontName).setFontSize(10);
+    
+    // 3. KPI Summary cards (Row 7-8)
+    // Card 1: Total Sales (A7:C8)
+    sheet.getRange("A7:C7").merge();
+    sheet.getRange("A8:C8").merge();
+    sheet.getRange("A7").setValue("সর্বমোট বিক্রয় (Total Purchases)")
+         .setFontFamily(fontName)
+         .setFontSize(9)
+         .setFontColor("#555555")
+         .setHorizontalAlignment("center");
+         
+    var card1Val = sheet.getRange("A8");
+    card1Val.setFormula("=SUM(K12:K)")
+            .setFontFamily(fontName)
+            .setFontSize(14)
+            .setFontWeight("bold")
+            .setFontColor("#366092")
+            .setHorizontalAlignment("center")
+            .setNumberFormat("#,##0.00");
+            
+    // Card 2: Total Payments (E7:G8)
+    sheet.getRange("E7:G7").merge();
+    sheet.getRange("E8:G8").merge();
+    sheet.getRange("E7").setValue("সর্বমোট আদায় (Total Payments)")
+         .setFontFamily(fontName)
+         .setFontSize(9)
+         .setFontColor("#555555")
+         .setHorizontalAlignment("center");
+         
+    var card2Val = sheet.getRange("E8");
+    card2Val.setFormula("=SUM(P12:P)")
+            .setFontFamily(fontName)
+            .setFontSize(14)
+            .setFontWeight("bold")
+            .setFontColor("#2E7D32")
+            .setHorizontalAlignment("center")
+            .setNumberFormat("#,##0.00");
+            
+    // Card 3: Outstanding (I7:K8)
+    sheet.getRange("I7:K7").merge();
+    sheet.getRange("I8:K8").merge();
+    sheet.getRange("I7").setValue("অবशिष्ट বকেয়া (Outstanding)")
+         .setFontFamily(fontName)
+         .setFontSize(9)
+         .setFontColor("#555555")
+         .setHorizontalAlignment("center");
+         
+    var card3Val = sheet.getRange("I8");
+    card3Val.setFormula("=A8-E8")
+            .setFontFamily(fontName)
+            .setFontSize(14)
+            .setFontWeight("bold")
+            .setFontColor("#C62828")
+            .setHorizontalAlignment("center")
+            .setNumberFormat("#,##0.00");
+            
+    // Apply styling to KPI cards
+    var kpiRanges = [sheet.getRange("A7:C8"), sheet.getRange("E7:G8"), sheet.getRange("I7:K8")];
+    kpiRanges.forEach(function(rng) {
+      rng.setBackground("#F2F5F8")
+         .setBorder(true, true, true, true, false, false, "#B0C4DE", SpreadsheetApp.BorderStyle.SOLID);
+    });
+    
+    // 4. Table Headers (Row 10)
+    sheet.getRange("A10:L10").merge();
+    sheet.getRange("A10").setValue("ডেবিট এন্ট্রি সমূহ (Debit - Bills/Sales)")
+         .setFontFamily(fontName)
+         .setFontSize(11)
+         .setFontWeight("bold")
+         .setFontColor("#FFFFFF")
+         .setBackground("#366092")
+         .setHorizontalAlignment("center")
+         .setVerticalAlignment("middle");
+         
+    sheet.getRange("N10:Q10").merge();
+    sheet.getRange("N10").setValue("ক্রেডিট এন্ট্রি সমূহ (Credit - Payments)")
+         .setFontFamily(fontName)
+         .setFontSize(11)
+         .setFontWeight("bold")
+         .setFontColor("#FFFFFF")
+         .setBackground("#2E7D32")
+         .setHorizontalAlignment("center")
+         .setVerticalAlignment("middle");
+    sheet.setRowHeight(10, 24);
+    
+    // Column Sub-headers (Row 11)
+    var debitHeaders = ["No", "Date", "Details (বিঃ কাঃ)", "Description", "Size", "Model", "PD", "Bill No", "Qty", "Rate", "Total", "Remarks"];
+    var creditHeaders = ["No", "Date", "Amount", "Remarks"];
+    
+    debitHeaders.forEach(function(headerText, index) {
+      var cell = sheet.getRange(11, index + 1);
+      cell.setValue(headerText)
+          .setFontFamily(fontName)
+          .setFontSize(10)
+          .setFontWeight("bold")
+          .setFontColor("#FFFFFF")
+          .setBackground("#5C82AD")
+          .setHorizontalAlignment("center")
+          .setVerticalAlignment("middle");
+    });
+    
+    creditHeaders.forEach(function(headerText, index) {
+      var cell = sheet.getRange(11, index + 14); // starts from Column N (14)
+      cell.setValue(headerText)
+          .setFontFamily(fontName)
+          .setFontSize(10)
+          .setFontWeight("bold")
+          .setFontColor("#FFFFFF")
+          .setBackground("#4E9F5D")
+          .setHorizontalAlignment("center")
+          .setVerticalAlignment("middle");
+    });
+    sheet.setRowHeight(11, 24);
+    
+    // 5. Insert filter formulas in Row 12
+    sheet.getRange("A12").setFormula('=IFERROR(FILTER(Debit_Transactions!C2:N, Debit_Transactions!A2:A = B3), "")');
+    sheet.getRange("N12").setFormula('=IFERROR(FILTER(Credit_Transactions!C2:F, Credit_Transactions!A2:A = B3), "")');
+    
+    // Format dynamic formula data columns (Row 12:1000)
+    sheet.getRange("I12:K1000").setNumberFormat("#,##0.00").setHorizontalAlignment("right");
+    sheet.getRange("P12:P1000").setNumberFormat("#,##0.00").setHorizontalAlignment("right");
+    sheet.getRange("A12:H1000").setHorizontalAlignment("left");
+    sheet.getRange("L12:L1000").setHorizontalAlignment("left");
+    sheet.getRange("N12:O1000").setHorizontalAlignment("left");
+    sheet.getRange("Q12:Q1000").setHorizontalAlignment("left");
+    
+    // Auto-fit columns
+    for (var col = 1; col <= 17; col++) {
+      sheet.autoResizeColumn(col);
+    }
+  }
 }
