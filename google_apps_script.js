@@ -226,6 +226,7 @@ function onOpen() {
   var ui = SpreadsheetApp.getUi();
   ui.createMenu('Al Karim Tools')
       .addItem('Sync Client Sheets', 'syncClientSheetsMenu')
+      .addItem('Sort Sheets', 'sortSheetsMenu')
       .addToUi();
 }
 
@@ -233,7 +234,9 @@ function syncClientSheetsMenu() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   ss.toast('Syncing client sheets... this may take a moment.', 'Sync Status', -1);
   syncClientSheets(ss);
-  ss.toast('Sync complete!', 'Sync Status', 5);
+  ss.toast('Sorting sheets... please wait.', 'Sort Status', -1);
+  sortSheets(ss);
+  ss.toast('Sync and sorting complete!', 'Sync Status', 5);
 }
 
 function syncClientSheets(ss, targetClientName) {
@@ -467,5 +470,48 @@ function syncClientSheets(ss, targetClientName) {
         sheet.autoResizeColumn(col);
       }
     }
+  }
+}
+
+function sortSheetsMenu() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  ss.toast('Sorting sheets... please wait.', 'Sort Status', -1);
+  sortSheets(ss);
+  ss.toast('Sheets sorted successfully!', 'Sort Status', 5);
+}
+
+function sortSheets(ss) {
+  var sheets = ss.getSheets();
+  var mainSheets = ["Client_Index", "Debit_Transactions", "Credit_Transactions"];
+  
+  var mainList = [];
+  var clientList = [];
+  
+  sheets.forEach(function(sheet) {
+    var name = sheet.getName();
+    if (mainSheets.indexOf(name) !== -1) {
+      mainList.push({name: name, sheet: sheet});
+    } else {
+      clientList.push({name: name, sheet: sheet});
+    }
+  });
+  
+  // Sort main sheets in order: Client_Index, Debit_Transactions, Credit_Transactions
+  mainList.sort(function(a, b) {
+    return mainSheets.indexOf(a.name) - mainSheets.indexOf(b.name);
+  });
+  
+  // Sort client sheets alphabetically by name (Bengali locales supported)
+  clientList.sort(function(a, b) {
+    return a.name.localeCompare(b.name, 'bn');
+  });
+  
+  var sortedList = mainList.concat(clientList);
+  
+  // Move sheets to their sorted positions
+  for (var i = 0; i < sortedList.length; i++) {
+    var targetSheet = sortedList[i].sheet;
+    ss.setActiveSheet(targetSheet);
+    ss.moveActiveSheet(i + 1);
   }
 }
