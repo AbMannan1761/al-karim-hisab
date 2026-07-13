@@ -2,10 +2,12 @@ function doGet(e) {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var result = {};
   
-  var sheets = ss.getSheets();
-  for (var i = 0; i < sheets.length; i++) {
-    var sheet = sheets[i];
-    var name = sheet.getName();
+  var targetSheets = ["Client_Index", "Debit_Transactions", "Credit_Transactions"];
+  for (var i = 0; i < targetSheets.length; i++) {
+    var name = targetSheets[i];
+    var sheet = ss.getSheetByName(name);
+    if (!sheet) continue;
+    
     var data = sheet.getDataRange().getValues();
     if (data.length === 0) {
       result[name] = [];
@@ -241,8 +243,35 @@ function syncClientSheets(ss, targetClientName) {
   
   var fontName = "Segoe UI";
   
+  // 1. Collect all active sheet names based on Client_Index
+  var activeSheetNames = {};
   for (var i = 1; i < indexData.length; i++) {
-    var clientNo = indexData[i][0];
+    var partyName = String(indexData[i][1] || "").trim();
+    var ledgerPage = indexData[i][3];
+    if (!partyName || !ledgerPage) continue;
+    
+    var cleanName = partyName.replace(/[\\\/\?\:\*\[\]]/g, "");
+    var sheetName = "P" + ledgerPage + " - " + cleanName;
+    if (sheetName.length > 31) {
+      sheetName = sheetName.substring(0, 31);
+    }
+    activeSheetNames[sheetName] = true;
+  }
+  
+  // 2. Clean up any orphan client sheets (e.g., if renamed)
+  var sheets = ss.getSheets();
+  sheets.forEach(function(sheet) {
+    var name = sheet.getName();
+    // If it is a client sheet (starts with P followed by number)
+    if (/^P\d+\s*-/.test(name)) {
+      if (!activeSheetNames[name]) {
+        ss.deleteSheet(sheet);
+      }
+    }
+  });
+  
+  // 3. Process sheets
+  for (var i = 1; i < indexData.length; i++) {
     var partyName = String(indexData[i][1] || "").trim();
     var address = String(indexData[i][2] || "").trim();
     var ledgerPage = indexData[i][3];
@@ -262,9 +291,18 @@ function syncClientSheets(ss, targetClientName) {
     }
     
     var sheet = ss.getSheetByName(sheetName);
+    var isNew = false;
     if (!sheet) {
       sheet = ss.insertSheet(sheetName);
+      isNew = true;
     } else {
+      // Check if B3 (Name), B4 (Address), B5 (Notes) match
+      var currentName = String(sheet.getRange("B3").getValue() || "").trim();
+      var currentAddress = String(sheet.getRange("B4").getValue() || "").trim();
+      var currentNotes = String(sheet.getRange("B5").getValue() || "").trim();
+      if (currentName === partyName && currentAddress === address && currentNotes === notes) {
+        continue; // Skip formatting if metadata is identical
+      }
       sheet.clear();
       sheet.clearFormats();
     }
@@ -423,9 +461,11 @@ function syncClientSheets(ss, targetClientName) {
     sheet.getRange("N12:O1000").setHorizontalAlignment("left");
     sheet.getRange("Q12:Q1000").setHorizontalAlignment("left");
     
-    // Auto-fit columns
-    for (var col = 1; col <= 17; col++) {
-      sheet.autoResizeColumn(col);
+    // Auto-fit columns only if it is a new sheet to prevent API quota/time limit issues
+    if (isNew) {
+      for (var col = 1; col <= 17; col++) {
+        sheet.autoResizeColumn(col);
+      }
     }
   }
 }
