@@ -609,8 +609,9 @@
                 <table class="client-table">
                     <thead>
                         <tr>
-                            <th style="width: 55%; text-align: left;">নাম</th>
-                            <th style="width: 45%; text-align: left;">ঠিকানা</th>
+                            <th style="width: 15%; text-align: left;">নং</th>
+                            <th style="width: 45%; text-align: left;">নাম</th>
+                            <th style="width: 40%; text-align: left;">ঠিকানা</th>
                         </tr>
                     </thead>
                     <tbody id="clientTableBody">
@@ -860,12 +861,13 @@
             const tbody = document.getElementById('clientTableBody');
             tbody.innerHTML = '';
 
-            list.forEach(client => {
+            list.forEach((client, index) => {
                 const tr = document.createElement('tr');
                 tr.className = 'client-row';
                 tr.innerHTML = `
-                    <td style="font-weight: 600;" title="${client.party_name}">${client.party_name}</td>
-                    <td title="${client.address || ''}">${client.address || ''}</td>
+                    <td style="font-weight: 600; color: var(--text-muted); width: 15%;">${translateToBengaliDigits(index + 1)}</td>
+                    <td style="font-weight: 600; width: 45%;" title="${client.party_name}">${client.party_name}</td>
+                    <td style="width: 40%;" title="${client.address || ''}">${client.address || ''}</td>
                 `;
                 tr.addEventListener('click', () => selectClient(client, tr));
                 tbody.appendChild(tr);
