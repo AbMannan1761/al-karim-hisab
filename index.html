@@ -85,7 +85,7 @@
         }
 
         .header-placeholder {
-            width: 300px; /* matches sidebar width */
+            width: 380px; /* expanded to balance the wider summary box */
             flex-shrink: 0;
         }
 
@@ -111,16 +111,16 @@
 
         .header-summary {
             display: flex;
-            gap: 16px;
+            gap: 12px; /* compact gap to fit large numbers */
             align-items: center;
             background: rgba(255, 255, 255, 0.15);
-            padding: 6px 20px;
+            padding: 6px 12px; /* compact padding */
             border-radius: 8px; /* Rectangular box shape */
             border: 1px solid rgba(255, 255, 255, 0.25);
             backdrop-filter: blur(4px);
             box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
-            width: 300px; /* matches placeholder width for layout symmetry */
-            justify-content: center;
+            width: 380px; /* expanded width for large numbers and symmetry */
+            justify-content: space-around;
             flex-shrink: 0;
         }
 
@@ -645,7 +645,6 @@
         <div class="header-placeholder"></div>
         <div class="header-left">
             <h1>📖 আল কারিম কম্পিউটার এন্ড এমব্রয়ডারি গার্মেন্টস</h1>
-            <p>ডিজিটাইজড লেজার ভিউয়ার পোর্টাল</p>
             <p class="managed-by">Managed By Engr Mohammad Abdul Mannan, Mobile: 01928571761</p>
         </div>
         <div class="header-summary" id="headerSummary">
