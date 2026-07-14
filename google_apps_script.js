@@ -404,7 +404,7 @@ function syncClientSheets(ss, targetClientName) {
     // Card 3: Outstanding (M5:Q6)
     sheet.getRange("M5:Q5").merge();
     sheet.getRange("M6:Q6").merge();
-    sheet.getRange("M5").setValue("অবशिष्ट বকেয়া (Outstanding)")
+    sheet.getRange("M5").setValue("অবশিষ্ট বকেয়া (Outstanding)")
          .setFontFamily(fontName)
          .setFontSize(9)
          .setFontColor("#555555")
