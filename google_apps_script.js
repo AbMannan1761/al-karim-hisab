@@ -312,7 +312,9 @@ function syncClientSheets(ss, targetClientName) {
         
         // Ensure column widths are updated to 75px (~1 inch) for existing skipped sheets
         for (var col = 1; col <= 17; col++) {
-          if (col === 13) {
+          if (col === 1) {
+            sheet.setColumnWidth(col, 25); // Column A is 0.25 inches (25px)
+          } else if (col === 13) {
             sheet.setColumnWidth(col, 25); // separator column
           } else {
             sheet.setColumnWidth(col, 75); // approx. 1 inch
@@ -481,20 +483,23 @@ function syncClientSheets(ss, targetClientName) {
     sheet.getRange("A9").setFormula('=IFERROR(FILTER(Debit_Transactions!C2:N, Debit_Transactions!A2:A = D2), "")');
     sheet.getRange("N9").setFormula('=IFERROR(FILTER(Credit_Transactions!C2:F, Credit_Transactions!A2:A = D2), "")');
     
-    // Format dynamic formula data columns (Row 9:1000)
-    sheet.getRange("I9:K1000").setNumberFormat("#,##0.00").setHorizontalAlignment("right");
-    sheet.getRange("P9:P1000").setNumberFormat("#,##0.00").setHorizontalAlignment("right");
-    sheet.getRange("A9:H1000").setHorizontalAlignment("left");
-    sheet.getRange("L9:L1000").setHorizontalAlignment("left");
-    sheet.getRange("N9:O1000").setHorizontalAlignment("left");
-    sheet.getRange("Q9:Q1000").setHorizontalAlignment("left");
+    // Format dynamic formula data columns (Row 9:1000) to be centered, top-aligned, and wrapped
+    var dataRange = sheet.getRange("A9:Q1000");
+    dataRange.setHorizontalAlignment("center")
+             .setVerticalAlignment("top")
+             .setWrap(true);
+             
+    sheet.getRange("I9:K1000").setNumberFormat("#,##0.00");
+    sheet.getRange("P9:P1000").setNumberFormat("#,##0.00");
     
     // Freeze rows 1-8 so the dashboard header remains visible when scrolling down
     sheet.setFrozenRows(8);
     
-    // Set column widths to 75px (~1 inch) so that everything fits on one screen
+    // Set column widths so that everything fits on one screen
     for (var col = 1; col <= 17; col++) {
-      if (col === 13) {
+      if (col === 1) {
+        sheet.setColumnWidth(col, 25); // Column A is 0.25 inches (25px)
+      } else if (col === 13) {
         sheet.setColumnWidth(col, 25); // Column M is the blank separator column
       } else {
         sheet.setColumnWidth(col, 75); // ~1 inch (75 pixels)
