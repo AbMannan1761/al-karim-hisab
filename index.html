@@ -103,17 +103,18 @@
 
         .managed-by {
             font-style: italic;
-            font-size: 11px; /* slightly smaller to fit perfectly inside 380px */
+            font-size: 10px; /* slightly smaller to fit 3 lines perfectly */
             color: #045237; /* Dark Green Text */
             font-family: 'Outfit', 'Inter', sans-serif;
             font-weight: 600;
+            line-height: 1.3;
             letter-spacing: 0.3px;
             background-color: rgba(209, 250, 229, 0.95); /* Light mint green background */
             padding: 4px 12px;
-            border-radius: 12px;
+            border-radius: 8px; /* structured shape */
             box-shadow: 0 2px 4px rgba(0,0,0,0.08);
             display: inline-block;
-            white-space: nowrap;
+            text-align: left;
         }
 
         .header-summary {
@@ -654,7 +655,11 @@
 <body>
     <header>
         <div class="header-managed-container">
-            <p class="managed-by">Managed By Engr Mohammad Abdul Mannan, Mobile: 01928571761</p>
+            <p class="managed-by">
+                Managed by<br>
+                Engr Mohammad Abdul Mannan<br>
+                Mobile: 01928-571761
+            </p>
         </div>
         <div class="header-left">
             <h1>📖 আল কারিম কম্পিউটার এন্ড এমব্রয়ডারি গার্মেন্টস</h1>
