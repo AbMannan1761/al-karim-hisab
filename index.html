@@ -72,7 +72,7 @@
         header h1 {
             font-family: 'Outfit', sans-serif;
             color: #ffffff;
-            font-size: 20px;
+            font-size: 18px; /* scaled down from 20px to prevent clipping */
             font-weight: 700;
             letter-spacing: -0.5px;
             text-shadow: 0 1px 2px rgba(0,0,0,0.1);
@@ -84,8 +84,11 @@
             font-weight: 500;
         }
 
-        .header-placeholder {
-            width: 380px; /* expanded to balance the wider summary box */
+        .header-managed-container {
+            width: 380px; /* matches summary box width for layout balance */
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
             flex-shrink: 0;
         }
 
@@ -100,17 +103,17 @@
 
         .managed-by {
             font-style: italic;
-            font-size: 12px;
+            font-size: 11px; /* slightly smaller to fit perfectly inside 380px */
             color: #045237; /* Dark Green Text */
-            margin-top: 6px;
             font-family: 'Outfit', 'Inter', sans-serif;
             font-weight: 600;
             letter-spacing: 0.3px;
             background-color: rgba(209, 250, 229, 0.95); /* Light mint green background */
-            padding: 3px 12px;
+            padding: 4px 12px;
             border-radius: 12px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.08);
             display: inline-block;
+            white-space: nowrap;
         }
 
         .header-summary {
@@ -598,8 +601,10 @@
                 padding: 15px;
                 align-items: center;
             }
-            .header-placeholder {
-                display: none;
+            .header-managed-container {
+                width: 100%;
+                justify-content: center;
+                order: 2; /* Put name below title on mobile */
             }
             .header-left {
                 position: static;
@@ -608,11 +613,13 @@
                 align-items: center;
                 width: 100%;
                 padding: 0;
+                order: 1; /* Title first */
             }
             .header-summary {
                 width: 100%;
                 justify-content: space-around;
                 margin-left: 0;
+                order: 3; /* Summary last */
             }
             .container {
                 flex-direction: column;
@@ -646,10 +653,11 @@
 </head>
 <body>
     <header>
-        <div class="header-placeholder"></div>
+        <div class="header-managed-container">
+            <p class="managed-by">Managed By Engr Mohammad Abdul Mannan, Mobile: 01928571761</p>
+        </div>
         <div class="header-left">
             <h1>📖 আল কারিম কম্পিউটার এন্ড এমব্রয়ডারি গার্মেন্টস</h1>
-            <p class="managed-by">Managed By Engr Mohammad Abdul Mannan, Mobile: 01928571761</p>
         </div>
         <div class="header-summary" id="headerSummary">
             <div class="summary-item">
