@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>আল করিম হিসাব পোর্টাল</title>
+    <title>আল কারিম কম্পিউটার এন্ড এমব্রয়ডারি গার্মেন্টস পোর্টাল</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -87,6 +87,11 @@
         .header-left {
             display: flex;
             flex-direction: column;
+            align-items: center;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
         }
 
         .header-summary {
@@ -528,7 +533,13 @@
                 flex-direction: column;
                 gap: 12px;
                 padding: 15px;
-                align-items: flex-start;
+                align-items: center;
+            }
+            .header-left {
+                position: static;
+                transform: none;
+                left: auto;
+                align-items: center;
             }
             .header-summary {
                 width: 100%;
@@ -567,7 +578,7 @@
 <body>
     <header>
         <div class="header-left">
-            <h1>📖 আল করিম হিসাব (Al Karim Hisab)</h1>
+            <h1>📖 আল কারিম কম্পিউটার এন্ড এমব্রয়ডারি গার্মেন্টস</h1>
             <p>ডিজিটাইজড লেজার ভিউয়ার পোর্টাল</p>
         </div>
         <div class="header-summary" id="headerSummary">

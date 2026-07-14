@@ -318,9 +318,9 @@ function syncClientSheets(ss, targetClientName) {
     // 1. Header Banner
     sheet.getRange("A1:Q1").merge();
     var bannerCell = sheet.getRange("A1");
-    bannerCell.setValue("আল করিম হিসাব - গ্রাহক খতিয়ান (Al Karim Hisab - Client Ledger)");
+    bannerCell.setValue("আল কারিম কম্পিউটার এন্ড এমব্রয়ডারি গার্মেন্টস - গ্রাহক খতিয়ান");
     bannerCell.setFontColor("#FFFFFF")
-              .setBackground("#366092")
+              .setBackground("#047857")
               .setFontFamily(fontName)
               .setFontSize(14)
               .setFontWeight("bold")
