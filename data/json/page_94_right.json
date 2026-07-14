@@ -1,55 +1,25 @@
 {
-  "party_name": "N/A",
-  "phone": "N/A",
+  "party_name": "নাল",
+  "phone": "null",
   "ledger_page_number": "189",
   "credit_table": [
     {
       "no": "1",
-      "date": "18.01.24",
-      "amount": "1840",
-      "remarks": "মোট টাকা"
+      "date": "null",
+      "amount": "673425",
+      "remarks": "আজ ="
     },
     {
       "no": "2",
-      "date": "26.01.24",
-      "amount": "2200",
-      "remarks": "মোট টাকা"
+      "date": "null",
+      "amount": "12500",
+      "remarks": "অবশিষ্ট"
     },
     {
       "no": "3",
-      "date": "27.01.24",
-      "amount": "22000",
-      "remarks": "মোট টাকা"
-    },
-    {
-      "no": "4",
-      "date": "28.01.24",
-      "amount": "18400",
-      "remarks": "মোট টাকা"
-    },
-    {
-      "no": "5",
-      "date": "29.01.24",
-      "amount": "12250",
-      "remarks": "মোট টাকা"
-    },
-    {
-      "no": "6",
-      "date": "31.01.24",
-      "amount": "15470",
-      "remarks": "মোট টাকা"
-    },
-    {
-      "no": "7",
-      "date": "18.02.24",
-      "amount": "7340",
-      "remarks": "মোট টাকা"
-    },
-    {
-      "no": "8",
-      "date": "26.02.24",
-      "amount": "7480",
-      "remarks": "মোট টাকা"
+      "date": "null",
+      "amount": "685925",
+      "remarks": "মোট"
     }
   ]
 }

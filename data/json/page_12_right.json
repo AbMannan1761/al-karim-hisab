@@ -1,199 +1,205 @@
 {
   "party_name": "জেঃ কুমার সাং",
-  "phone": null,
+  "phone": "",
   "ledger_page_number": "25",
   "credit_table": [
     {
       "no": "1",
-      "date": "28.08.24",
-      "amount": "4000",
-      "remarks": "নগদ"
+      "date": "28.08.20",
+      "amount": "2000",
+      "remarks": ""
     },
     {
       "no": "2",
-      "date": "02.09.24",
-      "amount": "4000",
-      "remarks": "নগদ"
+      "date": "02.06.20",
+      "amount": "5000",
+      "remarks": ""
     },
     {
       "no": "3",
-      "date": "06.09.24",
-      "amount": "4000",
-      "remarks": "নগদ"
+      "date": "06.06.20",
+      "amount": "1000",
+      "remarks": ""
     },
     {
       "no": "4",
-      "date": "14.09.24",
-      "amount": "4000",
-      "remarks": "নগদ"
+      "date": "28.08.20",
+      "amount": "8000",
+      "remarks": ""
     },
     {
       "no": "5",
-      "date": "22.09.24",
-      "amount": "4000",
-      "remarks": "নগদ"
+      "date": "22.08.20",
+      "amount": "8000",
+      "remarks": ""
     },
     {
       "no": "6",
-      "date": "29.09.24",
-      "amount": "4000",
-      "remarks": "নগদ"
+      "date": "06.09.20",
+      "amount": "2000",
+      "remarks": ""
     },
     {
       "no": "7",
-      "date": "29.09.24",
-      "amount": "4000",
-      "remarks": "নগদ"
+      "date": "20.09.20",
+      "amount": "8000",
+      "remarks": ""
     },
     {
       "no": "8",
-      "date": "29.09.24",
-      "amount": "4000",
-      "remarks": "নগদ"
+      "date": "29.09.20",
+      "amount": "8000",
+      "remarks": ""
     },
     {
       "no": "9",
-      "date": "30.09.24",
+      "date": "28.09.20",
       "amount": "4000",
-      "remarks": "নগদ"
+      "remarks": ""
     },
     {
       "no": "10",
-      "date": "02.10.24",
-      "amount": "4000",
-      "remarks": "নগদ"
+      "date": "02.09.20",
+      "amount": "8000",
+      "remarks": ""
     },
     {
       "no": "11",
-      "date": "09.10.24",
-      "amount": "4000",
-      "remarks": "নগদ"
+      "date": "09.06.20",
+      "amount": "1000",
+      "remarks": ""
     },
     {
       "no": "12",
-      "date": "22.10.24",
-      "amount": "4000",
-      "remarks": "নগদ"
+      "date": "28.06.20",
+      "amount": "1000",
+      "remarks": ""
     },
     {
       "no": "13",
-      "date": "26.10.24",
-      "amount": "4000",
-      "remarks": "নগদ"
+      "date": "22.06.20",
+      "amount": "1000",
+      "remarks": ""
     },
     {
       "no": "14",
-      "date": "28.10.24",
+      "date": "26.06.20",
       "amount": "4000",
-      "remarks": "নগদ"
+      "remarks": ""
     },
     {
       "no": "15",
-      "date": "28.11.24",
-      "amount": "4000",
-      "remarks": "নগদ"
+      "date": "08.02.20",
+      "amount": "1000",
+      "remarks": ""
     },
     {
       "no": "16",
-      "date": "26.11.24",
-      "amount": "4000",
-      "remarks": "নগদ"
+      "date": "22.02.20",
+      "amount": "1000",
+      "remarks": ""
     },
     {
       "no": "17",
-      "date": "29.11.24",
-      "amount": "4000",
-      "remarks": "নগদ"
+      "date": "26.02.20",
+      "amount": "1000",
+      "remarks": ""
     },
     {
       "no": "18",
-      "date": "26.12.24",
-      "amount": "4000",
-      "remarks": "নগদ"
+      "date": "28.02.20",
+      "amount": "1000",
+      "remarks": ""
     },
     {
       "no": "19",
-      "date": "20.12.24",
-      "amount": "4000",
-      "remarks": "নগদ"
+      "date": "02.10.20",
+      "amount": "8000",
+      "remarks": ""
     },
     {
       "no": "20",
-      "date": "22.12.24",
-      "amount": "4000",
-      "remarks": "নগদ"
+      "date": "02.10.20",
+      "amount": "1000",
+      "remarks": ""
     },
     {
       "no": "21",
-      "date": "22.12.24",
-      "amount": "4000",
-      "remarks": "নগদ"
+      "date": "26.10.20",
+      "amount": "1000",
+      "remarks": ""
     },
     {
       "no": "22",
-      "date": "26.12.24",
-      "amount": "4000",
-      "remarks": "নগদ"
+      "date": "26.10.20",
+      "amount": "1000",
+      "remarks": ""
     },
     {
       "no": "23",
-      "date": "28.12.24",
-      "amount": "4000",
-      "remarks": "নগদ"
+      "date": "26.10.20",
+      "amount": "2000",
+      "remarks": ""
     },
     {
       "no": "24",
-      "date": "28.01.25",
-      "amount": "4000",
-      "remarks": "নগদ"
+      "date": "30.10.20",
+      "amount": "8000",
+      "remarks": ""
     },
     {
       "no": "25",
-      "date": "28.01.25",
-      "amount": "4000",
-      "remarks": "নগদ"
+      "date": "06.12.20",
+      "amount": "8000",
+      "remarks": ""
     },
     {
       "no": "26",
-      "date": "29.01.25",
-      "amount": "4000",
-      "remarks": "নগদ"
+      "date": "20.12.20",
+      "amount": "1000",
+      "remarks": ""
     },
     {
       "no": "27",
-      "date": "26.08.25",
-      "amount": "4000",
-      "remarks": "নগদ"
+      "date": "20.12.20",
+      "amount": "1000",
+      "remarks": ""
     },
     {
       "no": "28",
-      "date": "22.12.25",
-      "amount": "4000",
-      "remarks": "নগদ"
+      "date": "08.12.20",
+      "amount": "1000",
+      "remarks": ""
     },
     {
       "no": "29",
-      "date": "30.12.25",
-      "amount": "4000",
-      "remarks": "নগদ"
+      "date": "22.12.20",
+      "amount": "1000",
+      "remarks": ""
     },
     {
       "no": "30",
-      "date": "02.12.25",
-      "amount": "4000",
-      "remarks": "নগদ"
+      "date": "26.12.20",
+      "amount": "1000",
+      "remarks": ""
     },
     {
       "no": "31",
-      "date": "02.12.25",
-      "amount": "4000",
-      "remarks": "নগদ"
+      "date": "28.12.20",
+      "amount": "1000",
+      "remarks": ""
     },
     {
       "no": "32",
-      "date": "02.12.25",
-      "amount": "4000",
-      "remarks": "নগদ"
+      "date": "29.12.20",
+      "amount": "1000",
+      "remarks": ""
+    },
+    {
+      "no": "33",
+      "date": "02.01.21",
+      "amount": "8000",
+      "remarks": ""
     }
   ]
 }

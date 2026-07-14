@@ -1,37 +1,37 @@
 {
   "party_name": "রূক মনোজ সাং",
-  "phone": "239404",
+  "phone": "",
   "ledger_page_number": "7",
   "credit_table": [
     {
-      "no": "1",
-      "date": "14",
-      "amount": "7020",
-      "remarks": "পিস: ৭৮, বিল: ১৫৫৮, দর: ৯০, মোট: ৭০২০"
+      "no": "",
+      "date": "",
+      "amount": "",
+      "remarks": ""
     },
     {
-      "no": "2",
-      "date": "17",
-      "amount": "5280",
-      "remarks": "পিস: ৬৬, বিল: ১৫৬০, দর: ৮০, মোট: ১২৩০০"
+      "no": "",
+      "date": "",
+      "amount": "",
+      "remarks": ""
     },
     {
-      "no": "3",
-      "date": "06",
-      "amount": "6480",
-      "remarks": "পিস: ৭২, বিল: ১৫৯৩, দর: ৯০, মোট: ১৮৭৮০"
+      "no": "",
+      "date": "",
+      "amount": "",
+      "remarks": ""
     },
     {
-      "no": "4",
-      "date": "06",
-      "amount": "5250",
-      "remarks": "পিস: ৩৫, বিল: 〃, দর: ১৫০, মোট: ২৪০৩০"
+      "no": "",
+      "date": "",
+      "amount": "",
+      "remarks": ""
     },
     {
-      "no": "5",
-      "date": "06",
-      "amount": "5750",
-      "remarks": "নগদ, বিল: 〃, দর: ১৫০, মোট: ২৯৭৮০"
+      "no": "",
+      "date": "",
+      "amount": "",
+      "remarks": ""
     }
   ]
 }

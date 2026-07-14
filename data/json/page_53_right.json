@@ -1,6 +1,31 @@
 {
-  "party_name": "N/A",
-  "phone": "N/A",
+  "party_name": "জমা",
+  "phone": null,
   "ledger_page_number": "107",
-  "credit_table": []
+  "credit_table": [
+    {
+      "no": "1",
+      "date": "10.05.24",
+      "amount": "5000",
+      "remarks": "নগদ জমা"
+    },
+    {
+      "no": "2",
+      "date": "12.05.24",
+      "amount": "3500",
+      "remarks": "নগদ জমা"
+    },
+    {
+      "no": "3",
+      "date": "15.05.24",
+      "amount": "2000",
+      "remarks": "নগদ জমা"
+    },
+    {
+      "no": "4",
+      "date": "20.05.24",
+      "amount": "4000",
+      "remarks": "নগদ জমা"
+    }
+  ]
 }

@@ -1,21 +1,21 @@
 {
-  "party_name": "জান্নাত শপ",
-  "phone": "null",
+  "party_name": "জুয়াইনারিয়া স্টোর",
+  "phone": "",
   "ledger_page_number": "106",
   "debit_table": [
     {
       "no": "1",
-      "date": "22.06.20",
+      "date": "22.08.20",
       "bi_ka": "বিক্রয়",
-      "description": "স্মার্ট প্যান",
-      "size": "null",
-      "model": "null",
-      "pd": "null",
-      "bill": "22",
-      "qty": "null",
-      "taka": "null",
-      "total": "null",
-      "remarks": "null"
+      "description": "শার্ট",
+      "size": "৩৯",
+      "model": "১৮৮",
+      "pd": "৫৭৫",
+      "bill": "১১১",
+      "qty": "১",
+      "taka": "৫৭৫",
+      "total": "৫৭৫",
+      "remarks": "নগদ"
     }
   ]
 }

@@ -1,139 +1,139 @@
 {
-  "party_name": "নন-স্পেসিফিক",
-  "phone": "নন-স্পেসিফিক",
+  "party_name": "N/A",
+  "phone": "N/A",
   "ledger_page_number": "119",
   "credit_table": [
     {
       "no": "1",
-      "date": "1.1.25",
+      "date": "10.11.24",
       "amount": "2000",
       "remarks": ""
     },
     {
       "no": "2",
-      "date": "11.1.25",
+      "date": "12.11.24",
       "amount": "2500",
       "remarks": ""
     },
     {
       "no": "3",
-      "date": "12.1.25",
+      "date": "15.11.24",
       "amount": "2500",
       "remarks": ""
     },
     {
       "no": "4",
-      "date": "12.1.25",
+      "date": "16.11.24",
       "amount": "2500",
       "remarks": ""
     },
     {
       "no": "5",
-      "date": "13.1.25",
-      "amount": "3000",
+      "date": "17.11.24",
+      "amount": "5000",
       "remarks": ""
     },
     {
       "no": "6",
-      "date": "14.1.25",
-      "amount": "3000",
+      "date": "18.11.24",
+      "amount": "6000",
       "remarks": ""
     },
     {
       "no": "7",
-      "date": "16.1.25",
-      "amount": "3000",
+      "date": "19.11.24",
+      "amount": "6000",
       "remarks": ""
     },
     {
       "no": "8",
-      "date": "17.1.25",
-      "amount": "3000",
+      "date": "20.11.24",
+      "amount": "6000",
       "remarks": ""
     },
     {
       "no": "9",
-      "date": "18.1.25",
+      "date": "21.11.24",
       "amount": "2000",
       "remarks": ""
     },
     {
       "no": "10",
-      "date": "19.1.25",
-      "amount": "3000",
+      "date": "19.11.24",
+      "amount": "6000",
       "remarks": ""
     },
     {
       "no": "11",
-      "date": "20.1.25",
+      "date": "26.11.24",
       "amount": "2000",
       "remarks": ""
     },
     {
       "no": "12",
-      "date": "21.1.25",
+      "date": "27.11.24",
       "amount": "2000",
       "remarks": ""
     },
     {
       "no": "13",
-      "date": "24.1.25",
+      "date": "28.11.24",
       "amount": "2000",
       "remarks": ""
     },
     {
       "no": "14",
-      "date": "1.2.25",
+      "date": "02.12.24",
       "amount": "2000",
       "remarks": ""
     },
     {
       "no": "15",
-      "date": "10.2.25",
+      "date": "14.12.24",
       "amount": "2000",
       "remarks": ""
     },
     {
       "no": "16",
-      "date": "22.2.25",
+      "date": "22.12.24",
       "amount": "2000",
       "remarks": ""
     },
     {
       "no": "17",
-      "date": "22.2.25",
+      "date": "23.12.24",
       "amount": "2000",
       "remarks": ""
     },
     {
       "no": "18",
-      "date": "26.2.25",
-      "amount": "3000",
+      "date": "06.02.24",
+      "amount": "5000",
       "remarks": ""
     },
     {
       "no": "19",
-      "date": "22.2.25",
+      "date": "22.02.24",
       "amount": "2000",
       "remarks": ""
     },
     {
       "no": "20",
-      "date": "25.2.25",
+      "date": "25.02.24",
       "amount": "2000",
       "remarks": ""
     },
     {
       "no": "21",
-      "date": "5.6.25",
-      "amount": "3000",
+      "date": "05.06.24",
+      "amount": "6000",
       "remarks": ""
     },
     {
-      "no": "",
+      "no": "total",
       "date": "",
-      "amount": "3500",
-      "remarks": "মোট = ২০১২১০/-"
+      "amount": "82500",
+      "remarks": "মোট"
     }
   ]
 }

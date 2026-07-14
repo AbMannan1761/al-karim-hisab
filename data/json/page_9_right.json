@@ -1,6 +1,6 @@
 {
   "party_name": "আবিদ হামজা",
-  "phone": "null",
+  "phone": "",
   "ledger_page_number": "19",
   "credit_table": [
     {
@@ -11,31 +11,31 @@
     },
     {
       "no": "2",
-      "date": "28.02.24",
+      "date": "26.02.25",
       "amount": "2000",
       "remarks": ""
     },
     {
       "no": "3",
-      "date": "06.10.24",
+      "date": "06.10.25",
       "amount": "3000",
       "remarks": ""
     },
     {
       "no": "4",
-      "date": "25.10.24",
+      "date": "28.10.25",
       "amount": "3000",
       "remarks": ""
     },
     {
       "no": "5",
-      "date": "20.12.24",
+      "date": "20.12.25",
       "amount": "2000",
       "remarks": ""
     },
     {
       "no": "6",
-      "date": "08.02.24",
+      "date": "08.02.25",
       "amount": "2000",
       "remarks": ""
     },

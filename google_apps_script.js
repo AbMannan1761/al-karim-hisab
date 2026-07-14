@@ -302,11 +302,13 @@ function syncClientSheets(ss, targetClientName) {
       sheet = ss.insertSheet(sheetName);
       isNew = true;
     } else {
-      // Check if B3 (Name), B4 (Address), B5 (Notes) match
-      var currentName = String(sheet.getRange("B3").getValue() || "").trim();
-      var currentAddress = String(sheet.getRange("B4").getValue() || "").trim();
-      var currentNotes = String(sheet.getRange("B5").getValue() || "").trim();
+      // Check if D2 (Name), D3 (Address), D4 (Notes) match in a single call to improve performance
+      var metaValues = sheet.getRange("D2:D4").getValues();
+      var currentName = String(metaValues[0][0] || "").trim();
+      var currentAddress = String(metaValues[1][0] || "").trim();
+      var currentNotes = String(metaValues[2][0] || "").trim();
       if (currentName === partyName && currentAddress === address && currentNotes === notes) {
+        sheet.setFrozenRows(8); // Ensure rows are frozen even if we skip formatting
         continue; // Skip formatting if metadata is identical
       }
       sheet.clear();
@@ -326,34 +328,44 @@ function syncClientSheets(ss, targetClientName) {
               .setVerticalAlignment("middle");
     sheet.setRowHeight(1, 40);
     
-    // 2. Metadata Block (Row 3-5)
-    sheet.getRange("A3").setValue("গ্রাহকের নাম (Name):").setFontWeight("bold").setFontFamily(fontName).setFontSize(10);
-    sheet.getRange("B3").setValue(partyName).setFontFamily(fontName).setFontSize(10);
+    // 2. Metadata Block (Row 2-4) with merged cells to prevent column width issues
+    sheet.getRange("A2:C2").merge();
+    sheet.getRange("A2").setValue("গ্রাহকের নাম (Name):").setFontWeight("bold").setFontFamily(fontName).setFontSize(10).setHorizontalAlignment("left");
+    sheet.getRange("D2:K2").merge();
+    sheet.getRange("D2").setValue(partyName).setFontFamily(fontName).setFontSize(10).setHorizontalAlignment("left");
     
-    sheet.getRange("G3").setValue("লেজার পৃষ্ঠা (Page):").setFontWeight("bold").setFontFamily(fontName).setFontSize(10);
-    sheet.getRange("H3").setValue(ledgerPage).setFontFamily(fontName).setFontSize(10);
+    sheet.getRange("L2:N2").merge();
+    sheet.getRange("L2").setValue("লেজার পৃষ্ঠা (Page):").setFontWeight("bold").setFontFamily(fontName).setFontSize(10).setHorizontalAlignment("right");
+    sheet.getRange("O2:Q2").merge();
+    sheet.getRange("O2").setValue(ledgerPage).setFontFamily(fontName).setFontSize(10).setHorizontalAlignment("left");
     
-    sheet.getRange("A4").setValue("ঠিকানা (Address):").setFontWeight("bold").setFontFamily(fontName).setFontSize(10);
-    sheet.getRange("B4").setValue(address).setFontFamily(fontName).setFontSize(10);
+    sheet.getRange("A3:C3").merge();
+    sheet.getRange("A3").setValue("ঠিকানা (Address):").setFontWeight("bold").setFontFamily(fontName).setFontSize(10).setHorizontalAlignment("left");
+    sheet.getRange("D3:K3").merge();
+    sheet.getRange("D3").setValue(address).setFontFamily(fontName).setFontSize(10).setHorizontalAlignment("left");
     
-    sheet.getRange("G4").setValue("ফোন নম্বর (Phone):").setFontWeight("bold").setFontFamily(fontName).setFontSize(10);
-    sheet.getRange("H4").setValue("N/A").setFontFamily(fontName).setFontSize(10);
+    sheet.getRange("L3:N3").merge();
+    sheet.getRange("L3").setValue("ফোন নম্বর (Phone):").setFontWeight("bold").setFontFamily(fontName).setFontSize(10).setHorizontalAlignment("right");
+    sheet.getRange("O3:Q3").merge();
+    sheet.getRange("O3").setValue("N/A").setFontFamily(fontName).setFontSize(10).setHorizontalAlignment("left");
     
-    sheet.getRange("A5").setValue("মন্তব্য (Notes):").setFontWeight("bold").setFontFamily(fontName).setFontSize(10);
-    sheet.getRange("B5").setValue(notes).setFontFamily(fontName).setFontSize(10);
+    sheet.getRange("A4:C4").merge();
+    sheet.getRange("A4").setValue("মন্তব্য (Notes):").setFontWeight("bold").setFontFamily(fontName).setFontSize(10).setHorizontalAlignment("left");
+    sheet.getRange("D4:K4").merge();
+    sheet.getRange("D4").setValue(notes).setFontFamily(fontName).setFontSize(10).setHorizontalAlignment("left");
     
-    // 3. KPI Summary cards (Row 7-8)
-    // Card 1: Total Sales (A7:C8)
-    sheet.getRange("A7:C7").merge();
-    sheet.getRange("A8:C8").merge();
-    sheet.getRange("A7").setValue("সর্বমোট বিক্রয় (Total Purchases)")
+    // 3. KPI Summary cards (Row 5-6)
+    // Card 1: Total Sales (A5:E6)
+    sheet.getRange("A5:E5").merge();
+    sheet.getRange("A6:E6").merge();
+    sheet.getRange("A5").setValue("সর্বমোট বিক্রয় (Total Purchases)")
          .setFontFamily(fontName)
          .setFontSize(9)
          .setFontColor("#555555")
          .setHorizontalAlignment("center");
          
-    var card1Val = sheet.getRange("A8");
-    card1Val.setFormula("=SUM(K12:K)")
+    var card1Val = sheet.getRange("A6");
+    card1Val.setFormula("=SUM(K9:K)")
             .setFontFamily(fontName)
             .setFontSize(14)
             .setFontWeight("bold")
@@ -361,17 +373,17 @@ function syncClientSheets(ss, targetClientName) {
             .setHorizontalAlignment("center")
             .setNumberFormat("#,##0.00");
             
-    // Card 2: Total Payments (E7:G8)
-    sheet.getRange("E7:G7").merge();
-    sheet.getRange("E8:G8").merge();
-    sheet.getRange("E7").setValue("সর্বমোট আদায় (Total Payments)")
+    // Card 2: Total Payments (G5:K6)
+    sheet.getRange("G5:K5").merge();
+    sheet.getRange("G6:K6").merge();
+    sheet.getRange("G5").setValue("সর্বমোট আদায় (Total Payments)")
          .setFontFamily(fontName)
          .setFontSize(9)
          .setFontColor("#555555")
          .setHorizontalAlignment("center");
          
-    var card2Val = sheet.getRange("E8");
-    card2Val.setFormula("=SUM(P12:P)")
+    var card2Val = sheet.getRange("G6");
+    card2Val.setFormula("=SUM(P9:P)")
             .setFontFamily(fontName)
             .setFontSize(14)
             .setFontWeight("bold")
@@ -379,17 +391,17 @@ function syncClientSheets(ss, targetClientName) {
             .setHorizontalAlignment("center")
             .setNumberFormat("#,##0.00");
             
-    // Card 3: Outstanding (I7:K8)
-    sheet.getRange("I7:K7").merge();
-    sheet.getRange("I8:K8").merge();
-    sheet.getRange("I7").setValue("অবशिष्ट বকেয়া (Outstanding)")
+    // Card 3: Outstanding (M5:Q6)
+    sheet.getRange("M5:Q5").merge();
+    sheet.getRange("M6:Q6").merge();
+    sheet.getRange("M5").setValue("অবशिष्ट বকেয়া (Outstanding)")
          .setFontFamily(fontName)
          .setFontSize(9)
          .setFontColor("#555555")
          .setHorizontalAlignment("center");
          
-    var card3Val = sheet.getRange("I8");
-    card3Val.setFormula("=A8-E8")
+    var card3Val = sheet.getRange("M6");
+    card3Val.setFormula("=A6-G6")
             .setFontFamily(fontName)
             .setFontSize(14)
             .setFontWeight("bold")
@@ -398,15 +410,15 @@ function syncClientSheets(ss, targetClientName) {
             .setNumberFormat("#,##0.00");
             
     // Apply styling to KPI cards
-    var kpiRanges = [sheet.getRange("A7:C8"), sheet.getRange("E7:G8"), sheet.getRange("I7:K8")];
+    var kpiRanges = [sheet.getRange("A5:E6"), sheet.getRange("G5:K6"), sheet.getRange("M5:Q6")];
     kpiRanges.forEach(function(rng) {
       rng.setBackground("#F2F5F8")
          .setBorder(true, true, true, true, false, false, "#B0C4DE", SpreadsheetApp.BorderStyle.SOLID);
     });
     
-    // 4. Table Headers (Row 10)
-    sheet.getRange("A10:L10").merge();
-    sheet.getRange("A10").setValue("ডেবিট এন্ট্রি সমূহ (Debit - Bills/Sales)")
+    // 4. Table Headers (Row 7)
+    sheet.getRange("A7:L7").merge();
+    sheet.getRange("A7").setValue("ডেবিট এন্ট্রি সমূহ (Debit - Bills/Sales)")
          .setFontFamily(fontName)
          .setFontSize(11)
          .setFontWeight("bold")
@@ -415,8 +427,8 @@ function syncClientSheets(ss, targetClientName) {
          .setHorizontalAlignment("center")
          .setVerticalAlignment("middle");
          
-    sheet.getRange("N10:Q10").merge();
-    sheet.getRange("N10").setValue("ক্রেডিট এন্ট্রি সমূহ (Credit - Payments)")
+    sheet.getRange("N7:Q7").merge();
+    sheet.getRange("N7").setValue("ক্রেডিট এন্ট্রি সমূহ (Credit - Payments)")
          .setFontFamily(fontName)
          .setFontSize(11)
          .setFontWeight("bold")
@@ -424,14 +436,14 @@ function syncClientSheets(ss, targetClientName) {
          .setBackground("#2E7D32")
          .setHorizontalAlignment("center")
          .setVerticalAlignment("middle");
-    sheet.setRowHeight(10, 24);
+    sheet.setRowHeight(7, 24);
     
-    // Column Sub-headers (Row 11)
+    // Column Sub-headers (Row 8)
     var debitHeaders = ["No", "Date", "Details (বিঃ কাঃ)", "Description", "Size", "Model", "PD", "Bill No", "Qty", "Rate", "Total", "Remarks"];
     var creditHeaders = ["No", "Date", "Amount", "Remarks"];
     
     debitHeaders.forEach(function(headerText, index) {
-      var cell = sheet.getRange(11, index + 1);
+      var cell = sheet.getRange(8, index + 1);
       cell.setValue(headerText)
           .setFontFamily(fontName)
           .setFontSize(10)
@@ -443,7 +455,7 @@ function syncClientSheets(ss, targetClientName) {
     });
     
     creditHeaders.forEach(function(headerText, index) {
-      var cell = sheet.getRange(11, index + 14); // starts from Column N (14)
+      var cell = sheet.getRange(8, index + 14); // starts from Column N (14)
       cell.setValue(headerText)
           .setFontFamily(fontName)
           .setFontSize(10)
@@ -453,19 +465,22 @@ function syncClientSheets(ss, targetClientName) {
           .setHorizontalAlignment("center")
           .setVerticalAlignment("middle");
     });
-    sheet.setRowHeight(11, 24);
+    sheet.setRowHeight(8, 24);
     
-    // 5. Insert filter formulas in Row 12
-    sheet.getRange("A12").setFormula('=IFERROR(FILTER(Debit_Transactions!C2:N, Debit_Transactions!A2:A = B3), "")');
-    sheet.getRange("N12").setFormula('=IFERROR(FILTER(Credit_Transactions!C2:F, Credit_Transactions!A2:A = B3), "")');
+    // 5. Insert filter formulas in Row 9
+    sheet.getRange("A9").setFormula('=IFERROR(FILTER(Debit_Transactions!C2:N, Debit_Transactions!A2:A = D2), "")');
+    sheet.getRange("N9").setFormula('=IFERROR(FILTER(Credit_Transactions!C2:F, Credit_Transactions!A2:A = D2), "")');
     
-    // Format dynamic formula data columns (Row 12:1000)
-    sheet.getRange("I12:K1000").setNumberFormat("#,##0.00").setHorizontalAlignment("right");
-    sheet.getRange("P12:P1000").setNumberFormat("#,##0.00").setHorizontalAlignment("right");
-    sheet.getRange("A12:H1000").setHorizontalAlignment("left");
-    sheet.getRange("L12:L1000").setHorizontalAlignment("left");
-    sheet.getRange("N12:O1000").setHorizontalAlignment("left");
-    sheet.getRange("Q12:Q1000").setHorizontalAlignment("left");
+    // Format dynamic formula data columns (Row 9:1000)
+    sheet.getRange("I9:K1000").setNumberFormat("#,##0.00").setHorizontalAlignment("right");
+    sheet.getRange("P9:P1000").setNumberFormat("#,##0.00").setHorizontalAlignment("right");
+    sheet.getRange("A9:H1000").setHorizontalAlignment("left");
+    sheet.getRange("L9:L1000").setHorizontalAlignment("left");
+    sheet.getRange("N9:O1000").setHorizontalAlignment("left");
+    sheet.getRange("Q9:Q1000").setHorizontalAlignment("left");
+    
+    // Freeze rows 1-8 so the dashboard header remains visible when scrolling down
+    sheet.setFrozenRows(8);
     
     // Auto-fit columns only if it is a new sheet to prevent API quota/time limit issues
     if (isNew) {

@@ -1,43 +1,43 @@
 {
-  "party_name": "N/A",
-  "phone": "N/A",
+  "party_name": "রাজিব ব্রাদার্স",
+  "phone": "",
   "ledger_page_number": "125",
   "credit_table": [
     {
       "no": "1",
-      "date": "14.08.24",
-      "amount": "1398",
-      "remarks": "নগদ"
+      "date": "17.10.24",
+      "amount": "1500",
+      "remarks": "পাওনা পরিশোধ"
     },
     {
       "no": "2",
-      "date": "18.08.24",
-      "amount": "1398",
-      "remarks": "নগদ"
+      "date": "18.10.24",
+      "amount": "2000",
+      "remarks": "পাওনা পরিশোধ"
     },
     {
       "no": "3",
-      "date": "20.08.24",
-      "amount": "1398",
-      "remarks": "নগদ"
+      "date": "20.10.24",
+      "amount": "1500",
+      "remarks": "পাওনা পরিশোধ"
     },
     {
       "no": "4",
-      "date": "22.08.24",
-      "amount": "1339",
-      "remarks": "নগদ"
+      "date": "22.10.24",
+      "amount": "1500",
+      "remarks": "পাওনা পরিশোধ"
     },
     {
       "no": "5",
-      "date": "24.08.24",
-      "amount": "1339",
-      "remarks": "নগদ"
+      "date": "24.10.24",
+      "amount": "1500",
+      "remarks": "পাওনা পরিশোধ"
     },
     {
       "no": "6",
-      "date": "25.08.24",
-      "amount": "1339",
-      "remarks": "নগদ"
+      "date": "25.10.24",
+      "amount": "1500",
+      "remarks": "পাওনা পরিশোধ"
     }
   ]
 }

@@ -1,13 +1,25 @@
 {
-  "party_name": "N/A",
-  "phone": "N/A",
+  "party_name": "নাল",
+  "phone": "নাল",
   "ledger_page_number": "145",
   "credit_table": [
     {
-      "no": "N/A",
-      "date": "N/A",
-      "amount": "N/A",
-      "remarks": "N/A"
+      "no": "1",
+      "date": "01.01.24",
+      "amount": "1000",
+      "remarks": "দোকান খরচ"
+    },
+    {
+      "no": "2",
+      "date": "02.01.24",
+      "amount": "500",
+      "remarks": "যাতায়াত খরচ"
+    },
+    {
+      "no": "3",
+      "date": "03.01.24",
+      "amount": "2000",
+      "remarks": "অন্যান্য খরচ"
     }
   ]
 }

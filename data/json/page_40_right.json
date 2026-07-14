@@ -1,49 +1,6 @@
 {
   "party_name": "মীরজাম ভাই",
-  "phone": "",
+  "phone": null,
   "ledger_page_number": "81",
-  "credit_table": [
-    {
-      "no": "50",
-      "date": "",
-      "amount": "4720",
-      "remarks": ""
-    },
-    {
-      "no": "50",
-      "date": "",
-      "amount": "3000",
-      "remarks": ""
-    },
-    {
-      "no": "40",
-      "date": "",
-      "amount": "3740",
-      "remarks": ""
-    },
-    {
-      "no": "100",
-      "date": "",
-      "amount": "10000",
-      "remarks": ""
-    },
-    {
-      "no": "100",
-      "date": "",
-      "amount": "4500",
-      "remarks": ""
-    },
-    {
-      "no": "120",
-      "date": "",
-      "amount": "7660",
-      "remarks": ""
-    },
-    {
-      "no": "90",
-      "date": "",
-      "amount": "5460",
-      "remarks": ""
-    }
-  ]
+  "credit_table": []
 }

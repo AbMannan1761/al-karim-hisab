@@ -1,73 +1,73 @@
 {
-  "party_name": "নিলয় গার্মেন্টস",
-  "phone": null,
+  "party_name": "নন",
+  "phone": "নন",
   "ledger_page_number": "179",
   "credit_table": [
     {
-      "no": "07.06",
-      "date": "F.156",
-      "amount": "66",
-      "remarks": "26"
+      "no": "1",
+      "date": "নন",
+      "amount": "নন",
+      "remarks": "১৬"
     },
     {
-      "no": "20.06",
-      "date": "〃",
-      "amount": "54",
-      "remarks": "〃"
+      "no": "2",
+      "date": "নন",
+      "amount": "নন",
+      "remarks": "\""
     },
     {
-      "no": "21.06",
-      "date": "F-222",
-      "amount": "52",
-      "remarks": "191"
+      "no": "3",
+      "date": "নন",
+      "amount": "নন",
+      "remarks": "১০২"
     },
     {
-      "no": "40.08",
-      "date": "F-246",
-      "55": "55",
-      "remarks": "〃"
+      "no": "4",
+      "date": "নন",
+      "amount": "নন",
+      "remarks": "\""
     },
     {
-      "no": "〃",
-      "date": "F-166",
-      "amount": "48",
-      "remarks": "244"
+      "no": "5",
+      "date": "নন",
+      "amount": "নন",
+      "remarks": "১৪৪"
     },
     {
-      "no": "〃",
-      "date": "〃",
-      "amount": "48",
-      "remarks": "〃"
+      "no": "6",
+      "date": "নন",
+      "amount": "নন",
+      "remarks": "\""
     },
     {
-      "no": "〃",
-      "date": "F-126",
-      "amount": "48",
-      "remarks": "〃"
+      "no": "7",
+      "date": "নন",
+      "amount": "নন",
+      "remarks": "\""
     },
     {
-      "no": "40.08",
-      "date": "F-156",
-      "amount": "92",
-      "remarks": "167"
+      "no": "8",
+      "date": "নন",
+      "amount": "নন",
+      "remarks": "১৫৯"
     },
     {
-      "no": "〃",
-      "date": "S-220",
-      "amount": "60",
-      "remarks": "166"
+      "no": "9",
+      "date": "নন",
+      "amount": "নন",
+      "remarks": "১৭৬"
     },
     {
-      "no": "〃",
-      "date": "C-46",
-      "amount": "68",
-      "remarks": "〃"
+      "no": "10",
+      "date": "নন",
+      "amount": "নন",
+      "remarks": "\""
     },
     {
-      "no": "〃",
-      "date": "S-24",
-      "amount": "67",
-      "remarks": "〃"
+      "no": "11",
+      "date": "নন",
+      "amount": "নন",
+      "remarks": "\""
     }
   ]
 }

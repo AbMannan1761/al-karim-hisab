@@ -1,31 +1,25 @@
 {
-  "party_name": "ন/এ",
-  "phone": "ন/এ",
+  "party_name": null,
+  "phone": null,
   "ledger_page_number": "137",
   "credit_table": [
     {
-      "no": "৯০",
-      "date": "৩৫০০",
-      "amount": "২৭২৪০১",
-      "remarks": ""
+      "no": null,
+      "date": null,
+      "amount": "3457",
+      "remarks": "মোট"
     },
     {
-      "no": "৯০",
-      "date": "৭১২০",
-      "amount": "২৯১৬৬০১",
-      "remarks": ""
+      "no": null,
+      "date": null,
+      "amount": "220",
+      "remarks": "পাওনা"
     },
     {
-      "no": "৯০",
-      "date": "৬৪৮০",
-      "amount": "২৮৬৯২০",
-      "remarks": ""
-    },
-    {
-      "no": "৯০",
-      "date": "৭৯২০১",
-      "amount": "২৮০৭২০১",
-      "remarks": ""
+      "no": null,
+      "date": null,
+      "amount": "240",
+      "remarks": "খরচ"
     }
   ]
 }

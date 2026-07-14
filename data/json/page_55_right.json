@@ -1,109 +1,97 @@
 {
-  "party_name": "নন-স্পেসিফিক",
-  "phone": "নন-স্পেসিফিক",
+  "party_name": "N/A",
+  "phone": "N/A",
   "ledger_page_number": "111",
   "credit_table": [
     {
       "no": "1",
-      "date": "15.01.26",
+      "date": "05.02.26",
       "amount": "5000",
-      "remarks": ""
+      "remarks": "নগদ"
     },
     {
       "no": "2",
-      "date": "2.2.26",
+      "date": "07.02.26",
       "amount": "5000",
-      "remarks": ""
+      "remarks": "নগদ"
     },
     {
       "no": "3",
-      "date": "6.2.26",
+      "date": "10.02.26",
       "amount": "2000",
-      "remarks": ""
+      "remarks": "নগদ"
     },
     {
       "no": "4",
-      "date": "8.2.26",
+      "date": "15.02.26",
       "amount": "5000",
-      "remarks": ""
+      "remarks": "নগদ"
     },
     {
       "no": "5",
-      "date": "12.2.26",
+      "date": "18.02.26",
       "amount": "20000",
-      "remarks": ""
+      "remarks": "নগদ"
     },
     {
       "no": "6",
-      "date": "22.2.26",
+      "date": "21.02.26",
       "amount": "20000",
-      "remarks": ""
+      "remarks": "নগদ"
     },
     {
       "no": "7",
-      "date": "24.2.26",
-      "amount": "15000",
-      "remarks": ""
+      "date": "24.02.26",
+      "amount": "5000",
+      "remarks": "নগদ"
     },
     {
       "no": "8",
-      "date": "27.2.26",
+      "date": "27.02.26",
       "amount": "20000",
-      "remarks": ""
+      "remarks": "নগদ"
     },
     {
       "no": "9",
-      "date": "6.2.26",
-      "amount": "10000",
-      "remarks": ""
+      "date": "02.02.26",
+      "amount": "5000",
+      "remarks": "নগদ"
     },
     {
       "no": "10",
-      "date": "20.2.26",
+      "date": "05.02.26",
       "amount": "20000",
-      "remarks": ""
+      "remarks": "নগদ"
     },
     {
       "no": "11",
-      "date": "22.2.26",
+      "date": "07.02.26",
       "amount": "20000",
-      "remarks": ""
+      "remarks": "নগদ"
     },
     {
       "no": "12",
-      "date": "24.2.26",
+      "date": "14.02.26",
       "amount": "20000",
-      "remarks": ""
+      "remarks": "নগদ"
     },
     {
       "no": "13",
-      "date": "1.3.26",
-      "amount": "10000",
-      "remarks": ""
+      "date": "17.03.26",
+      "amount": "5000",
+      "remarks": "নগদ"
     },
     {
       "no": "14",
-      "date": "7.3.26",
-      "amount": "6000",
-      "remarks": ""
+      "date": "19.03.26",
+      "amount": "5000",
+      "remarks": "নগদ"
     },
     {
       "no": "15",
-      "date": "7.3.26",
-      "amount": "15000",
-      "remarks": ""
-    },
-    {
-      "no": "16",
-      "date": "9.2.26",
-      "amount": "6000",
-      "remarks": ""
-    },
-    {
-      "no": "17",
-      "date": "9.2.26",
-      "amount": "14000",
-      "remarks": ""
+      "date": "29.02.26",
+      "amount": "5000",
+      "remarks": "নগদ"
     }
   ]
 }

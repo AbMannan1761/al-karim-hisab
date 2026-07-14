@@ -1,55 +1,6 @@
 {
-  "party_name": "N/A",
-  "phone": "N/A",
+  "party_name": null,
+  "phone": null,
   "ledger_page_number": "187",
-  "credit_table": [
-    {
-      "no": "70",
-      "date": "17.6.20",
-      "amount": "6600",
-      "remarks": ""
-    },
-    {
-      "no": "80",
-      "date": "20.9.20",
-      "amount": "8400",
-      "remarks": ""
-    },
-    {
-      "no": "80",
-      "date": "20.9.20",
-      "amount": "9580",
-      "remarks": ""
-    },
-    {
-      "no": "90",
-      "date": "21.4.20",
-      "amount": "8660",
-      "remarks": ""
-    },
-    {
-      "no": "80",
-      "date": "22.8.80",
-      "amount": "2600",
-      "remarks": ""
-    },
-    {
-      "no": "80",
-      "date": "26.2.56",
-      "amount": "9580",
-      "remarks": ""
-    },
-    {
-      "no": "80",
-      "date": "28.2.80",
-      "amount": "9580",
-      "remarks": ""
-    },
-    {
-      "no": "80",
-      "date": "28.8.80",
-      "amount": "8480",
-      "remarks": ""
-    }
-  ]
+  "credit_table": []
 }

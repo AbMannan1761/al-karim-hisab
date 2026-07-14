@@ -1,20 +1,20 @@
 {
-  "party_name": "আল-রাকিব (ক্যান্টিনপড়া)",
-  "phone": "",
+  "party_name": "আল-আমীন",
+  "phone": "null",
   "ledger_page_number": "70",
   "debit_table": [
     {
       "no": "1",
-      "date": "18.05.25",
-      "bi_ka": "বাকী",
-      "description": "ফ্যানটুট পাঃ",
-      "size": "4088",
-      "model": "S-26",
-      "pd": "276",
-      "bill": "3778",
-      "qty": "",
-      "taka": "",
-      "total": "",
+      "date": "18.05.24",
+      "bi_ka": "বিক্রয়",
+      "description": "কম্পিউটার প্যান্ট",
+      "size": "40/44",
+      "model": "S-28",
+      "pd": "17850",
+      "bill": "17850",
+      "qty": "17850",
+      "taka": "17850",
+      "total": "17850",
       "remarks": ""
     }
   ]

@@ -1,205 +1,85 @@
 {
-  "party_name": "নন-এন্ট্রি",
-  "phone": "নন-এন্ট্রি",
+  "party_name": "নূর ট্রেডার্স",
+  "phone": "017...",
   "ledger_page_number": "141",
   "credit_table": [
     {
       "no": "1",
-      "date": "28.05.24",
-      "amount": "1200",
-      "remarks": ""
+      "date": "",
+      "amount": "1000",
+      "remarks": "নগদ প্রদান"
     },
     {
       "no": "2",
-      "date": "28.05.24",
-      "amount": "29750",
-      "remarks": ""
+      "date": "",
+      "amount": "2000",
+      "remarks": "নগদ প্রদান"
     },
     {
       "no": "3",
-      "date": "28.05.24",
-      "amount": "28270",
-      "remarks": ""
+      "date": "",
+      "amount": "3000",
+      "remarks": "নগদ প্রদান"
     },
     {
       "no": "4",
-      "date": "28.05.24",
-      "amount": "28220",
-      "remarks": ""
+      "date": "",
+      "amount": "12000",
+      "remarks": "নগদ প্রদান"
     },
     {
       "no": "5",
-      "date": "28.05.24",
-      "amount": "6270",
-      "remarks": ""
+      "date": "",
+      "amount": "15000",
+      "remarks": "নগদ প্রদান"
     },
     {
       "no": "6",
-      "date": "28.05.24",
-      "amount": "22400",
-      "remarks": ""
+      "date": "",
+      "amount": "500",
+      "remarks": "নগদ প্রদান"
     },
     {
       "no": "7",
-      "date": "28.05.24",
-      "amount": "4720",
-      "remarks": ""
+      "date": "",
+      "amount": "12500",
+      "remarks": "নগদ প্রদান"
     },
     {
       "no": "8",
-      "date": "28.05.24",
-      "amount": "5870",
-      "remarks": ""
+      "date": "",
+      "amount": "15500",
+      "remarks": "নগদ প্রদান"
     },
     {
       "no": "9",
-      "date": "28.05.24",
-      "amount": "2200",
-      "remarks": ""
+      "date": "",
+      "amount": "500",
+      "remarks": "নগদ প্রদান"
     },
     {
       "no": "10",
-      "date": "28.05.24",
-      "amount": "28200",
-      "remarks": ""
+      "date": "",
+      "amount": "500",
+      "remarks": "নগদ প্রদান"
     },
     {
       "no": "11",
-      "date": "28.05.24",
-      "amount": "6870",
-      "remarks": ""
+      "date": "",
+      "amount": "18500",
+      "remarks": "নগদ প্রদান"
     },
     {
       "no": "12",
-      "date": "28.05.24",
-      "amount": "6670",
-      "remarks": ""
+      "date": "",
+      "amount": "31500",
+      "remarks": "নগদ প্রদান"
     },
     {
       "no": "13",
-      "date": "28.05.24",
-      "amount": "2000",
-      "remarks": ""
-    },
-    {
-      "no": "14",
-      "date": "28.05.24",
-      "amount": "6270",
-      "remarks": ""
-    },
-    {
-      "no": "15",
-      "date": "28.05.24",
-      "amount": "4720",
-      "remarks": ""
-    },
-    {
-      "no": "16",
-      "date": "28.05.24",
-      "amount": "9200",
-      "remarks": ""
-    },
-    {
-      "no": "17",
-      "date": "28.05.24",
-      "amount": "20720",
-      "remarks": ""
-    },
-    {
-      "no": "18",
-      "date": "28.05.24",
-      "amount": "2760",
-      "remarks": ""
-    },
-    {
-      "no": "19",
-      "date": "28.05.24",
-      "amount": "4700",
-      "remarks": ""
-    },
-    {
-      "no": "20",
-      "date": "28.05.24",
-      "amount": "3740",
-      "remarks": ""
-    },
-    {
-      "no": "21",
-      "date": "28.05.24",
-      "amount": "2670",
-      "remarks": ""
-    },
-    {
-      "no": "22",
-      "date": "28.05.24",
-      "amount": "6700",
-      "remarks": ""
-    },
-    {
-      "no": "23",
-      "date": "28.05.24",
-      "amount": "2870",
-      "remarks": ""
-    },
-    {
-      "no": "24",
-      "date": "28.05.24",
-      "amount": "2000",
-      "remarks": ""
-    },
-    {
-      "no": "25",
-      "date": "28.05.24",
-      "amount": "6770",
-      "remarks": ""
-    },
-    {
-      "no": "26",
-      "date": "28.05.24",
-      "amount": "20770",
-      "remarks": ""
-    },
-    {
-      "no": "27",
-      "date": "28.05.24",
-      "amount": "22200",
-      "remarks": ""
-    },
-    {
-      "no": "28",
-      "date": "28.05.24",
-      "amount": "4770",
-      "remarks": ""
-    },
-    {
-      "no": "29",
-      "date": "28.05.24",
-      "amount": "7770",
-      "remarks": ""
-    },
-    {
-      "no": "30",
-      "date": "28.05.24",
-      "amount": "2770",
-      "remarks": ""
-    },
-    {
-      "no": "31",
-      "date": "28.05.24",
-      "amount": "20770",
-      "remarks": ""
-    },
-    {
-      "no": "32",
-      "date": "28.05.24",
-      "amount": "4720",
-      "remarks": ""
-    },
-    {
-      "no": "33",
-      "date": "28.05.24",
-      "amount": "4770",
-      "remarks": ""
+      "date": "",
+      "amount": "500",
+      "remarks": "নগদ প্রদান"
     }
   ]
 }

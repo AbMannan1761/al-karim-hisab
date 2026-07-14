@@ -1,19 +1,6 @@
 {
   "party_name": "নীয়ামত চন্দ",
-  "phone": "N/A",
+  "phone": "",
   "ledger_page_number": "63",
-  "credit_table": [
-    {
-      "no": "10",
-      "date": "N/A",
-      "amount": "22500",
-      "remarks": "N/A"
-    },
-    {
-      "no": "10",
-      "date": "N/A",
-      "amount": "28740",
-      "remarks": "N/A"
-    }
-  ]
+  "credit_table": []
 }

@@ -4,7 +4,7 @@ import requests
 import pandas as pd
 import streamlit as st
 from datetime import datetime
-from export_to_excel import export
+# from export_to_excel import export
 
 # Paths
 WORKSPACE_DIR = r"e:\user\OneDrive - Bangladesh Telecommunication Regulatory Commission\ABM\Sunnah\AL karim hisab"
@@ -102,6 +102,7 @@ def load_local_index():
             return json.load(f)
     return []
 
+@st.cache_data
 def load_local_page_data(pdf_page_num):
     left_file = os.path.join(JSON_DIR, f"page_{pdf_page_num}_left.json")
     right_file = os.path.join(JSON_DIR, f"page_{pdf_page_num}_right.json")
@@ -123,11 +124,13 @@ def save_local_page_data(pdf_page_num, side, data):
     file_path = os.path.join(JSON_DIR, f"page_{pdf_page_num}_{side}.json")
     with open(file_path, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
-    # Regenerate local Excel
-    try:
-        export()
-    except Exception as e:
-        st.error(f"Error regenerating Excel sheet: {e}")
+    # Clear local page data cache to force reload fresh data
+    load_local_page_data.clear()
+    # Regenerate local Excel (Disabled: using Google Sheets mode primary)
+    # try:
+    #     export()
+    # except Exception as e:
+    #     st.error(f"Error regenerating Excel sheet: {e}")
 
 # ----------------- DATA PREPARATION -----------------
 index_data = []

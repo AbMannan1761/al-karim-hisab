@@ -1,6 +1,6 @@
 {
-  "party_name": "N/A",
-  "phone": "N/A",
+  "party_name": "অজ্ঞাত",
+  "phone": "অজ্ঞাত",
   "ledger_page_number": "127",
   "credit_table": [
     {
@@ -12,78 +12,78 @@
     {
       "no": "2",
       "date": "19.10.24",
-      "amount": "28400",
+      "amount": "25000",
       "remarks": ""
     },
     {
       "no": "3",
-      "date": "20.10.24",
-      "amount": "26000",
-      "remarks": ""
-    },
-    {
-      "no": "4",
-      "date": "21.10.24",
-      "amount": "6000",
-      "remarks": ""
-    },
-    {
-      "no": "5",
-      "date": "22.10.24",
-      "amount": "6400",
-      "remarks": ""
-    },
-    {
-      "no": "6",
-      "date": "23.10.24",
-      "amount": "4000",
-      "remarks": ""
-    },
-    {
-      "no": "7",
       "date": "24.10.24",
       "amount": "26000",
       "remarks": ""
     },
     {
-      "no": "8",
+      "no": "4",
       "date": "25.10.24",
-      "amount": "4600",
+      "amount": "6000",
+      "remarks": ""
+    },
+    {
+      "no": "5",
+      "date": "26.10.22",
+      "amount": "6500",
+      "remarks": ""
+    },
+    {
+      "no": "6",
+      "date": "26.10.24",
+      "amount": "4000",
+      "remarks": ""
+    },
+    {
+      "no": "7",
+      "date": "20.10.24",
+      "amount": "26000",
+      "remarks": ""
+    },
+    {
+      "no": "8",
+      "date": "26.10.24",
+      "amount": "8500",
       "remarks": ""
     },
     {
       "no": "9",
       "date": "26.10.24",
-      "amount": "5000",
+      "amount": "7000",
       "remarks": ""
     },
     {
       "no": "10",
-      "date": "30.10.24",
-      "amount": "4000",
+      "date": "10.10.24",
+      "amount": "5000",
       "remarks": ""
     },
     {
       "no": "11",
-      "date": "1.11.24",
+      "date": "2.11.24",
       "amount": "6200",
       "remarks": ""
     },
     {
       "no": "12",
-      "date": "2.11.24",
+      "date": "4.11.24",
       "amount": "22000",
       "remarks": ""
     },
     {
       "no": "13",
       "date": "16.11.24",
-      "amount": "6400",
+      "amount": "6500",
       "remarks": ""
     },
     {
       "no": "14",
-      "date": "18.11.24",
+      "date": "20.11.24",
       "amount": "20000",
       "remarks": ""
     },
@@ -95,91 +95,91 @@
     },
     {
       "no": "16",
-      "date": "27.11.24",
+      "date": "29.11.24",
       "amount": "20000",
       "remarks": ""
     },
     {
       "no": "17",
-      "date": "8.12.24",
+      "date": "8.11.24",
       "amount": "6000",
       "remarks": ""
     },
     {
       "no": "18",
-      "date": "11.12.24",
+      "date": "11.11.24",
       "amount": "6000",
       "remarks": ""
     },
     {
       "no": "19",
-      "date": "16.12.24",
+      "date": "16.11.24",
       "amount": "6000",
       "remarks": ""
     },
     {
       "no": "20",
-      "date": "18.12.24",
+      "date": "18.11.24",
       "amount": "6000",
       "remarks": ""
     },
     {
       "no": "21",
-      "date": "2.1.25",
-      "amount": "6400",
+      "date": "2.12.24",
+      "amount": "6500",
       "remarks": ""
     },
     {
       "no": "22",
-      "date": "4.1.25",
+      "date": "4.12.24",
       "amount": "6000",
       "remarks": ""
     },
     {
       "no": "23",
-      "date": "14.1.25",
+      "date": "14.12.24",
       "amount": "6000",
       "remarks": ""
     },
     {
       "no": "24",
-      "date": "19.1.25",
+      "date": "19.12.24",
       "amount": "2000",
       "remarks": ""
     },
     {
       "no": "25",
-      "date": "22.1.25",
+      "date": "22.12.24",
       "amount": "6000",
       "remarks": ""
     },
     {
       "no": "26",
-      "date": "27.1.25",
+      "date": "20.12.24",
       "amount": "6000",
       "remarks": ""
     },
     {
       "no": "27",
-      "date": "2.2.25",
+      "date": "2.12.24",
       "amount": "22000",
       "remarks": ""
     },
     {
       "no": "28",
-      "date": "10.2.25",
+      "date": "20.12.24",
       "amount": "20000",
       "remarks": ""
     },
     {
       "no": "29",
-      "date": "11.2.25",
+      "date": "12.12.24",
       "amount": "20000",
       "remarks": ""
     },
     {
       "no": "30",
-      "date": "13.2.25",
+      "date": "16.12.24",
       "amount": "20000",
       "remarks": ""
     }

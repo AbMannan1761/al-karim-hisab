@@ -1,11 +1,11 @@
 {
-  "party_name": "নাল",
-  "phone": "N/A",
+  "party_name": "নগদ",
+  "phone": "",
   "ledger_page_number": "89",
   "credit_table": [
     {
       "no": "1",
-      "date": "N/A",
+      "date": "",
       "amount": "5000",
       "remarks": ""
     }

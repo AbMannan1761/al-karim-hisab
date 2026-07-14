@@ -1,61 +1,61 @@
 {
-  "party_name": "সাঈজ মডেল",
-  "phone": "",
+  "party_name": "মা এন্টারপ্রাইজ",
+  "phone": "017...",
   "ledger_page_number": "131",
   "credit_table": [
     {
       "no": "1",
-      "date": "20.00.00",
-      "amount": "248",
-      "remarks": "সি.৫৬"
+      "date": "21.01.24",
+      "amount": "218",
+      "remarks": "নগদ"
     },
     {
       "no": "2",
-      "date": "20.00.00",
+      "date": "21.01.24",
       "amount": "229",
-      "remarks": "সি.২০৬"
+      "remarks": "নগদ"
     },
     {
       "no": "3",
-      "date": "40.88.88",
-      "amount": "20",
-      "remarks": "কে.৫৬"
+      "date": "22.01.24",
+      "amount": "10",
+      "remarks": "ঐ"
     },
     {
       "no": "4",
-      "date": "40.88.88",
+      "date": "22.01.24",
       "amount": "35",
-      "remarks": "সি.৬২"
+      "remarks": "ঐ"
     },
     {
       "no": "5",
-      "date": "40.88.88",
-      "amount": "20",
-      "remarks": "এফ.১১৬"
+      "date": "23.01.24",
+      "amount": "10",
+      "remarks": "ঐ"
     },
     {
       "no": "6",
-      "date": "40.88.88",
-      "amount": "25",
-      "remarks": "কে০৬"
+      "date": "23.01.24",
+      "amount": "125",
+      "remarks": "ঐ"
     },
     {
       "no": "7",
-      "date": "40.88.88",
+      "date": "24.01.24",
       "amount": "54",
-      "remarks": "কে.০২"
+      "remarks": "নগদ"
     },
     {
       "no": "8",
-      "date": "40.88.88",
-      "amount": "36",
-      "remarks": "কে.৬০"
+      "date": "24.01.24",
+      "amount": "67",
+      "remarks": "228"
     },
     {
       "no": "9",
-      "date": "40.88.88",
+      "date": "25.01.24",
       "amount": "35",
-      "remarks": "সি.০৭"
+      "remarks": "ঐ"
     }
   ]
 }

@@ -1,20 +1,20 @@
 {
-  "party_name": "আল্লাহর-দান গং (ইষ্টফেজশন সদরঘাট)",
-  "phone": "",
+  "party_name": "আল্লাহর-দান গদং (ইষ্টিপোকশন সেম্বরঘাট)",
+  "phone": null,
   "ledger_page_number": "60",
   "debit_table": [
     {
       "no": "1",
-      "date": "08.05.25",
+      "date": "03.02.24",
       "bi_ka": "B+P",
       "description": "ফতুয়া",
       "size": "40/44",
-      "model": "F-35",
-      "pd": "",
-      "bill": "181",
-      "qty": "",
-      "taka": "",
-      "total": "",
+      "model": "F.35",
+      "pd": "3620",
+      "bill": "171",
+      "qty": "191",
+      "taka": "20",
+      "total": "3620",
       "remarks": ""
     }
   ]

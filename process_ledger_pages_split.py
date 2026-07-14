@@ -205,8 +205,8 @@ def process_single_half(img_path, pdf_page_num, side, expected_client, expected_
             f"This is a photo of the left page of a handwritten Bengali ledger sheet. This page represents the Debit (Sales/Bills) entries. "
             f"Ledger Page Number should be around {expected_page}. {hint_text}\n\n"
             "Please transcribe all the sales/debit transaction rows from the table into a JSON object.\n\n"
-            "The columns are:\n"
-            "No (নং), Date (তারিখ), Details (বিঃ কাঃ), Description (বিবরণ), Size (সাইজ), Model (মডেল), PD (পিঃ ডিঃ), Bill No (বিল), Qty (দর/পিস/ডঃ), Taka (টাকা), Total (মোট), Remarks (মন্তব্য).\n\n"
+            "The columns on the page are:\n"
+            "No (নং), Date (তারিখ), Details (বিঃ কাঃ), Description (বিবরণ), Size (সাইজ), Model (মডেল), Qty (পিস), Bill No (বিল), Rate (দর), Amount (টাকা), Total (মোট), Remarks (মন্তব্য).\n\n"
             "Return a JSON object with these exact keys:\n"
             "- 'party_name': 'string (transcribed name in Bengali)'\n"
             "- 'phone': 'string (e.g., 017...)'\n"
@@ -219,11 +219,11 @@ def process_single_half(img_path, pdf_page_num, side, expected_client, expected_
             "      'description': 'string (keep in Bengali)',\n"
             "      'size': 'string (convert Bengali digits to English)',\n"
             "      'model': 'string (convert Bengali digits to English)',\n"
-            "      'pd': 'string (convert Bengali digits to English)',\n"
-            "      'bill': 'string (convert Bengali digits to English)',\n"
-            "      'qty': 'string/number (convert Bengali digits to English)',\n"
-            "      'taka': 'string/number (convert Bengali digits to English)',\n"
-            "      'total': 'string/number (convert Bengali digits to English)',\n"
+            "      'pd': 'string (transcribe values from the \"টাকা\" column here, convert Bengali digits to English)',\n"
+            "      'bill': 'string (transcribe values from the \"বিল\" column here, convert Bengali digits to English)',\n"
+            "      'qty': 'string/number (transcribe values from the \"পিস\" column here, convert Bengali digits to English)',\n"
+            "      'taka': 'string/number (transcribe values from the \"দর\" column here, convert Bengali digits to English)',\n"
+            "      'total': 'string/number (transcribe values from the \"মোট\" column here, convert Bengali digits to English)',\n"
             "      'remarks': 'string (keep in Bengali)'\n"
             "    }\n"
             "  ]\n\n"
@@ -327,13 +327,14 @@ def process_ledger():
                 
             w, h = img.size
             
-            # Split in half
-            left_img = img.crop((0, 0, w // 2, h))
+            # Split based on binder ratio (Debit page is wide, Credit page is narrow)
+            split_x = int(w * 0.77)
+            left_img = img.crop((0, 0, split_x, h))
             left_img.save(left_img_path)
             
-            right_img = img.crop((w // 2, 0, w, h))
+            right_img = img.crop((split_x, 0, w, h))
             right_img.save(right_img_path)
-            print(f"  Split page {pdf_page_num} into left and right images.")
+            print(f"  Split page {pdf_page_num} into left and right images at 77% ratio.")
             
         # Expected page numbers: Left is 2 * pdf_page_num, Right is 2 * pdf_page_num + 1
         left_ledger_page = 2 * pdf_page_num

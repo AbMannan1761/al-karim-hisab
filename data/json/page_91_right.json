@@ -1,175 +1,175 @@
 {
-  "party_name": "নাসিফ",
+  "party_name": "নগদ",
   "phone": "null",
   "ledger_page_number": "183",
   "credit_table": [
     {
-      "no": "24.28",
-      "date": "F.164",
-      "amount": "92",
-      "remarks": "262"
+      "no": "1",
+      "date": "15.02.24",
+      "amount": "162",
+      "remarks": "নগদ"
     },
     {
-      "no": "40.44",
-      "date": "",
-      "amount": "265",
-      "remarks": "291"
+      "no": "2",
+      "date": "15.02.24",
+      "amount": "191",
+      "remarks": "নগদ"
     },
     {
-      "no": "82.66",
-      "date": "",
-      "amount": "168",
-      "remarks": "294"
-    },
-    {
-      "no": "20.60",
-      "date": "",
-      "amount": "296",
-      "remarks": "\""
-    },
-    {
-      "no": "40.44",
-      "date": "F.96",
-      "amount": "225",
-      "remarks": "298"
+      "no": "3",
+      "date": "15.02.24",
+      "amount": "194",
+      "remarks": "নগদ"
     },
     {
       "no": "4",
-      "date": "F.204",
-      "amount": "292",
-      "remarks": "164"
+      "date": "15.02.24",
+      "amount": "ঐ",
+      "remarks": "ঐ"
     },
     {
-      "no": "82.66",
-      "date": "F.204",
-      "amount": "226",
-      "remarks": "209"
+      "no": "5",
+      "date": "15.02.24",
+      "amount": "194",
+      "remarks": "নগদ"
     },
     {
-      "no": "20.60",
-      "date": "\"",
-      "amount": "252",
-      "remarks": "\""
+      "no": "6",
+      "date": "15.02.24",
+      "amount": "194",
+      "remarks": "নগদ"
     },
     {
-      "no": "24.28",
-      "date": "\"",
-      "amount": "28",
-      "remarks": "\""
+      "no": "7",
+      "date": "16.02.24",
+      "amount": "209",
+      "remarks": "নগদ"
     },
     {
-      "no": "40.44",
-      "date": "F.265",
-      "amount": "285",
-      "remarks": "226"
+      "no": "8",
+      "date": "16.02.24",
+      "amount": "ঐ",
+      "remarks": "ঐ"
     },
     {
-      "no": "82.84",
-      "date": "\"",
-      "amount": "185",
-      "remarks": "\""
+      "no": "9",
+      "date": "16.02.24",
+      "amount": "ঐ",
+      "remarks": "ঐ"
     },
     {
-      "no": "20.60",
-      "date": "\"",
-      "amount": "605",
-      "remarks": "\""
+      "no": "10",
+      "date": "17.02.24",
+      "amount": "228",
+      "remarks": "নগদ"
     },
     {
-      "no": "40.44",
-      "date": "F.96",
-      "amount": "269",
-      "remarks": "290"
+      "no": "11",
+      "date": "17.02.24",
+      "amount": "ঐ",
+      "remarks": "ঐ"
     },
     {
-      "no": "20.60",
-      "date": "F.96",
-      "amount": "188",
-      "remarks": "\""
+      "no": "12",
+      "date": "17.02.24",
+      "amount": "ঐ",
+      "remarks": "ঐ"
     },
     {
-      "no": "40.44",
-      "date": "F.290",
-      "amount": "266",
-      "remarks": "267"
+      "no": "13",
+      "date": "18.02.24",
+      "amount": "290",
+      "remarks": "নগদ"
     },
     {
-      "no": "40.44",
-      "date": "F.225",
-      "amount": "288",
-      "remarks": "226"
+      "no": "14",
+      "date": "18.02.24",
+      "amount": "ঐ",
+      "remarks": "ঐ"
     },
     {
-      "no": "82.66",
-      "date": "\"",
-      "amount": "269",
-      "remarks": "\""
+      "no": "15",
+      "date": "19.02.24",
+      "amount": "283",
+      "remarks": "নগদ"
     },
     {
-      "no": "20.60",
-      "date": "\"",
-      "amount": "760",
-      "remarks": "\""
+      "no": "16",
+      "date": "19.02.24",
+      "amount": "216",
+      "remarks": "নগদ"
     },
     {
-      "no": "40.44",
-      "date": "F.290",
-      "amount": "68",
-      "remarks": "622"
+      "no": "17",
+      "date": "19.02.24",
+      "amount": "ঐ",
+      "remarks": "ঐ"
     },
     {
-      "no": "82.66",
-      "date": "\"",
-      "amount": "60",
-      "remarks": "\""
+      "no": "18",
+      "date": "20.02.24",
+      "amount": "ঐ",
+      "remarks": "ঐ"
     },
     {
-      "no": "20.60",
-      "date": "F.290",
-      "amount": "220",
-      "remarks": "664"
+      "no": "19",
+      "date": "20.02.24",
+      "amount": "321",
+      "remarks": "নগদ"
     },
     {
-      "no": "40.44",
-      "date": "\"",
-      "amount": "268",
-      "remarks": "\""
+      "no": "20",
+      "date": "21.02.24",
+      "amount": "ঐ",
+      "remarks": "ঐ"
     },
     {
-      "no": "40.44",
-      "date": "F.290",
-      "amount": "262",
-      "remarks": "688"
+      "no": "21",
+      "date": "21.02.24",
+      "amount": "334",
+      "remarks": "নগদ"
     },
     {
-      "no": "40.44",
-      "date": "F.620",
-      "amount": "166",
-      "remarks": "682"
+      "no": "22",
+      "date": "22.02.24",
+      "amount": "ঐ",
+      "remarks": "ঐ"
     },
     {
-      "no": "82.66",
-      "date": "\"",
-      "amount": "288",
-      "remarks": "\""
+      "no": "23",
+      "date": "22.02.24",
+      "amount": "344",
+      "remarks": "নগদ"
     },
     {
-      "no": "20.60",
-      "date": "\"",
-      "amount": "288",
-      "remarks": "\""
+      "no": "24",
+      "date": "23.02.24",
+      "amount": "352",
+      "remarks": "নগদ"
     },
     {
-      "no": "40.44",
-      "date": "",
-      "amount": "27",
-      "remarks": "669"
+      "no": "25",
+      "date": "23.02.24",
+      "amount": "ঐ",
+      "remarks": "ঐ"
     },
     {
-      "no": "40.44",
-      "date": "",
-      "amount": "292",
-      "remarks": "669"
+      "no": "26",
+      "date": "23.02.24",
+      "amount": "ঐ",
+      "remarks": "ঐ"
+    },
+    {
+      "no": "27",
+      "date": "24.02.24",
+      "amount": "367",
+      "remarks": "নগদ"
+    },
+    {
+      "no": "28",
+      "date": "25.02.24",
+      "amount": "367",
+      "remarks": "নগদ"
     }
   ]
 }

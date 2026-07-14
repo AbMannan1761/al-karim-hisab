@@ -1,175 +1,25 @@
 {
-  "party_name": "ন/এ",
-  "phone": "ন/এ",
+  "party_name": null,
+  "phone": null,
   "ledger_page_number": "133",
   "credit_table": [
     {
-      "no": "১৮",
-      "date": "18.04.24",
-      "amount": "430200",
-      "remarks": "নগদ"
+      "no": "1",
+      "date": null,
+      "amount": "5835",
+      "remarks": null
     },
     {
-      "no": "১৯",
-      "date": "19.04.24",
-      "amount": "445400",
-      "remarks": "নগদ"
+      "no": "2",
+      "date": null,
+      "amount": "1545",
+      "remarks": null
     },
     {
-      "no": "২০",
-      "date": "20.04.24",
-      "amount": "458840",
-      "remarks": "নগদ"
-    },
-    {
-      "no": "২১",
-      "date": "21.04.24",
-      "amount": "468460",
-      "remarks": "নগদ"
-    },
-    {
-      "no": "২২",
-      "date": "22.04.24",
-      "amount": "482810",
-      "remarks": "নগদ"
-    },
-    {
-      "no": "২৩",
-      "date": "23.04.24",
-      "amount": "490010",
-      "remarks": "নগদ"
-    },
-    {
-      "no": "২৪",
-      "date": "24.04.24",
-      "amount": "540010",
-      "remarks": "নগদ"
-    },
-    {
-      "no": "২৫",
-      "date": "25.04.24",
-      "amount": "552201",
-      "remarks": "নগদ"
-    },
-    {
-      "no": "২৬",
-      "date": "26.04.24",
-      "amount": "584420",
-      "remarks": "নগদ"
-    },
-    {
-      "no": "২৭",
-      "date": "27.04.24",
-      "amount": "576210",
-      "remarks": "নগদ"
-    },
-    {
-      "no": "২৮",
-      "date": "28.04.24",
-      "amount": "581220",
-      "remarks": "নগদ"
-    },
-    {
-      "no": "২৯",
-      "date": "29.04.24",
-      "amount": "586460",
-      "remarks": "নগদ"
-    },
-    {
-      "no": "৩০",
-      "date": "30.04.24",
-      "amount": "616440",
-      "remarks": "নগদ"
-    },
-    {
-      "no": "৩১",
-      "date": "01.05.24",
-      "amount": "625660",
-      "remarks": "নগদ"
-    },
-    {
-      "no": "৩২",
-      "date": "02.05.24",
-      "amount": "644480",
-      "remarks": "নগদ"
-    },
-    {
-      "no": "৩৩",
-      "date": "03.05.24",
-      "amount": "659620",
-      "remarks": "নগদ"
-    },
-    {
-      "no": "৩৪",
-      "date": "04.05.24",
-      "amount": "670260",
-      "remarks": "নগদ"
-    },
-    {
-      "no": "৩৫",
-      "date": "05.05.24",
-      "amount": "682560",
-      "remarks": "নগদ"
-    },
-    {
-      "no": "৩৬",
-      "date": "06.05.24",
-      "amount": "666200",
-      "remarks": "নগদ"
-    },
-    {
-      "no": "৩৭",
-      "date": "07.05.24",
-      "amount": "702200",
-      "remarks": "নগদ"
-    },
-    {
-      "no": "৩৮",
-      "date": "08.05.24",
-      "amount": "708300",
-      "remarks": "নগদ"
-    },
-    {
-      "no": "৩৯",
-      "date": "09.05.24",
-      "amount": "720680",
-      "remarks": "নগদ"
-    },
-    {
-      "no": "৪০",
-      "date": "10.05.24",
-      "amount": "766200",
-      "remarks": "নগদ"
-    },
-    {
-      "no": "৪১",
-      "date": "11.05.24",
-      "amount": "785710",
-      "remarks": "নগদ"
-    },
-    {
-      "no": "৪২",
-      "date": "12.05.24",
-      "amount": "799460",
-      "remarks": "নগদ"
-    },
-    {
-      "no": "৪৩",
-      "date": "13.05.24",
-      "amount": "812501",
-      "remarks": "নগদ"
-    },
-    {
-      "no": "৪৪",
-      "date": "14.05.24",
-      "amount": "826710",
-      "remarks": "নগদ"
-    },
-    {
-      "no": "৪৫",
-      "date": "15.05.24",
-      "amount": "848401",
-      "remarks": "নগদ"
+      "no": "3",
+      "date": null,
+      "amount": "2172",
+      "remarks": null
     }
   ]
 }

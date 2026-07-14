@@ -5,16 +5,16 @@
   "debit_table": [
     {
       "no": "1",
-      "date": "18.04.25",
+      "date": "18.04.24",
       "bi_ka": "বিক্রয়",
-      "description": "প্যান্ট শার্ট",
+      "description": "প্যান্ট",
       "size": "40/44",
       "model": "-",
-      "pd": "নও",
-      "bill": "1700",
-      "qty": "",
-      "taka": "",
-      "total": "",
+      "pd": "4500",
+      "bill": "2700",
+      "qty": "1",
+      "taka": "4500",
+      "total": "4500",
       "remarks": ""
     }
   ]

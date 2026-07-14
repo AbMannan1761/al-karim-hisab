@@ -1,37 +1,6 @@
 {
   "party_name": "রুক আার",
-  "phone": "",
+  "phone": null,
   "ledger_page_number": "105",
-  "credit_table": [
-    {
-      "no": "51",
-      "date": "",
-      "amount": "10320",
-      "remarks": ""
-    },
-    {
-      "no": "52",
-      "date": "",
-      "amount": "8000",
-      "remarks": ""
-    },
-    {
-      "no": "53",
-      "date": "",
-      "amount": "14280",
-      "remarks": ""
-    },
-    {
-      "no": "54",
-      "date": "",
-      "amount": "1060",
-      "remarks": ""
-    },
-    {
-      "no": "58",
-      "date": "",
-      "amount": "4600",
-      "remarks": ""
-    }
-  ]
+  "credit_table": []
 }

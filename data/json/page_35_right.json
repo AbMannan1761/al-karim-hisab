@@ -2,12 +2,5 @@
   "party_name": "N/A",
   "phone": "N/A",
   "ledger_page_number": "71",
-  "credit_table": [
-    {
-      "no": "10",
-      "date": "N/A",
-      "amount": "18450",
-      "remarks": "N/A"
-    }
-  ]
+  "credit_table": []
 }

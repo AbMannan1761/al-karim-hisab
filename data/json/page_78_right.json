@@ -1,67 +1,37 @@
 {
-  "party_name": "নগদ",
-  "phone": "",
+  "party_name": "N/A",
+  "phone": "N/A",
   "ledger_page_number": "157",
   "credit_table": [
     {
       "no": "1",
-      "date": "",
-      "amount": "5880",
-      "remarks": ""
+      "date": "18.04.25",
+      "amount": "4000",
+      "remarks": "দোকান খরচ"
     },
     {
       "no": "2",
-      "date": "",
-      "amount": "20600",
-      "remarks": ""
+      "date": "18.04.25",
+      "amount": "250",
+      "remarks": "পাওনাদার পরিশোধ"
     },
     {
       "no": "3",
-      "date": "",
-      "amount": "8950",
-      "remarks": ""
+      "date": "19.04.25",
+      "amount": "1000",
+      "remarks": "বিদ্যুৎ বিল"
     },
     {
       "no": "4",
-      "date": "",
-      "amount": "8950",
-      "remarks": ""
+      "date": "20.04.25",
+      "amount": "500",
+      "remarks": "যাতায়াত খরচ"
     },
     {
       "no": "5",
-      "date": "",
-      "amount": "6600",
-      "remarks": ""
-    },
-    {
-      "no": "6",
-      "date": "",
-      "amount": "5080",
-      "remarks": ""
-    },
-    {
-      "no": "7",
-      "date": "",
-      "amount": "5020",
-      "remarks": ""
-    },
-    {
-      "no": "8",
-      "date": "",
-      "amount": "196",
-      "remarks": ""
-    },
-    {
-      "no": "9",
-      "date": "",
-      "amount": "596",
-      "remarks": ""
-    },
-    {
-      "no": "10",
-      "date": "",
-      "amount": "596",
-      "remarks": ""
+      "date": "22.04.25",
+      "amount": "850",
+      "remarks": "বিবিধ খরচ"
     }
   ]
 }

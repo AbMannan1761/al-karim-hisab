@@ -1,25 +1,6 @@
 {
-  "party_name": "N/A",
-  "phone": "N/A",
+  "party_name": "রাজিব প্রোঃ হাউস",
+  "phone": "",
   "ledger_page_number": "123",
-  "credit_table": [
-    {
-      "no": "50",
-      "date": "N/A",
-      "amount": "6750",
-      "remarks": "N/A"
-    },
-    {
-      "no": "50",
-      "date": "N/A",
-      "amount": "1550",
-      "remarks": "N/A"
-    },
-    {
-      "no": "50",
-      "date": "N/A",
-      "amount": "4800",
-      "remarks": "N/A"
-    }
-  ]
+  "credit_table": []
 }

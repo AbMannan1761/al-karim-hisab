@@ -1,13 +1,6 @@
 {
-  "party_name": "ন/এ",
-  "phone": "ন/এ",
+  "party_name": null,
+  "phone": null,
   "ledger_page_number": "121",
-  "credit_table": [
-    {
-      "no": "",
-      "date": "",
-      "amount": "",
-      "remarks": ""
-    }
-  ]
+  "credit_table": []
 }

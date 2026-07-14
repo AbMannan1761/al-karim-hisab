@@ -1,13 +1,6 @@
 {
   "party_name": "রুনালি সাহা",
-  "phone": "",
+  "phone": "null",
   "ledger_page_number": "77",
-  "credit_table": [
-    {
-      "no": "10",
-      "date": "",
-      "amount": "12850",
-      "remarks": "12850"
-    }
-  ]
+  "credit_table": []
 }

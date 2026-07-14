@@ -229,31 +229,56 @@ def export():
             banner_cell.alignment = Alignment(horizontal="center", vertical="center")
             sheet.row_dimensions[1].height = 40
             
-            # 2. Metadata Block (Row 3-5)
+            # 2. Metadata Block (Row 3-5) with merged cells to prevent column width issues
+            sheet.merge_cells("A3:C3")
             sheet["A3"] = "গ্রাহকের নাম (Name):"
             sheet["A3"].font = Font(name=font_family, size=10, bold=True)
-            sheet["B3"] = client_name
-            sheet["B3"].font = Font(name=font_family, size=10)
+            sheet["A3"].alignment = Alignment(horizontal="left", vertical="center")
             
-            sheet["G3"] = "লেজার পৃষ্ঠা (Page):"
-            sheet["G3"].font = Font(name=font_family, size=10, bold=True)
-            sheet["H3"] = client_page
-            sheet["H3"].font = Font(name=font_family, size=10)
+            sheet.merge_cells("D3:K3")
+            sheet["D3"] = client_name
+            sheet["D3"].font = Font(name=font_family, size=10)
+            sheet["D3"].alignment = Alignment(horizontal="left", vertical="center")
             
+            sheet.merge_cells("L3:N3")
+            sheet["L3"] = "লেজার পৃষ্ঠা (Page):"
+            sheet["L3"].font = Font(name=font_family, size=10, bold=True)
+            sheet["L3"].alignment = Alignment(horizontal="right", vertical="center")
+            
+            sheet.merge_cells("O3:Q3")
+            sheet["O3"] = client_page
+            sheet["O3"].font = Font(name=font_family, size=10)
+            sheet["O3"].alignment = Alignment(horizontal="left", vertical="center")
+            
+            sheet.merge_cells("A4:C4")
             sheet["A4"] = "ঠিকানা (Address):"
             sheet["A4"].font = Font(name=font_family, size=10, bold=True)
-            sheet["B4"] = client.get("Address", "")
-            sheet["B4"].font = Font(name=font_family, size=10)
+            sheet["A4"].alignment = Alignment(horizontal="left", vertical="center")
             
-            sheet["G4"] = "ফোন নম্বর (Phone):"
-            sheet["G4"].font = Font(name=font_family, size=10, bold=True)
-            sheet["H4"] = client.get("Phone", "N/A") or "N/A"
-            sheet["H4"].font = Font(name=font_family, size=10)
+            sheet.merge_cells("D4:K4")
+            sheet["D4"] = client.get("Address", "")
+            sheet["D4"].font = Font(name=font_family, size=10)
+            sheet["D4"].alignment = Alignment(horizontal="left", vertical="center")
             
+            sheet.merge_cells("L4:N4")
+            sheet["L4"] = "ফোন নম্বর (Phone):"
+            sheet["L4"].font = Font(name=font_family, size=10, bold=True)
+            sheet["L4"].alignment = Alignment(horizontal="right", vertical="center")
+            
+            sheet.merge_cells("O4:Q4")
+            sheet["O4"] = client.get("Phone", "N/A") or "N/A"
+            sheet["O4"].font = Font(name=font_family, size=10)
+            sheet["O4"].alignment = Alignment(horizontal="left", vertical="center")
+            
+            sheet.merge_cells("A5:C5")
             sheet["A5"] = "মন্তব্য (Notes):"
             sheet["A5"].font = Font(name=font_family, size=10, bold=True)
-            sheet["B5"] = client.get("Notes (Index)", "")
-            sheet["B5"].font = Font(name=font_family, size=10)
+            sheet["A5"].alignment = Alignment(horizontal="left", vertical="center")
+            
+            sheet.merge_cells("D5:K5")
+            sheet["D5"] = client.get("Notes (Index)", "")
+            sheet["D5"].font = Font(name=font_family, size=10)
+            sheet["D5"].alignment = Alignment(horizontal="left", vertical="center")
             
             # 3. KPI Summary cards (Row 7-8)
             kpi_fill = PatternFill(start_color="F2F5F8", end_color="F2F5F8", fill_type="solid")
@@ -262,35 +287,35 @@ def export():
                                 top=Side(style='thin', color='B0C4DE'),
                                 bottom=Side(style='thin', color='B0C4DE'))
             
-            # Card 1: Total Sales (A7:C8)
-            sheet.merge_cells("A7:C7")
-            sheet.merge_cells("A8:C8")
+            # Card 1: Total Sales (A7:E8)
+            sheet.merge_cells("A7:E7")
+            sheet.merge_cells("A8:E8")
             sheet["A7"] = "সর্বমোট বিক্রয় (Total Purchases)"
             sheet["A7"].font = Font(name=font_family, size=9, color="555555")
             sheet["A7"].alignment = Alignment(horizontal="center")
             
-            # Card 2: Total Payments (E7:G8)
-            sheet.merge_cells("E7:G7")
-            sheet.merge_cells("E8:G8")
-            sheet["E7"] = "সর্বমোট আদায় (Total Payments)"
-            sheet["E7"].font = Font(name=font_family, size=9, color="555555")
-            sheet["E7"].alignment = Alignment(horizontal="center")
+            # Card 2: Total Payments (G7:K8)
+            sheet.merge_cells("G7:K7")
+            sheet.merge_cells("G8:K8")
+            sheet["G7"] = "সর্বমোট আদায় (Total Payments)"
+            sheet["G7"].font = Font(name=font_family, size=9, color="555555")
+            sheet["G7"].alignment = Alignment(horizontal="center")
             
-            # Card 3: Outstanding (I7:K8)
-            sheet.merge_cells("I7:K7")
-            sheet.merge_cells("I8:K8")
-            sheet["I7"] = "অবशिष्ट বকেয়া (Outstanding)"
-            sheet["I7"].font = Font(name=font_family, size=9, color="555555")
-            sheet["I7"].alignment = Alignment(horizontal="center")
+            # Card 3: Outstanding (M7:Q8)
+            sheet.merge_cells("M7:Q7")
+            sheet.merge_cells("M8:Q8")
+            sheet["M7"] = "অবশিষ্ট বকেয়া (Outstanding)"
+            sheet["M7"].font = Font(name=font_family, size=9, color="555555")
+            sheet["M7"].alignment = Alignment(horizontal="center")
             
             for r in [7, 8]:
-                for c in range(1, 4):
+                for c in range(1, 6):
                     sheet.cell(row=r, column=c).fill = kpi_fill
                     sheet.cell(row=r, column=c).border = kpi_border
-                for c in range(5, 8):
+                for c in range(7, 12):
                     sheet.cell(row=r, column=c).fill = kpi_fill
                     sheet.cell(row=r, column=c).border = kpi_border
-                for c in range(9, 12):
+                for c in range(13, 18):
                     sheet.cell(row=r, column=c).fill = kpi_fill
                     sheet.cell(row=r, column=c).border = kpi_border
             
@@ -422,15 +447,15 @@ def export():
             sheet["A8"].alignment = Alignment(horizontal="center")
             sheet["A8"].number_format = "#,##0.00"
             
-            sheet["E8"] = f"=P{credit_total_row}"
-            sheet["E8"].font = Font(name=font_family, size=14, bold=True, color="2E7D32")
-            sheet["E8"].alignment = Alignment(horizontal="center")
-            sheet["E8"].number_format = "#,##0.00"
+            sheet["G8"] = f"=P{credit_total_row}"
+            sheet["G8"].font = Font(name=font_family, size=14, bold=True, color="2E7D32")
+            sheet["G8"].alignment = Alignment(horizontal="center")
+            sheet["G8"].number_format = "#,##0.00"
             
-            sheet["I8"] = "=A8-E8"
-            sheet["I8"].font = Font(name=font_family, size=14, bold=True, color="C62828")
-            sheet["I8"].alignment = Alignment(horizontal="center")
-            sheet["I8"].number_format = "#,##0.00"
+            sheet["M8"] = "=A8-G8"
+            sheet["M8"].font = Font(name=font_family, size=14, bold=True, color="C62828")
+            sheet["M8"].alignment = Alignment(horizontal="center")
+            sheet["M8"].number_format = "#,##0.00"
             
         # Format columns and layout for all sheets
         for name in workbook.sheetnames:
