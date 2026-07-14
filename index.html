@@ -84,11 +84,18 @@
             font-weight: 500;
         }
 
+        .header-placeholder {
+            width: 300px; /* matches sidebar width */
+            flex-shrink: 0;
+        }
+
         .header-left {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
-            text-align: left;
+            align-items: center;
+            text-align: center;
+            flex-grow: 1;
+            padding: 0 16px;
         }
 
         .managed-by {
@@ -112,7 +119,9 @@
             border: 1px solid rgba(255, 255, 255, 0.25);
             backdrop-filter: blur(4px);
             box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
-            margin-left: auto; /* Force layout to align right */
+            width: 300px; /* matches placeholder width for layout symmetry */
+            justify-content: center;
+            flex-shrink: 0;
         }
 
         .summary-item {
@@ -585,16 +594,21 @@
                 padding: 15px;
                 align-items: center;
             }
+            .header-placeholder {
+                display: none;
+            }
             .header-left {
                 position: static;
                 transform: none;
                 left: auto;
                 align-items: center;
+                width: 100%;
+                padding: 0;
             }
             .header-summary {
                 width: 100%;
                 justify-content: space-around;
-                margin-left: 0; /* Reset right alignment margin on mobile */
+                margin-left: 0;
             }
             .container {
                 flex-direction: column;
@@ -628,6 +642,7 @@
 </head>
 <body>
     <header>
+        <div class="header-placeholder"></div>
         <div class="header-left">
             <h1>📖 আল কারিম কম্পিউটার এন্ড এমব্রয়ডারি গার্মেন্টস</h1>
             <p>ডিজিটাইজড লেজার ভিউয়ার পোর্টাল</p>
