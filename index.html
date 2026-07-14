@@ -171,6 +171,46 @@
             gap: 6px;
         }
 
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        #refreshBtn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-muted);
+            padding: 4px;
+            border-radius: 4px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #refreshBtn:hover {
+            color: var(--primary);
+            background-color: var(--primary-light);
+        }
+
+        #refreshBtn svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.5s ease;
+        }
+
+        #refreshBtn.loading svg {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         .search-box {
             width: 100%;
             padding: 8px 12px;
@@ -600,7 +640,14 @@
     <div class="container">
         <!-- Sidebar -->
         <div class="sidebar">
-            <h2>👥 গ্রাহক তালিকা</h2>
+            <div class="sidebar-header">
+                <h2>👥 গ্রাহক তালিকা</h2>
+                <button id="refreshBtn" onclick="loadData(true)" title="রিলোড করুন">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+                    </svg>
+                </button>
+            </div>
             <input type="text" id="searchInput" class="search-box" placeholder="গ্রাহকের নাম বা ঠিকানা লিখুন...">
             <div class="client-list-container">
                 <table class="client-table">
@@ -798,23 +845,30 @@
         }
 
         // Load Settings and Data on start
-        window.addEventListener('DOMContentLoaded', async () => {
+        async function loadData(isRefresh = false) {
+            const refreshBtn = document.getElementById('refreshBtn');
+            if (isRefresh && refreshBtn) {
+                refreshBtn.classList.add('loading');
+            }
             try {
-                // Fetch Settings
-                try {
-                    const settingsRes = await fetch('settings.json');
-                    if (settingsRes.ok) {
-                        const settings = await settingsRes.json();
-                        const url = settings.google_apps_script_url;
-                        if (url && url !== "YOUR_APPS_SCRIPT_WEB_APP_URL_HERE") {
-                            googleSheetsURL = url;
+                // Fetch Settings if not already fetched
+                if (!googleSheetsURL) {
+                    try {
+                        const settingsRes = await fetch('settings.json');
+                        if (settingsRes.ok) {
+                            const settings = await settingsRes.json();
+                            const url = settings.google_apps_script_url;
+                            if (url && url !== "YOUR_APPS_SCRIPT_WEB_APP_URL_HERE") {
+                                googleSheetsURL = url;
+                            }
                         }
-                    }
-                } catch (e) { console.warn('settings.json not loaded', e); }
+                    } catch (e) { console.warn('settings.json not loaded', e); }
+                }
 
                 if (googleSheetsURL) {
                     console.log('Google Sheets Sync Mode active');
-                    const res = await fetch(googleSheetsURL);
+                    // Add timestamp to bypass browser caching on manual refresh
+                    const res = await fetch(googleSheetsURL + (isRefresh ? '?t=' + Date.now() : ''));
                     if (res.ok) {
                         sheetsDB = await res.json();
                         indexData = (sheetsDB.Client_Index || []).map(row => ({
@@ -826,13 +880,29 @@
                         }));
                         calculateGlobalSummary();
                         renderClientList(indexData);
+                        
+                        // If a client was previously selected, re-select them to refresh their table too
+                        if (isRefresh) {
+                            const activeRow = document.querySelector('.client-row.active');
+                            if (activeRow) {
+                                // Find client name and match
+                                const clientNameTd = activeRow.querySelector('td:nth-child(2)');
+                                if (clientNameTd) {
+                                    const name = clientNameTd.innerText;
+                                    const match = indexData.find(x => x.party_name === name);
+                                    if (match) {
+                                        selectClient(match, activeRow);
+                                    }
+                                }
+                            }
+                        }
                         return;
                     }
                 }
 
                 // Fallback Local JSON Mode
                 console.log('Local Mode active');
-                const response = await fetch('data/json/index_data.json');
+                const response = await fetch('data/json/index_data.json' + (isRefresh ? '?t=' + Date.now() : ''));
                 if (!response.ok) throw new Error('Index data load failed');
                 indexData = await response.json();
                 calculateGlobalSummary();
@@ -840,8 +910,14 @@
             } catch (err) {
                 console.error(err);
                 alert('ডেটা লোড করতে ব্যর্থ হয়েছে। নিশ্চিত করুন ফাইলগুলো সঠিক স্থানে আছে।');
+            } finally {
+                if (isRefresh && refreshBtn) {
+                    setTimeout(() => refreshBtn.classList.remove('loading'), 600); // smooth spin animation time
+                }
             }
-        });
+        }
+
+        window.addEventListener('DOMContentLoaded', () => loadData(false));
 
         // Search filtering
         document.getElementById('searchInput').addEventListener('input', (e) => {
