@@ -185,67 +185,101 @@
             box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
         }
 
-        .client-list {
-            list-style: none;
+        .client-list-container {
             overflow-y: auto;
             flex-grow: 1;
-            padding-right: 4px;
+            padding-right: 2px;
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            background-color: var(--card-bg);
+            box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.04);
         }
 
-        .client-list::-webkit-scrollbar {
-            width: 5px;
+        .client-list-container::-webkit-scrollbar {
+            width: 4px;
         }
-        .client-list::-webkit-scrollbar-track {
+        .client-list-container::-webkit-scrollbar-track {
             background: transparent;
         }
-        .client-list::-webkit-scrollbar-thumb {
+        .client-list-container::-webkit-scrollbar-thumb {
             background: #cbd5e1;
             border-radius: 10px;
         }
-        .client-list::-webkit-scrollbar-thumb:hover {
+        .client-list-container::-webkit-scrollbar-thumb:hover {
             background: #94a3b8;
         }
 
-        .client-item {
-            padding: 6px 10px;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: var(--transition);
-            margin-bottom: 4px;
-            border: 1px solid transparent;
-            border-left: 3px solid transparent;
-            background-color: transparent;
+        .client-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            font-size: 11.5px;
         }
 
-        .client-item:hover {
-            background-color: var(--primary-light);
-            color: var(--primary-dark);
-            transform: translateX(3px);
-            border-color: rgba(16, 185, 129, 0.15);
-        }
-
-        .client-item.active {
-            background-color: var(--primary-light);
-            color: var(--primary-dark);
-            font-weight: 600;
-            border-left: 3px solid var(--primary);
-            border-top: 1px solid rgba(16, 185, 129, 0.2);
-            border-bottom: 1px solid rgba(16, 185, 129, 0.2);
-            border-right: 1px solid rgba(16, 185, 129, 0.2);
-            box-shadow: var(--shadow);
-        }
-
-        .client-item-name {
-            font-size: 12.5px;
-            font-weight: 600;
-            margin-bottom: 1px;
-        }
-
-        .client-item-meta {
+        .client-table th {
+            position: sticky;
+            top: 0;
+            background-color: #f8fafc;
+            color: #475569;
+            font-weight: 700;
+            padding: 8px 10px;
+            border-bottom: 2px solid var(--border);
+            border-top: none;
+            z-index: 10;
             font-size: 10px;
-            color: var(--text-muted);
-            display: flex;
-            justify-content: space-between;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .client-row {
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .client-row td {
+            padding: 8px 10px;
+            border-bottom: 1.5px solid #f1f5f9;
+            border-left: 1px solid transparent;
+            border-right: 1px solid transparent;
+            color: #334155;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 110px;
+        }
+
+        .client-row th:first-child, .client-row td:first-child {
+            border-left: none;
+        }
+        .client-row th:last-child, .client-row td:last-child {
+            border-right: none;
+        }
+
+        .client-row:hover td {
+            background-color: var(--primary-light);
+            color: var(--primary-dark);
+            border-bottom-color: rgba(16, 185, 129, 0.15);
+        }
+
+        /* 3D zoom pop forward effect on hover */
+        .client-row:hover {
+            transform: scale(1.02) translateZ(10px);
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.15), 0 2px 4px rgba(0, 0, 0, 0.05);
+            position: relative;
+            z-index: 5;
+        }
+
+        .client-row.active td {
+            background-color: var(--primary-light) !important;
+            color: var(--primary-dark) !important;
+            font-weight: 700;
+            border-bottom: 1.5px solid rgba(16, 185, 129, 0.2) !important;
+            border-top: 1.5px solid rgba(16, 185, 129, 0.2) !important;
+        }
+        
+        .client-row.active {
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.1);
         }
 
         /* Main Content Panel */
@@ -557,9 +591,19 @@
         <div class="sidebar">
             <h2>👥 গ্রাহক তালিকা</h2>
             <input type="text" id="searchInput" class="search-box" placeholder="গ্রাহকের নাম বা ঠিকানা লিখুন...">
-            <ul id="clientList" class="client-list">
-                <!-- Clients will load here -->
-            </ul>
+            <div class="client-list-container">
+                <table class="client-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 55%; text-align: left;">নাম</th>
+                            <th style="width: 45%; text-align: left;">ঠিকানা</th>
+                        </tr>
+                    </thead>
+                    <tbody id="clientTableBody">
+                        <!-- Clients will load here -->
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <!-- Main Workspace -->
@@ -797,29 +841,27 @@
             renderClientList(filtered);
         });
 
-        // Render Sidebar List
+        // Render Sidebar Table Rows
         function renderClientList(list) {
-            const listContainer = document.getElementById('clientList');
-            listContainer.innerHTML = '';
+            const tbody = document.getElementById('clientTableBody');
+            tbody.innerHTML = '';
 
             list.forEach(client => {
-                const li = document.createElement('li');
-                li.className = 'client-item';
-                li.innerHTML = `
-                    <div class="client-item-name">${client.party_name}</div>
-                    <div class="client-item-meta">
-                        <span>${client.address || ''}</span>
-                    </div>
+                const tr = document.createElement('tr');
+                tr.className = 'client-row';
+                tr.innerHTML = `
+                    <td style="font-weight: 600;" title="${client.party_name}">${client.party_name}</td>
+                    <td title="${client.address || ''}">${client.address || ''}</td>
                 `;
-                li.addEventListener('click', () => selectClient(client, li));
-                listContainer.appendChild(li);
+                tr.addEventListener('click', () => selectClient(client, tr));
+                tbody.appendChild(tr);
             });
         }
 
         // Select Client & Load Details
-        async function selectClient(client, liElement) {
-            document.querySelectorAll('.client-item').forEach(item => item.classList.remove('active'));
-            liElement.classList.add('active');
+        async function selectClient(client, rowElement) {
+            document.querySelectorAll('.client-row').forEach(item => item.classList.remove('active'));
+            rowElement.classList.add('active');
 
             const ledgerPage = parseInt(client.page);
             const name = client.party_name;
