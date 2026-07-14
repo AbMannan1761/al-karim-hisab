@@ -309,6 +309,16 @@ function syncClientSheets(ss, targetClientName) {
       var currentNotes = String(metaValues[2][0] || "").trim();
       if (currentName === partyName && currentAddress === address && currentNotes === notes) {
         sheet.setFrozenRows(8); // Ensure rows are frozen even if we skip formatting
+        
+        // Ensure column widths are updated to 75px (~1 inch) for existing skipped sheets
+        for (var col = 1; col <= 17; col++) {
+          if (col === 13) {
+            sheet.setColumnWidth(col, 25); // separator column
+          } else {
+            sheet.setColumnWidth(col, 75); // approx. 1 inch
+          }
+        }
+        
         continue; // Skip formatting if metadata is identical
       }
       sheet.clear();
@@ -482,10 +492,12 @@ function syncClientSheets(ss, targetClientName) {
     // Freeze rows 1-8 so the dashboard header remains visible when scrolling down
     sheet.setFrozenRows(8);
     
-    // Auto-fit columns only if it is a new sheet to prevent API quota/time limit issues
-    if (isNew) {
-      for (var col = 1; col <= 17; col++) {
-        sheet.autoResizeColumn(col);
+    // Set column widths to 75px (~1 inch) so that everything fits on one screen
+    for (var col = 1; col <= 17; col++) {
+      if (col === 13) {
+        sheet.setColumnWidth(col, 25); // Column M is the blank separator column
+      } else {
+        sheet.setColumnWidth(col, 75); // ~1 inch (75 pixels)
       }
     }
   }
