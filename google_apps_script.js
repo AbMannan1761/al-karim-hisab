@@ -715,26 +715,29 @@ function createDashboardSheet(ss) {
   sheet.setRowHeight(1, 50);
   
   // 2. KPI Cards
+  sheet.setRowHeight(3, 24);
+  sheet.setRowHeight(4, 96);
+  
   // Total Sales (A3:B4)
   sheet.getRange("A3:B3").merge().setValue("সর্বমোট বিক্রয় (Total Sales)")
-       .setFontFamily(fontName).setFontSize(9).setFontColor("#555555").setHorizontalAlignment("center");
+       .setFontFamily(fontName).setFontSize(9).setFontColor("#555555").setHorizontalAlignment("center").setVerticalAlignment("middle");
   sheet.getRange("A4:B4").merge().setFormula("=SUM(Debit_Transactions!M2:M)")
-       .setFontFamily(fontName).setFontSize(16).setFontWeight("bold").setFontColor("#366092")
-       .setHorizontalAlignment("center").setNumberFormat("#,##0");
+       .setFontFamily(fontName).setFontSize(22).setFontWeight("bold").setFontColor("#366092")
+       .setHorizontalAlignment("center").setVerticalAlignment("middle").setNumberFormat("#,##0");
        
   // Total Collected (C3:D3) -> D3:E4
   sheet.getRange("D3:E3").merge().setValue("সর্বমোট আদায় (Total Payments)")
-       .setFontFamily(fontName).setFontSize(9).setFontColor("#555555").setHorizontalAlignment("center");
+       .setFontFamily(fontName).setFontSize(9).setFontColor("#555555").setHorizontalAlignment("center").setVerticalAlignment("middle");
   sheet.getRange("D4:E4").merge().setFormula("=SUM(Credit_Transactions!E2:E)")
-       .setFontFamily(fontName).setFontSize(16).setFontWeight("bold").setFontColor("#2E7D32")
-       .setHorizontalAlignment("center").setNumberFormat("#,##0");
+       .setFontFamily(fontName).setFontSize(22).setFontWeight("bold").setFontColor("#2E7D32")
+       .setHorizontalAlignment("center").setVerticalAlignment("middle").setNumberFormat("#,##0");
        
   // Outstanding (G3:H4)
   sheet.getRange("G3:H3").merge().setValue("অবশিষ্ট বকেয়া (Outstanding)")
-       .setFontFamily(fontName).setFontSize(9).setFontColor("#555555").setHorizontalAlignment("center");
+       .setFontFamily(fontName).setFontSize(9).setFontColor("#555555").setHorizontalAlignment("center").setVerticalAlignment("middle");
   sheet.getRange("G4:H4").merge().setFormula("=A4-D4")
-       .setFontFamily(fontName).setFontSize(16).setFontWeight("bold").setFontColor("#C62828")
-       .setHorizontalAlignment("center").setNumberFormat("#,##0");
+       .setFontFamily(fontName).setFontSize(22).setFontWeight("bold").setFontColor("#C62828")
+       .setHorizontalAlignment("center").setVerticalAlignment("middle").setNumberFormat("#,##0");
        
   // Format KPI Card Borders
   var kpiRanges = [sheet.getRange("A3:B4"), sheet.getRange("D3:E4"), sheet.getRange("G3:H4")];
@@ -755,6 +758,7 @@ function createDashboardSheet(ss) {
              .setHorizontalAlignment("center")
              .setVerticalAlignment("center");
   sheet.setRowHeight(6, 30);
+  sheet.setFrozenRows(6);
   
   // 4. Data Rows
   var indexSheet = ss.getSheetByName("Client_Index");
@@ -818,11 +822,11 @@ function createDashboardSheet(ss) {
           .setChartType(Charts.ChartType.COLUMN)
           .addRange(sheet.getRange("B6:B" + (totalRow-1))) // Client Names
           .addRange(sheet.getRange("G6:G" + (totalRow-1))) // Outstanding Balances
-          .setPosition(3, 10, 0, 0)
+          .setPosition(3, 10, 0, 0) // Anchor at J3 (inside frozen pane)
           .setOption("title", "গ্রাহকদের বকেয়া হিসাব (Client Outstanding Balances)")
           .setOption("colors", ["#C62828"])
-          .setOption("width", 500)
-          .setOption("height", 300)
+          .setOption("width", 650)
+          .setOption("height", 118) // Fits completely inside frozen Rows 3 & 4 (total height 120px)
           .build();
       sheet.insertChart(chart);
     }
