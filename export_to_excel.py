@@ -201,6 +201,7 @@ def export():
         
         # Create individual client sheets
         for client in summary_rows:
+            client_no = str(client.get("Client No", "")).strip()
             client_name = client.get("Party Name", "")
             client_page = client.get("Ledger Page", 0)
             if not client_page:
@@ -208,9 +209,9 @@ def export():
                 
             client_pdf_page = client_page // 2
             
-            # Format sheet name: P{page_num} - {sanitized_name} (max 31 chars)
+            # Format sheet name: {client_no}. {sanitized_name} (max 31 chars)
             clean_name = "".join(c for c in client_name if c not in r"\/?:*[]")
-            sheet_name = f"P{client_page} - {clean_name}"
+            sheet_name = f"{client_no}. {clean_name}"
             if len(sheet_name) > 31:
                 sheet_name = sheet_name[:31]
                 
@@ -377,7 +378,7 @@ def export():
                     for col_idx, val in enumerate(debit_values, start=1):
                         cell = sheet.cell(row=row_idx, column=col_idx, value=val)
                         if col_idx in [9, 10, 11] and isinstance(val, (int, float)):
-                            cell.number_format = "#,##0.00"
+                            cell.number_format = "#,##0"
                             cell.alignment = Alignment(horizontal="right")
                         else:
                             cell.alignment = Alignment(horizontal="left", vertical="center")
@@ -394,7 +395,7 @@ def export():
                     for col_idx, val in enumerate(credit_values, start=14):
                         cell = sheet.cell(row=row_idx, column=col_idx, value=val)
                         if col_idx == 16 and isinstance(val, (int, float)):
-                            cell.number_format = "#,##0.00"
+                            cell.number_format = "#,##0"
                             cell.alignment = Alignment(horizontal="right")
                         else:
                             cell.alignment = Alignment(horizontal="left", vertical="center")
@@ -408,7 +409,7 @@ def export():
             sheet.cell(row=debit_total_row, column=10).alignment = Alignment(horizontal="right")
             total_debit_cell = sheet.cell(row=debit_total_row, column=11, value=f"=SUM(K12:K{debit_end_row})")
             total_debit_cell.font = Font(name=font_family, size=10, bold=True)
-            total_debit_cell.number_format = "#,##0.00"
+            total_debit_cell.number_format = "#,##0"
             total_debit_cell.alignment = Alignment(horizontal="right")
             
             # Credit Total Row
@@ -417,7 +418,7 @@ def export():
             sheet.cell(row=credit_total_row, column=15).alignment = Alignment(horizontal="right")
             total_credit_cell = sheet.cell(row=credit_total_row, column=16, value=f"=SUM(P12:P{credit_end_row})")
             total_credit_cell.font = Font(name=font_family, size=10, bold=True)
-            total_credit_cell.number_format = "#,##0.00"
+            total_credit_cell.number_format = "#,##0"
             total_credit_cell.alignment = Alignment(horizontal="right")
             
             # Apply borders
@@ -445,17 +446,17 @@ def export():
             sheet["A8"] = f"=K{debit_total_row}"
             sheet["A8"].font = Font(name=font_family, size=14, bold=True, color="366092")
             sheet["A8"].alignment = Alignment(horizontal="center")
-            sheet["A8"].number_format = "#,##0.00"
+            sheet["A8"].number_format = "#,##0"
             
             sheet["G8"] = f"=P{credit_total_row}"
             sheet["G8"].font = Font(name=font_family, size=14, bold=True, color="2E7D32")
             sheet["G8"].alignment = Alignment(horizontal="center")
-            sheet["G8"].number_format = "#,##0.00"
+            sheet["G8"].number_format = "#,##0"
             
             sheet["M8"] = "=A8-G8"
             sheet["M8"].font = Font(name=font_family, size=14, bold=True, color="C62828")
             sheet["M8"].alignment = Alignment(horizontal="center")
-            sheet["M8"].number_format = "#,##0.00"
+            sheet["M8"].number_format = "#,##0"
             
         # Format columns and layout for all sheets
         for name in workbook.sheetnames:
@@ -482,11 +483,11 @@ def export():
                             if isinstance(cell.value, (int, float)):
                                 cell.alignment = Alignment(horizontal="right")
                                 if name == "Client Summary" and cell.column in [6, 7, 8]:
-                                    cell.number_format = "#,##0.00"
+                                    cell.number_format = "#,##0"
                                 elif name == "Debit Entries (Sales)" and cell.column in [15, 16, 17]:
-                                    cell.number_format = "#,##0.00"
+                                    cell.number_format = "#,##0"
                                 elif name == "Credit Entries (Payments)" and cell.column in [9]:
-                                    cell.number_format = "#,##0.00"
+                                    cell.number_format = "#,##0"
                             else:
                                 cell.alignment = Alignment(horizontal="left", vertical="center")
                                 

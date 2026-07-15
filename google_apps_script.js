@@ -1,3 +1,12 @@
+// Helper to safely parse strings to integer numbers (removing decimals)
+function parseNumeric(val) {
+  if (val === null || val === undefined || val === "") return "";
+  var str = String(val).trim().replace(/,/g, '');
+  if (!str || str === '〃' || str === '"') return val; // preserve ditto marks
+  var parsed = parseFloat(str);
+  return isNaN(parsed) ? val : Math.round(parsed);
+}
+
 function doGet(e) {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var result = {};
@@ -82,9 +91,9 @@ function doPost(e) {
         String(row.model || ""),
         String(row.pd || ""),
         String(row.bill || ""),
-        row.qty !== null ? String(row.qty) : "",
-        row.taka !== null ? String(row.taka) : "",
-        row.total !== null ? String(row.total) : "",
+        row.qty !== null ? parseNumeric(row.qty) : "",
+        row.taka !== null ? parseNumeric(row.taka) : "",
+        row.total !== null ? parseNumeric(row.total) : "",
         String(row.remarks || "")
       ]);
     });
@@ -101,7 +110,7 @@ function doPost(e) {
         row.ledger_page !== null ? String(row.ledger_page) : "",
         String(row.no || ""),
         String(row.date || ""),
-        row.amount !== null ? String(row.amount) : "",
+        row.amount !== null ? parseNumeric(row.amount) : "",
         String(row.remarks || "")
       ]);
     });
@@ -118,7 +127,7 @@ function doPost(e) {
     sheet.appendRow([
       params.party_name, params.ledger_page, params.no, params.date, params.bi_ka,
       params.description, params.size, params.model, params.pd, params.bill,
-      params.qty, params.taka, params.total, params.remarks
+      parseNumeric(params.qty), parseNumeric(params.taka), parseNumeric(params.total), params.remarks
     ]);
     return ContentService.createTextOutput(JSON.stringify({status: "success"}))
       .setMimeType(ContentService.MimeType.JSON);
@@ -127,7 +136,7 @@ function doPost(e) {
   if (action === "add_credit") {
     var sheet = ss.getSheetByName("Credit_Transactions");
     sheet.appendRow([
-      params.party_name, params.ledger_page, params.no, params.date, params.amount, params.remarks
+      params.party_name, params.ledger_page, params.no, params.date, parseNumeric(params.amount), params.remarks
     ]);
     return ContentService.createTextOutput(JSON.stringify({status: "success"}))
       .setMimeType(ContentService.MimeType.JSON);
@@ -152,7 +161,7 @@ function doPost(e) {
     }
     if (oldName && oldName !== newName && rowIdx !== -1) {
       var oldCleanName = oldName.replace(/[\\\/\?\:\*\[\]]/g, "");
-      var oldSheetName = "P" + data[rowIdx][3] + " - " + oldCleanName;
+      var oldSheetName = clientNo + ". " + oldCleanName;
       if (oldSheetName.length > 31) oldSheetName = oldSheetName.substring(0, 31);
       var oldSheet = ss.getSheetByName(oldSheetName);
       if (oldSheet) {
@@ -183,9 +192,9 @@ function doPost(e) {
           sheet.getRange(i+1, 8).setValue(params.model);
           sheet.getRange(i+1, 9).setValue(params.pd);
           sheet.getRange(i+1, 10).setValue(params.bill);
-          sheet.getRange(i+1, 11).setValue(params.qty);
-          sheet.getRange(i+1, 12).setValue(params.taka);
-          sheet.getRange(i+1, 13).setValue(params.total);
+          sheet.getRange(i+1, 11).setValue(parseNumeric(params.qty));
+          sheet.getRange(i+1, 12).setValue(parseNumeric(params.taka));
+          sheet.getRange(i+1, 13).setValue(parseNumeric(params.total));
           sheet.getRange(i+1, 14).setValue(params.remarks);
         }
         break;
@@ -208,7 +217,7 @@ function doPost(e) {
           sheet.deleteRow(i+1);
         } else {
           sheet.getRange(i+1, 4).setValue(params.date);
-          sheet.getRange(i+1, 5).setValue(params.amount);
+          sheet.getRange(i+1, 5).setValue(parseNumeric(params.amount));
           sheet.getRange(i+1, 6).setValue(params.remarks);
         }
         break;
@@ -240,6 +249,9 @@ function syncClientSheetsMenu() {
 }
 
 function syncClientSheets(ss, targetClientName) {
+  // Clean database sheet numeric formats to remove text decimals
+  cleanDatabaseSheets(ss);
+  
   // First propagate any name updates from Client_Index to Debit_Transactions and Credit_Transactions
   syncNamesInTransactions(ss);
   
@@ -252,12 +264,13 @@ function syncClientSheets(ss, targetClientName) {
   // 1. Collect all active sheet names based on Client_Index
   var activeSheetNames = {};
   for (var i = 1; i < indexData.length; i++) {
+    var clientNo = String(indexData[i][0] || "").trim();
     var partyName = String(indexData[i][1] || "").trim();
     var ledgerPage = indexData[i][3];
     if (!partyName || !ledgerPage) continue;
     
     var cleanName = partyName.replace(/[\\\/\?\:\*\[\]]/g, "");
-    var sheetName = "P" + ledgerPage + " - " + cleanName;
+    var sheetName = clientNo + ". " + cleanName;
     if (sheetName.length > 31) {
       sheetName = sheetName.substring(0, 31);
     }
@@ -268,8 +281,8 @@ function syncClientSheets(ss, targetClientName) {
   var sheets = ss.getSheets();
   sheets.forEach(function(sheet) {
     var name = sheet.getName();
-    // If it is a client sheet (starts with P followed by number)
-    if (/^P\d+\s*-/.test(name)) {
+    // If it is a client sheet (starts with P followed by number or number followed by dot)
+    if (/^P\d+\s*-/.test(name) || /^\d+\.\s*/.test(name)) {
       if (!activeSheetNames[name]) {
         ss.deleteSheet(sheet);
       }
@@ -278,6 +291,7 @@ function syncClientSheets(ss, targetClientName) {
   
   // 3. Process sheets
   for (var i = 1; i < indexData.length; i++) {
+    var clientNo = String(indexData[i][0] || "").trim();
     var partyName = String(indexData[i][1] || "").trim();
     var address = String(indexData[i][2] || "").trim();
     var ledgerPage = indexData[i][3];
@@ -291,7 +305,7 @@ function syncClientSheets(ss, targetClientName) {
     }
     
     var cleanName = partyName.replace(/[\\\/\?\:\*\[\]]/g, "");
-    var sheetName = "P" + ledgerPage + " - " + cleanName;
+    var sheetName = clientNo + ". " + cleanName;
     if (sheetName.length > 31) {
       sheetName = sheetName.substring(0, 31);
     }
@@ -383,7 +397,7 @@ function syncClientSheets(ss, targetClientName) {
             .setFontWeight("bold")
             .setFontColor("#366092")
             .setHorizontalAlignment("center")
-            .setNumberFormat("#,##0.00");
+            .setNumberFormat("#,##0");
             
     // Card 2: Total Payments (G5:K6)
     sheet.getRange("G5:K5").merge();
@@ -401,7 +415,7 @@ function syncClientSheets(ss, targetClientName) {
             .setFontWeight("bold")
             .setFontColor("#2E7D32")
             .setHorizontalAlignment("center")
-            .setNumberFormat("#,##0.00");
+            .setNumberFormat("#,##0");
             
     // Card 3: Outstanding (M5:Q6)
     sheet.getRange("M5:Q5").merge();
@@ -419,7 +433,7 @@ function syncClientSheets(ss, targetClientName) {
             .setFontWeight("bold")
             .setFontColor("#C62828")
             .setHorizontalAlignment("center")
-            .setNumberFormat("#,##0.00");
+            .setNumberFormat("#,##0");
             
     // Apply styling to KPI cards
     var kpiRanges = [sheet.getRange("A5:E6"), sheet.getRange("G5:K6"), sheet.getRange("M5:Q6")];
@@ -489,8 +503,8 @@ function syncClientSheets(ss, targetClientName) {
              .setVerticalAlignment("top")
              .setWrap(true);
              
-    sheet.getRange("I9:K1000").setNumberFormat("#,##0.00");
-    sheet.getRange("P9:P1000").setNumberFormat("#,##0.00");
+    sheet.getRange("I9:K1000").setNumberFormat("#,##0");
+    sheet.getRange("P9:P1000").setNumberFormat("#,##0");
     
     // Freeze rows 1-8 so the dashboard header remains visible when scrolling down
     sheet.setFrozenRows(8);
@@ -506,6 +520,10 @@ function syncClientSheets(ss, targetClientName) {
       }
     }
   }
+  
+  // Create business dashboard and monthly pivot sheets
+  createDashboardSheet(ss);
+  createPivotTableSheet(ss);
 }
 
 function sortSheetsMenu() {
@@ -518,19 +536,23 @@ function sortSheetsMenu() {
 function sortSheets(ss) {
   var sheets = ss.getSheets();
   
-  var mainList = new Array(3); // index 0: Client Index, index 1: Debit, index 2: Credit
+  var mainList = new Array(5); // index 0: Dashboard, index 1: Pivot, index 2: Client Index, index 3: Debit, index 4: Credit
   var clientList = [];
   
   sheets.forEach(function(sheet) {
     var rawName = sheet.getName();
     var normName = rawName.toLowerCase().replace(/[\s_-]/g, "");
     
-    if (normName.indexOf("clientindex") !== -1 || normName.indexOf("গ্রাহকসূচী") !== -1) {
+    if (normName.indexOf("dashboard") !== -1 || normName.indexOf("ড্যাশবোর্ড") !== -1) {
       mainList[0] = {name: rawName, sheet: sheet};
-    } else if (normName.indexOf("debit") !== -1 || normName.indexOf("ডেবিট") !== -1) {
+    } else if (normName.indexOf("pivot") !== -1 || normName.indexOf("পিভট") !== -1) {
       mainList[1] = {name: rawName, sheet: sheet};
-    } else if (normName.indexOf("credit") !== -1 || normName.indexOf("ক্রেডিট") !== -1) {
+    } else if (normName.indexOf("clientindex") !== -1 || normName.indexOf("গ্রাহকসূচী") !== -1) {
       mainList[2] = {name: rawName, sheet: sheet};
+    } else if (normName.indexOf("debit") !== -1 || normName.indexOf("ডেবিট") !== -1) {
+      mainList[3] = {name: rawName, sheet: sheet};
+    } else if (normName.indexOf("credit") !== -1 || normName.indexOf("ক্রেডিট") !== -1) {
+      mainList[4] = {name: rawName, sheet: sheet};
     } else {
       clientList.push({name: rawName, sheet: sheet});
     }
@@ -544,9 +566,13 @@ function sortSheets(ss) {
     }
   }
   
-  // Sort client sheets alphabetically by name (Bengali locales supported)
+  // Sort client sheets numerically based on the leading number in their name
   clientList.sort(function(a, b) {
-    return a.name.localeCompare(b.name, 'bn');
+    var matchA = a.name.match(/^(\d+)\./);
+    var matchB = b.name.match(/^(\d+)\./);
+    var numA = matchA ? parseInt(matchA[1], 10) : 9999;
+    var numB = matchB ? parseInt(matchB[1], 10) : 9999;
+    return numA - numB;
   });
   
   var sortedList = cleanMainList.concat(clientList);
@@ -616,4 +642,220 @@ function syncNamesInTransactions(ss) {
       creditRange.setValues(creditData);
     }
   }
+}
+
+// Automatically cleans decimal strings inside the raw transaction tables and parses them to numbers
+function cleanDatabaseSheets(ss) {
+  var targetSheets = ["Debit_Transactions", "Credit_Transactions"];
+  targetSheets.forEach(function(sheetName) {
+    var sheet = ss.getSheetByName(sheetName);
+    if (!sheet) return;
+    var range = sheet.getDataRange();
+    var values = range.getValues();
+    var numRows = values.length;
+    if (numRows <= 1) return;
+    var numCols = values[0].length;
+    
+    var updated = false;
+    for (var r = 1; r < numRows; r++) {
+      for (var c = 0; c < numCols; c++) {
+        var val = values[r][c];
+        if (val !== null && val !== undefined && val !== "") {
+          var str = String(val).trim().replace(/,/g, '');
+          if (str && str !== '〃' && str !== '"') {
+            var parsed = parseFloat(str);
+            if (!isNaN(parsed)) {
+              var rounded = Math.round(parsed);
+              if (values[r][c] !== rounded) {
+                values[r][c] = rounded;
+                updated = true;
+              }
+            }
+          }
+        }
+      }
+    }
+    if (updated) {
+      range.setValues(values);
+    }
+  });
+}
+
+// Generates a beautiful executive dashboard with overall metrics and client balances
+function createDashboardSheet(ss) {
+  var sheet = ss.getSheetByName("Dashboard");
+  if (sheet) {
+    sheet.clear();
+    // remove existing charts
+    var charts = sheet.getCharts();
+    for (var i = 0; i < charts.length; i++) {
+      sheet.removeChart(charts[i]);
+    }
+  } else {
+    sheet = ss.insertSheet("Dashboard");
+  }
+  
+  var fontName = "Segoe UI";
+  
+  // 1. Title Banner
+  sheet.getRange("A1:G1").merge()
+       .setValue("আল কারিম কম্পিউটার এন্ড এমব্রয়ডারি গার্মেন্টস - ব্যবসায়িক ড্যাশবোর্ড (Global Dashboard)")
+       .setFontFamily(fontName)
+       .setFontSize(16)
+       .setFontWeight("bold")
+       .setFontColor("#FFFFFF")
+       .setBackground("#047857")
+       .setHorizontalAlignment("center")
+       .setVerticalAlignment("center");
+  sheet.setRowHeight(1, 50);
+  
+  // 2. KPI Cards
+  // Total Sales (A3:B4)
+  sheet.getRange("A3:B3").merge().setValue("সর্বমোট বিক্রয় (Total Sales)")
+       .setFontFamily(fontName).setFontSize(9).setFontColor("#555555").setHorizontalAlignment("center");
+  sheet.getRange("A4:B4").merge().setFormula("=SUM(Debit_Transactions!M2:M)")
+       .setFontFamily(fontName).setFontSize(16).setFontWeight("bold").setFontColor("#366092")
+       .setHorizontalAlignment("center").setNumberFormat("#,##0");
+       
+  // Total Collected (C3:D3) -> D3:E4
+  sheet.getRange("D3:E3").merge().setValue("সর্বমোট আদায় (Total Payments)")
+       .setFontFamily(fontName).setFontSize(9).setFontColor("#555555").setHorizontalAlignment("center");
+  sheet.getRange("D4:E4").merge().setFormula("=SUM(Credit_Transactions!E2:E)")
+       .setFontFamily(fontName).setFontSize(16).setFontWeight("bold").setFontColor("#2E7D32")
+       .setHorizontalAlignment("center").setNumberFormat("#,##0");
+       
+  // Outstanding (G3:H4)
+  sheet.getRange("G3:H3").merge().setValue("অবশিষ্ট বকেয়া (Outstanding)")
+       .setFontFamily(fontName).setFontSize(9).setFontColor("#555555").setHorizontalAlignment("center");
+  sheet.getRange("G4:H4").merge().setFormula("=A4-D4")
+       .setFontFamily(fontName).setFontSize(16).setFontWeight("bold").setFontColor("#C62828")
+       .setHorizontalAlignment("center").setNumberFormat("#,##0");
+       
+  // Format KPI Card Borders
+  var kpiRanges = [sheet.getRange("A3:B4"), sheet.getRange("D3:E4"), sheet.getRange("G3:H4")];
+  kpiRanges.forEach(function(rng) {
+    rng.setBorder(true, true, true, true, true, true, "#cccccc", SpreadsheetApp.BorderStyle.SOLID);
+    rng.setBackground("#f8fafc");
+  });
+  
+  // 3. Client Summary Table Header
+  var tableHeaders = ["Sl", "গ্রাহকের নাম (Client Name)", "ঠিকানা (Address)", "লেজার পৃষ্ঠা (Page)", "মোট ক্রয় (Sales)", "মোট পরিশোধ (Payments)", "বকেয়া (Balance)"];
+  var headerRange = sheet.getRange(6, 1, 1, 7);
+  headerRange.setValues([tableHeaders])
+             .setFontFamily(fontName)
+             .setFontSize(10)
+             .setFontWeight("bold")
+             .setFontColor("#FFFFFF")
+             .setBackground("#047857")
+             .setHorizontalAlignment("center")
+             .setVerticalAlignment("center");
+  sheet.setRowHeight(6, 30);
+  
+  // 4. Data Rows
+  var indexSheet = ss.getSheetByName("Client_Index");
+  if (indexSheet) {
+    var indexData = indexSheet.getDataRange().getValues();
+    var numClients = indexData.length - 1;
+    if (numClients > 0) {
+      var rows = [];
+      for (var i = 1; i <= numClients; i++) {
+        var r = i + 6; // starts at row 7
+        rows.push([
+          i,
+          "=Client_Index!B" + (i + 1),
+          "=Client_Index!C" + (i + 1),
+          "=Client_Index!D" + (i + 1),
+          "=SUMIF(Debit_Transactions!A:A, B" + r + ", Debit_Transactions!M:M)",
+          "=SUMIF(Credit_Transactions!A:A, B" + r + ", Credit_Transactions!E:E)",
+          "=E" + r + "-F" + r
+        ]);
+      }
+      
+      var dataRange = sheet.getRange(7, 1, numClients, 7);
+      dataRange.setFormulas(rows)
+               .setFontFamily(fontName)
+               .setFontSize(10)
+               .setVerticalAlignment("center")
+               .setBorder(true, true, true, true, true, true, "#e2e8f0", SpreadsheetApp.BorderStyle.SOLID);
+               
+      // Alignment
+      sheet.getRange(7, 1, numClients, 1).setHorizontalAlignment("center"); // Sl
+      sheet.getRange(7, 2, numClients, 2).setHorizontalAlignment("left");   // Name, Address
+      sheet.getRange(7, 4, numClients, 1).setHorizontalAlignment("center"); // Page
+      sheet.getRange(7, 5, numClients, 3).setHorizontalAlignment("right").setNumberFormat("#,##0"); // Sales, Payments, Balance
+      
+      // Auto-striping
+      for (var i = 0; i < numClients; i++) {
+        var rowRange = sheet.getRange(7 + i, 1, 1, 7);
+        if (i % 2 === 1) {
+          rowRange.setBackground("#f8fafc");
+        } else {
+          rowRange.setBackground("#ffffff");
+        }
+      }
+      
+      // Total Row
+      var totalRow = 7 + numClients;
+      sheet.getRange(totalRow, 1).setValue("");
+      sheet.getRange(totalRow, 2).setValue("সর্বমোট (Total)").setFontWeight("bold").setHorizontalAlignment("left");
+      sheet.getRange(totalRow, 3, 1, 2).merge();
+      sheet.getRange(totalRow, 5).setFormula("=SUM(E7:E" + (totalRow-1) + ")").setFontWeight("bold").setNumberFormat("#,##0").setHorizontalAlignment("right");
+      sheet.getRange(totalRow, 6).setFormula("=SUM(F7:F" + (totalRow-1) + ")").setFontWeight("bold").setNumberFormat("#,##0").setHorizontalAlignment("right");
+      sheet.getRange(totalRow, 7).setFormula("=SUM(G7:G" + (totalRow-1) + ")").setFontWeight("bold").setNumberFormat("#,##0").setHorizontalAlignment("right");
+      sheet.getRange(totalRow, 1, 1, 7)
+           .setFontFamily(fontName)
+           .setFontSize(10)
+           .setBackground("#e2e8f0")
+           .setBorder(true, true, true, true, true, true, "#cbd5e1", SpreadsheetApp.BorderStyle.SOLID);
+           
+      // Add a chart
+      var chart = sheet.newChart()
+          .setChartType(Charts.ChartType.COLUMN)
+          .addRange(sheet.getRange("B6:B" + (totalRow-1))) // Client Names
+          .addRange(sheet.getRange("G6:G" + (totalRow-1))) // Outstanding Balances
+          .setPosition(3, 10, 0, 0)
+          .setOption("title", "গ্রাহকদের বকেয়া হিসাব (Client Outstanding Balances)")
+          .setOption("colors", ["#C62828"])
+          .setOption("width", 500)
+          .setOption("height", 300)
+          .build();
+      sheet.insertChart(chart);
+    }
+  }
+  
+  // Set Column Widths
+  sheet.setColumnWidth(1, 35);  // Sl
+  sheet.setColumnWidth(2, 180); // Name
+  sheet.setColumnWidth(3, 180); // Address
+  sheet.setColumnWidth(4, 75);  // Page
+  sheet.setColumnWidth(5, 90);  // Sales
+  sheet.setColumnWidth(6, 90);  // Payments
+  sheet.setColumnWidth(7, 90);  // Balance
+  sheet.setColumnWidth(8, 25);  // blank spacer
+}
+
+// Generates an interactive pivot table sheet grouping transactions
+function createPivotTableSheet(ss) {
+  var pivotSheet = ss.getSheetByName("Monthly_Pivot");
+  if (pivotSheet) {
+    ss.deleteSheet(pivotSheet);
+  }
+  pivotSheet = ss.insertSheet("Monthly_Pivot");
+  
+  var debitSheet = ss.getSheetByName("Debit_Transactions");
+  if (!debitSheet) return;
+  
+  var sourceRange = debitSheet.getDataRange();
+  var pivotTable = pivotSheet.getRange("A1").createPivotTable(sourceRange);
+  
+  // Row Group: Client Name (Column A, index 0)
+  var rowGroup = pivotTable.addRowGroup(0);
+  rowGroup.showTotals(true);
+  
+  // Column Group: Details (Column E, index 4)
+  var colGroup = pivotTable.addColumnGroup(4);
+  colGroup.showTotals(true);
+  
+  // Values: Total (Column M, index 12)
+  pivotTable.addPivotValue(12, SpreadsheetApp.PivotTableSummarizeFunction.SUM).setDisplayName("Total Sales");
 }

@@ -57,6 +57,29 @@ def clean_num(val):
     except ValueError:
         return 0.0
 
+# Helper to format numbers in Indian/Bangladeshi (Lakh/Crore) style (without decimals)
+def format_indian_style(number):
+    try:
+        is_negative = number < 0
+        number = round(abs(number))
+        s = f"{number}"
+        if len(s) <= 3:
+            formatted_int = s
+        else:
+            last_three = s[-3:]
+            remaining = s[:-3]
+            groups = []
+            while len(remaining) > 2:
+                groups.append(remaining[-2:])
+                remaining = remaining[:-2]
+            if remaining:
+                groups.append(remaining)
+            groups.reverse()
+            formatted_int = ",".join(groups) + "," + last_three
+        return ("-" if is_negative else "") + formatted_int
+    except Exception:
+        return str(number)
+
 # ----------------- CONFIG & MODE CHECK -----------------
 def get_sheets_url():
     if os.path.exists(SETTINGS_PATH):
@@ -323,11 +346,11 @@ if menu == "📈 সর্বমোট সারসংক্ষেপ (General S
     # KPI Display
     kcol1, kcol2, kcol3 = st.columns(3)
     with kcol1:
-        st.markdown(f'<div class="kpi-card"><div class="kpi-title">Global Sales (সর্বমোট বিক্রয়)</div><div class="kpi-val">{global_debit:,.2f} ৳</div></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="kpi-card"><div class="kpi-title">Global Sales (সর্বমোট বিক্রয়)</div><div class="kpi-val">{format_indian_style(global_debit)} ৳</div></div>', unsafe_allow_html=True)
     with kcol2:
-        st.markdown(f'<div class="kpi-card"><div class="kpi-title">Global Payments (সর্বমোট আদায়)</div><div class="kpi-val" style="color: #2e7d32;">{global_credit:,.2f} ৳</div></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="kpi-card"><div class="kpi-title">Global Payments (সর্বমোট আদায়)</div><div class="kpi-val" style="color: #2e7d32;">{format_indian_style(global_credit)} ৳</div></div>', unsafe_allow_html=True)
     with kcol3:
-        st.markdown(f'<div class="kpi-card"><div class="kpi-title">Total Receivables (সর্বমোট বকেয়া পাওনা)</div><div class="kpi-val" style="color: {"#c62828" if global_balance > 0 else "#2e7d32"};">{global_balance:,.2f} ৳</div></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="kpi-card"><div class="kpi-title">Total Receivables (সর্বমোট বকেয়া পাওনা)</div><div class="kpi-val" style="color: {"#c62828" if global_balance > 0 else "#2e7d32"};">{format_indian_style(global_balance)} ৳</div></div>', unsafe_allow_html=True)
         
     st.write("")
     st.subheader("📋 সকল গ্রাহকের হিসাব তালিকা")
@@ -340,14 +363,21 @@ if menu == "📈 সর্বমোট সারসংক্ষেপ (General S
             df_summary["Address (ঠিকানা)"].str.contains(table_search, case=False, na=False)
         ]
         
+    # Format columns in Indian style
+    df_formatted = df_summary.copy()
+    if not df_formatted.empty:
+        df_formatted["Total Sales (মোট ক্রয়) ৳"] = df_formatted["Total Sales (মোট ক্রয়) ৳"].apply(format_indian_style)
+        df_formatted["Total Payments (মোট পরিশোধ) ৳"] = df_formatted["Total Payments (মোট পরিশোধ) ৳"].apply(format_indian_style)
+        df_formatted["Balance (বকেয়া) ৳"] = df_formatted["Balance (বকেয়া) ৳"].apply(format_indian_style)
+        
     st.dataframe(
-        df_summary,
+        df_formatted,
         use_container_width=True,
         hide_index=True,
         column_config={
-            "Total Sales (মোট ক্রয়) ৳": st.column_config.NumberColumn(format="%.2f"),
-            "Total Payments (মোট পরিশোধ) ৳": st.column_config.NumberColumn(format="%.2f"),
-            "Balance (বকেয়া) ৳": st.column_config.NumberColumn(format="%.2f")
+            "Total Sales (মোট ক্রয়) ৳": st.column_config.TextColumn(),
+            "Total Payments (মোট পরিশোধ) ৳": st.column_config.TextColumn(),
+            "Balance (বকেয়া) ৳": st.column_config.TextColumn()
         }
     )
 
@@ -427,11 +457,11 @@ elif menu == "📊 গ্রাহক খতিয়ান (Client Ledger Sheet)":
     # Client KPIs
     kcol1, kcol2, kcol3 = st.columns(3)
     with kcol1:
-        st.markdown(f'<div class="kpi-card"><div class="kpi-title">Total Purchases (মোট ক্রয়)</div><div class="kpi-val">{total_debit:,.2f} ৳</div></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="kpi-card"><div class="kpi-title">Total Purchases (মোট ক্রয়)</div><div class="kpi-val">{format_indian_style(total_debit)} ৳</div></div>', unsafe_allow_html=True)
     with kcol2:
-        st.markdown(f'<div class="kpi-card"><div class="kpi-title">Total Payments (মোট পরিশোধ)</div><div class="kpi-val" style="color: #2e7d32;">{total_credit:,.2f} ৳</div></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="kpi-card"><div class="kpi-title">Total Payments (মোট পরিশোধ)</div><div class="kpi-val" style="color: #2e7d32;">{format_indian_style(total_credit)} ৳</div></div>', unsafe_allow_html=True)
     with kcol3:
-        st.markdown(f'<div class="kpi-card"><div class="kpi-title">Balance / Outstanding (বকেয়া)</div><div class="kpi-val" style="color: {"#c62828" if outstanding_balance > 0 else "#2e7d32"};">{outstanding_balance:,.2f} ৳</div></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="kpi-card"><div class="kpi-title">Balance / Outstanding (বকেয়া)</div><div class="kpi-val" style="color: {"#c62828" if outstanding_balance > 0 else "#2e7d32"};">{format_indian_style(outstanding_balance)} ৳</div></div>', unsafe_allow_html=True)
         
     st.write("")
     
@@ -441,6 +471,13 @@ elif menu == "📊 গ্রাহক খতিয়ান (Client Ledger Sheet)":
         st.subheader("📈 ডেবিট এন্ট্রি সমূহ (Debit - Bills/Sales)")
         if debit_list:
             df_debit = pd.DataFrame(debit_list)
+            
+            # Format monetary columns in Indian style safely preserving empty cells & ditto marks
+            if "taka" in df_debit.columns:
+                df_debit["taka"] = df_debit["taka"].apply(lambda x: format_indian_style(clean_num(x)) if str(x).strip() not in ("", "〃", '"') else x)
+            if "total" in df_debit.columns:
+                df_debit["total"] = df_debit["total"].apply(lambda x: format_indian_style(clean_num(x)) if str(x).strip() not in ("", "〃", '"') else x)
+                
             cols = ["no", "date", "bi_ka", "description", "size", "model", "qty", "taka", "total", "remarks"]
             existing_cols = [c for c in cols if c in df_debit.columns]
             st.dataframe(df_debit[existing_cols], use_container_width=True, hide_index=True)
@@ -451,6 +488,11 @@ elif menu == "📊 গ্রাহক খতিয়ান (Client Ledger Sheet)":
         st.subheader("📉 ক্রেডিট এন্ট্রি সমূহ (Credit - Payments)")
         if credit_list:
             df_credit = pd.DataFrame(credit_list)
+            
+            # Format amount column safely
+            if "amount" in df_credit.columns:
+                df_credit["amount"] = df_credit["amount"].apply(lambda x: format_indian_style(clean_num(x)) if str(x).strip() not in ("", "〃", '"') else x)
+                
             cols = ["no", "date", "amount", "remarks"]
             existing_cols = [c for c in cols if c in df_credit.columns]
             st.dataframe(df_credit[existing_cols], use_container_width=True, hide_index=True)
