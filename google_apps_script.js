@@ -116,6 +116,7 @@ function doPost(e) {
     });
     creditSheet.getRange(1, 1, creditValues.length, creditHeaders.length).setValues(creditValues);
     
+    SpreadsheetApp.flush(); // Commit all pending sheet writes to allow pivot range validation
     syncClientSheets(ss);
     return ContentService.createTextOutput(JSON.stringify({status: "success", message: "Bulk initialization complete"}))
       .setMimeType(ContentService.MimeType.JSON);
