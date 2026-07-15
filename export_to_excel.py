@@ -508,7 +508,12 @@ def export():
                             val_str = str(cell.value or "")
                             if len(val_str) > max_len:
                                 max_len = len(val_str)
-                    sheet.column_dimensions[col_letter].width = max(max_len + 3, 12)
+                            if col_letter == "E":
+                                cell.alignment = Alignment(wrap_text=True, horizontal="center", vertical="top")
+                    if col_letter == "E":
+                        sheet.column_dimensions[col_letter].width = 6
+                    else:
+                        sheet.column_dimensions[col_letter].width = max(max_len + 3, 12)
             
     print("Excel file created successfully!")
 

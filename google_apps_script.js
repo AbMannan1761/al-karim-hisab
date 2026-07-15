@@ -328,6 +328,8 @@ function syncClientSheets(ss, targetClientName) {
         for (var col = 1; col <= 17; col++) {
           if (col === 1) {
             sheet.setColumnWidth(col, 25); // Column A is 0.25 inches (25px)
+          } else if (col === 5) {
+            sheet.setColumnWidth(col, 45); // Column E (Size) is set to 45px
           } else if (col === 13) {
             sheet.setColumnWidth(col, 25); // separator column
           } else {
@@ -513,6 +515,8 @@ function syncClientSheets(ss, targetClientName) {
     for (var col = 1; col <= 17; col++) {
       if (col === 1) {
         sheet.setColumnWidth(col, 25); // Column A is 0.25 inches (25px)
+      } else if (col === 5) {
+        sheet.setColumnWidth(col, 45); // Column E (Size) is set to 45px
       } else if (col === 13) {
         sheet.setColumnWidth(col, 25); // Column M is the blank separator column
       } else {
