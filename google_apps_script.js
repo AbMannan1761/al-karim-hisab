@@ -853,14 +853,14 @@ function createPivotTableSheet(ss) {
   var sourceRange = debitSheet.getDataRange();
   var pivotTable = pivotSheet.getRange("A1").createPivotTable(sourceRange);
   
-  // Row Group: Client Name (Column A, index 0)
-  var rowGroup = pivotTable.addRowGroup(0);
+  // Row Group: Client Name (Column A, index 1)
+  var rowGroup = pivotTable.addRowGroup(1);
   rowGroup.showTotals(true);
   
-  // Column Group: Details (Column E, index 4)
-  var colGroup = pivotTable.addColumnGroup(4);
+  // Column Group: Details (Column E, index 5)
+  var colGroup = pivotTable.addColumnGroup(5);
   colGroup.showTotals(true);
   
-  // Values: Total (Column M, index 12)
-  pivotTable.addPivotValue(12, SpreadsheetApp.PivotTableSummarizeFunction.SUM).setDisplayName("Total Sales");
+  // Values: Total (Column M, index 13)
+  pivotTable.addPivotValue(13, SpreadsheetApp.PivotTableSummarizeFunction.SUM).setDisplayName("Total Sales");
 }
