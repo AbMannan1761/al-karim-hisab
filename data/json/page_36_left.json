@@ -1,20 +1,20 @@
 {
-  "party_name": "আযীম চন্দ",
+  "party_name": "খায়ের ভাই",
   "phone": "",
   "ledger_page_number": "72",
   "debit_table": [
     {
-      "no": "1",
-      "date": "18.04.24",
+      "no": 1,
+      "date": 18,
       "bi_ka": "বিক্রয়",
       "description": "প্যান্ট",
-      "size": "40/44",
+      "size": 40,
       "model": "-",
-      "pd": "4500",
-      "bill": "2700",
-      "qty": "1",
-      "taka": "4500",
-      "total": "4500",
+      "pd": 4500,
+      "bill": 2700,
+      "qty": 1,
+      "taka": 4500,
+      "total": 4500,
       "remarks": ""
     }
   ]

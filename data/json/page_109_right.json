@@ -1,25 +1,6 @@
 {
-  "party_name": "নিজান সাহেদস",
+  "party_name": "",
   "phone": "",
-  "ledger_page_number": "197",
-  "credit_table": [
-    {
-      "no": "1",
-      "date": "",
-      "amount": "7488",
-      "remarks": "জমা"
-    },
-    {
-      "no": "2",
-      "date": "",
-      "amount": "220",
-      "remarks": "জমা"
-    },
-    {
-      "no": "3",
-      "date": "",
-      "amount": "140",
-      "remarks": "জমা"
-    }
-  ]
+  "ledger_page_number": "219",
+  "credit_table": []
 }

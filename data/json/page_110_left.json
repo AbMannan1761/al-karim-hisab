@@ -1,49 +1,6 @@
 {
-  "party_name": "আইছিয়াল সাহেদস",
-  "phone": "null",
-  "ledger_page_number": "198",
-  "debit_table": [
-    {
-      "no": "1",
-      "date": "20.06.24",
-      "bi_ka": "বকেয়া+নগদ",
-      "description": "প্যান্ট জমা",
-      "size": "40/44",
-      "model": "F-276",
-      "pd": "1570",
-      "bill": "652",
-      "qty": "207",
-      "taka": "70",
-      "total": "82950",
-      "remarks": ""
-    },
-    {
-      "no": "2",
-      "date": "22.06.24",
-      "bi_ka": "বকেয়া",
-      "description": "সামান",
-      "size": "40/44",
-      "model": "F276",
-      "pd": "1840",
-      "bill": "656",
-      "qty": "256",
-      "taka": "50",
-      "total": "81200",
-      "remarks": ""
-    },
-    {
-      "no": "3",
-      "date": "22.06.24",
-      "bi_ka": "বকেয়া",
-      "description": "সামান",
-      "size": "40/44",
-      "model": "F280",
-      "pd": "1660",
-      "bill": "656",
-      "qty": "228",
-      "taka": "50",
-      "total": "82650",
-      "remarks": ""
-    }
-  ]
+  "party_name": "আইডিয়াল গার্মেন্টস",
+  "phone": "",
+  "ledger_page_number": "220",
+  "debit_table": []
 }

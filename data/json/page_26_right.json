@@ -1,192 +1,192 @@
 {
-  "party_name": "প্রীতি সাং",
-  "phone": "N/A",
+  "party_name": "",
+  "phone": "",
   "ledger_page_number": "53",
   "credit_table": [
     {
-      "no": "1",
-      "date": "06.05.20",
-      "amount": "2000",
-      "remarks": "="
+      "no": 1,
+      "date": 6,
+      "amount": 2000,
+      "remarks": "#ERROR!"
     },
     {
-      "no": "2",
-      "date": "20.05.20",
-      "amount": "2000",
-      "remarks": "="
+      "no": 2,
+      "date": 20,
+      "amount": 2000,
+      "remarks": "#ERROR!"
     },
     {
-      "no": "3",
-      "date": "06.06.20",
-      "amount": "10000",
-      "remarks": "="
+      "no": 3,
+      "date": 6,
+      "amount": 10000,
+      "remarks": "#ERROR!"
     },
     {
-      "no": "4",
-      "date": "14.06.20",
-      "amount": "2000",
-      "remarks": "="
+      "no": 4,
+      "date": 14,
+      "amount": 2000,
+      "remarks": "#ERROR!"
     },
     {
-      "no": "5",
-      "date": "14.06.20",
-      "amount": "2000",
-      "remarks": "="
+      "no": 5,
+      "date": 14,
+      "amount": 2000,
+      "remarks": "#ERROR!"
     },
     {
-      "no": "6",
-      "date": "22.06.20",
-      "amount": "2000",
-      "remarks": "="
+      "no": 6,
+      "date": 22,
+      "amount": 2000,
+      "remarks": "#ERROR!"
     },
     {
-      "no": "7",
-      "date": "26.06.20",
-      "amount": "2000",
-      "remarks": "="
+      "no": 7,
+      "date": 26,
+      "amount": 2000,
+      "remarks": "#ERROR!"
     },
     {
-      "no": "8",
-      "date": "08.02.20",
-      "amount": "2000",
-      "remarks": "="
+      "no": 8,
+      "date": 8,
+      "amount": 2000,
+      "remarks": "#ERROR!"
     },
     {
-      "no": "9",
-      "date": "11.02.20",
-      "amount": "2000",
-      "remarks": "="
+      "no": 9,
+      "date": 11,
+      "amount": 2000,
+      "remarks": "#ERROR!"
     },
     {
-      "no": "10",
-      "date": "16.02.20",
-      "amount": "2000",
-      "remarks": "="
+      "no": 10,
+      "date": 16,
+      "amount": 2000,
+      "remarks": "#ERROR!"
     },
     {
-      "no": "11",
-      "date": "20.02.20",
-      "amount": "2000",
-      "remarks": "="
+      "no": 11,
+      "date": 20,
+      "amount": 2000,
+      "remarks": "#ERROR!"
     },
     {
-      "no": "12",
-      "date": "02.20.20",
-      "amount": "2000",
-      "remarks": "="
+      "no": 12,
+      "date": 2,
+      "amount": 2000,
+      "remarks": "#ERROR!"
     },
     {
-      "no": "13",
-      "date": "02.20.20",
-      "amount": "2000",
-      "remarks": "="
+      "no": 13,
+      "date": 2,
+      "amount": 2000,
+      "remarks": "#ERROR!"
     },
     {
-      "no": "14",
-      "date": "25.20.20",
-      "amount": "2000",
-      "remarks": "="
+      "no": 14,
+      "date": 25,
+      "amount": 2000,
+      "remarks": "#ERROR!"
     },
     {
-      "no": "15",
-      "date": "26.20.20",
-      "amount": "2000",
-      "remarks": "="
+      "no": 15,
+      "date": 26,
+      "amount": 2000,
+      "remarks": "#ERROR!"
     },
     {
-      "no": "16",
-      "date": "30.20.20",
-      "amount": "2000",
-      "remarks": "="
+      "no": 16,
+      "date": 30,
+      "amount": 2000,
+      "remarks": "#ERROR!"
     },
     {
-      "no": "17",
-      "date": "06.22.20",
-      "amount": "2000",
-      "remarks": "="
+      "no": 17,
+      "date": 6,
+      "amount": 2000,
+      "remarks": "#ERROR!"
     },
     {
-      "no": "18",
-      "date": "16.22.20",
-      "amount": "2000",
-      "remarks": "="
+      "no": 18,
+      "date": 16,
+      "amount": 2000,
+      "remarks": "#ERROR!"
     },
     {
-      "no": "19",
-      "date": "20.22.20",
-      "amount": "2000",
-      "remarks": "="
+      "no": 19,
+      "date": 20,
+      "amount": 2000,
+      "remarks": "#ERROR!"
     },
     {
-      "no": "20",
-      "date": "29.22.20",
-      "amount": "2000",
-      "remarks": "="
+      "no": 20,
+      "date": 29,
+      "amount": 2000,
+      "remarks": "#ERROR!"
     },
     {
-      "no": "21",
-      "date": "08.22.20",
-      "amount": "2000",
-      "remarks": "="
+      "no": 21,
+      "date": 8,
+      "amount": 2000,
+      "remarks": "#ERROR!"
     },
     {
-      "no": "22",
-      "date": "22.22.20",
-      "amount": "2000",
-      "remarks": "="
+      "no": 22,
+      "date": 22,
+      "amount": 2000,
+      "remarks": "#ERROR!"
     },
     {
-      "no": "23",
-      "date": "26.22.20",
-      "amount": "2000",
-      "remarks": "="
+      "no": 23,
+      "date": 26,
+      "amount": 2000,
+      "remarks": "#ERROR!"
     },
     {
-      "no": "24",
-      "date": "28.22.20",
-      "amount": "2000",
-      "remarks": "="
+      "no": 24,
+      "date": 28,
+      "amount": 2000,
+      "remarks": "#ERROR!"
     },
     {
-      "no": "25",
-      "date": "02.02.24",
-      "amount": "2000",
-      "remarks": "="
+      "no": 25,
+      "date": 2,
+      "amount": 2000,
+      "remarks": "#ERROR!"
     },
     {
-      "no": "26",
-      "date": "6-2-24",
-      "amount": "2000",
+      "no": 26,
+      "date": "2024-06-01T18:00:00.000Z",
+      "amount": 2000,
       "remarks": ""
     },
     {
-      "no": "27",
-      "date": "14-2-24",
-      "amount": "2000",
+      "no": 27,
+      "date": 14,
+      "amount": 2000,
       "remarks": ""
     },
     {
-      "no": "28",
-      "date": "22-2-24",
-      "amount": "2000",
+      "no": 28,
+      "date": 22,
+      "amount": 2000,
       "remarks": ""
     },
     {
-      "no": "29",
-      "date": "24-2-24",
-      "amount": "2000",
+      "no": 29,
+      "date": 24,
+      "amount": 2000,
       "remarks": ""
     },
     {
-      "no": "30",
-      "date": "6-2-24",
-      "amount": "2000",
+      "no": 30,
+      "date": "2024-06-01T18:00:00.000Z",
+      "amount": 2000,
       "remarks": ""
     },
     {
-      "no": "31",
-      "date": "28-2-23",
-      "amount": "2000",
+      "no": 31,
+      "date": 28,
+      "amount": 2000,
       "remarks": ""
     }
   ]

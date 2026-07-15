@@ -1,84 +1,84 @@
 {
-  "party_name": "আব্দুল ভাই",
-  "phone": null,
+  "party_name": "",
+  "phone": "",
   "ledger_page_number": "99",
   "credit_table": [
     {
-      "no": "1",
-      "date": "06.09.24",
-      "amount": "2000",
+      "no": 1,
+      "date": 6,
+      "amount": 2000,
       "remarks": ""
     },
     {
-      "no": "2",
-      "date": "09.09.24",
-      "amount": "2000",
+      "no": 2,
+      "date": 9,
+      "amount": 2000,
       "remarks": ""
     },
     {
-      "no": "3",
-      "date": "14.09.24",
-      "amount": "2000",
+      "no": 3,
+      "date": 14,
+      "amount": 2000,
       "remarks": ""
     },
     {
-      "no": "4",
-      "date": "22.09.24",
-      "amount": "2000",
+      "no": 4,
+      "date": 22,
+      "amount": 2000,
       "remarks": ""
     },
     {
-      "no": "5",
-      "date": "28.09.24",
-      "amount": "2000",
+      "no": 5,
+      "date": 28,
+      "amount": 2000,
       "remarks": ""
     },
     {
-      "no": "6",
-      "date": "04.10.24",
-      "amount": "2000",
+      "no": 6,
+      "date": 4,
+      "amount": 2000,
       "remarks": ""
     },
     {
-      "no": "7",
-      "date": "12.10.24",
-      "amount": "2000",
+      "no": 7,
+      "date": 12,
+      "amount": 2000,
       "remarks": ""
     },
     {
-      "no": "8",
-      "date": "16.10.24",
-      "amount": "2000",
+      "no": 8,
+      "date": 16,
+      "amount": 2000,
       "remarks": ""
     },
     {
-      "no": "9",
-      "date": "24.10.24",
-      "amount": "2000",
+      "no": 9,
+      "date": 24,
+      "amount": 2000,
       "remarks": ""
     },
     {
-      "no": "10",
-      "date": "27.10.24",
-      "amount": "2000",
+      "no": 10,
+      "date": 27,
+      "amount": 2000,
       "remarks": ""
     },
     {
-      "no": "11",
-      "date": "06.11.24",
-      "amount": "5000",
+      "no": 11,
+      "date": 6,
+      "amount": 5000,
       "remarks": ""
     },
     {
-      "no": "12",
-      "date": "18.11.24",
-      "amount": "2000",
+      "no": 12,
+      "date": 18,
+      "amount": 2000,
       "remarks": ""
     },
     {
-      "no": "13",
-      "date": "24.11.24",
-      "amount": "2000",
+      "no": 13,
+      "date": 24,
+      "amount": 2000,
       "remarks": ""
     }
   ]

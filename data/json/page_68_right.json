@@ -1,31 +1,6 @@
 {
-  "party_name": "N/A",
-  "phone": "N/A",
+  "party_name": "",
+  "phone": "",
   "ledger_page_number": "137",
-  "credit_table": [
-    {
-      "no": "1",
-      "date": "15.06.24",
-      "amount": "2000",
-      "remarks": "নগদ প্রদান"
-    },
-    {
-      "no": "2",
-      "date": "18.06.24",
-      "amount": "1500",
-      "remarks": "নগদ প্রদান"
-    },
-    {
-      "no": "3",
-      "date": "22.06.24",
-      "amount": "3000",
-      "remarks": "নগদ প্রদান"
-    },
-    {
-      "no": "4",
-      "date": "28.06.24",
-      "amount": "2500",
-      "remarks": "নগদ প্রদান"
-    }
-  ]
+  "credit_table": []
 }

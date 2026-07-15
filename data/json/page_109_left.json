@@ -1,63 +1,6 @@
 {
-  "party_name": "জাঙ্গিরা পাঞ্জাবী",
+  "party_name": "সিজান গার্মেন্টস",
   "phone": "",
-  "ledger_page_number": "136",
-  "debit_table": [
-    {
-      "no": "1",
-      "date": "24.2.26",
-      "bi_ka": "B+K+H",
-      "description": "কাটসমতি",
-      "size": "20/66",
-      "model": "F-202",
-      "pd": "350",
-      "bill": "261",
-      "qty": "26",
-      "taka": "160",
-      "total": "32820",
-      "remarks": ""
-    },
-    {
-      "no": "2",
-      "date": "29.2.26",
-      "bi_ka": "B+K+H",
-      "description": "ঐ",
-      "size": "80/88",
-      "model": "F-60",
-      "pd": "22",
-      "bill": "262",
-      "qty": "22",
-      "taka": "60",
-      "total": "29660",
-      "remarks": ""
-    },
-    {
-      "no": "3",
-      "date": "20.6.26",
-      "bi_ka": "B+K+H",
-      "description": "সামার রেস",
-      "size": "80/88",
-      "model": "F-860",
-      "pd": "82",
-      "bill": "263",
-      "qty": "60",
-      "taka": "480",
-      "total": "28840",
-      "remarks": ""
-    },
-    {
-      "no": "4",
-      "date": "20.7.26",
-      "bi_ka": "B+K+H",
-      "description": "সুতি",
-      "size": "80/88",
-      "model": "F-90",
-      "pd": "226",
-      "bill": "264",
-      "qty": "90",
-      "taka": "9220",
-      "total": "220920",
-      "remarks": ""
-    }
-  ]
+  "ledger_page_number": "218",
+  "debit_table": []
 }

@@ -1,49 +1,6 @@
 {
-  "party_name": "মাষ্টার গার্মেন্টস",
+  "party_name": "",
   "phone": "",
   "ledger_page_number": "196",
-  "debit_table": [
-    {
-      "no": "1",
-      "date": "20.03.24",
-      "bi_ka": "B+K+H+পার্টস জমা",
-      "description": "পার্টস জমা",
-      "size": "40/44",
-      "model": "P-216",
-      "pd": "1550",
-      "bill": "217",
-      "qty": "652",
-      "taka": "50",
-      "total": "11900",
-      "remarks": ""
-    },
-    {
-      "no": "2",
-      "date": "22.03.24",
-      "bi_ka": "B+K+H",
-      "description": "পার্টস",
-      "size": "40/44",
-      "model": "F276",
-      "pd": "1840",
-      "bill": "218",
-      "qty": "50",
-      "taka": "50",
-      "total": "2500",
-      "remarks": ""
-    },
-    {
-      "no": "3",
-      "date": "22.03.24",
-      "bi_ka": "B+K+H",
-      "description": "পার্টস",
-      "size": "40/44",
-      "model": "F260",
-      "pd": "1660",
-      "bill": "228",
-      "qty": "5",
-      "taka": "50",
-      "total": "8250",
-      "remarks": ""
-    }
-  ]
+  "debit_table": []
 }

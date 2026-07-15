@@ -113,14 +113,22 @@ def main():
     try:
         response = requests.post(url, json=payload)
         if response.status_code == 200:
-            res_json = response.json()
-            if res_json.get("status") == "success":
-                print("SUCCESS: Google Sheets database populated successfully!")
-            else:
-                print(f"Error: {res_json.get('message')}")
+            try:
+                res_json = response.json()
+                if res_json.get("status") == "success":
+                    print("SUCCESS: Google Sheets database populated successfully!")
+                else:
+                    print(f"Error: {res_json.get('message')}")
+            except ValueError as je:
+                print(f"Upload failed to decode JSON response: {je}")
+                with open("error_response.html", "w", encoding="utf-8") as ef:
+                    ef.write(response.text)
+                print("Saved the server's HTML response to 'error_response.html' for inspection.")
         else:
             print(f"HTTP Error: {response.status_code}")
-            print(response.text)
+            with open("error_response.html", "w", encoding="utf-8") as ef:
+                ef.write(response.text)
+            print("Saved the server's HTML response to 'error_response.html' for inspection.")
     except Exception as e:
         print(f"Upload failed: {e}")
 

@@ -1,25 +1,25 @@
 {
-  "party_name": "নাল",
-  "phone": "নাল",
-  "ledger_page_number": "199",
+  "party_name": "",
+  "phone": "",
+  "ledger_page_number": "197",
   "credit_table": [
     {
-      "no": "নাল",
-      "date": "নাল",
-      "amount": "নাল",
-      "remarks": "মোট কাজ = ৮,৪২,১৩০"
+      "no": 1,
+      "date": "",
+      "amount": 7488,
+      "remarks": "জমা"
     },
     {
-      "no": "নাল",
-      "date": "নাল",
-      "amount": "নাল",
-      "remarks": "মোট খরচ = ১৬৭,০০০"
+      "no": 2,
+      "date": "",
+      "amount": 220,
+      "remarks": "জমা"
     },
     {
-      "no": "নাল",
-      "date": "নাল",
-      "amount": "নাল",
-      "remarks": "মোট পাওনা = ৭০৫,১৩০"
+      "no": 3,
+      "date": "",
+      "amount": 140,
+      "remarks": "জমা"
     }
   ]
 }

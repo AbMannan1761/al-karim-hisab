@@ -1,64 +1,64 @@
 {
-  "party_name": "আবিদ হামজা",
+  "party_name": "",
   "phone": "",
   "ledger_page_number": "19",
   "credit_table": [
     {
-      "no": "1",
-      "date": "29.08.24",
-      "amount": "2000",
+      "no": 1,
+      "date": 29,
+      "amount": 2000,
       "remarks": ""
     },
     {
-      "no": "2",
-      "date": "26.02.25",
-      "amount": "2000",
+      "no": 2,
+      "date": 26,
+      "amount": 2000,
       "remarks": ""
     },
     {
-      "no": "3",
-      "date": "06.10.25",
-      "amount": "3000",
+      "no": 3,
+      "date": 6,
+      "amount": 3000,
       "remarks": ""
     },
     {
-      "no": "4",
-      "date": "28.10.25",
-      "amount": "3000",
+      "no": 4,
+      "date": 28,
+      "amount": 3000,
       "remarks": ""
     },
     {
-      "no": "5",
-      "date": "20.12.25",
-      "amount": "2000",
+      "no": 5,
+      "date": 20,
+      "amount": 2000,
       "remarks": ""
     },
     {
-      "no": "6",
-      "date": "08.02.25",
-      "amount": "2000",
+      "no": 6,
+      "date": 8,
+      "amount": 2000,
       "remarks": ""
     },
     {
-      "no": "7",
+      "no": 7,
       "date": "",
       "amount": "",
       "remarks": ""
     },
     {
-      "no": "8",
+      "no": 8,
       "date": "",
       "amount": "",
       "remarks": ""
     },
     {
-      "no": "9",
+      "no": 9,
       "date": "",
       "amount": "",
       "remarks": ""
     },
     {
-      "no": "10",
+      "no": 10,
       "date": "",
       "amount": "",
       "remarks": ""

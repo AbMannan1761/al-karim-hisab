@@ -1,204 +1,204 @@
 {
-  "party_name": "রূপসী বালিকা",
-  "phone": null,
+  "party_name": "",
+  "phone": "",
   "ledger_page_number": "69",
   "credit_table": [
     {
-      "no": "1",
-      "date": "29.9.24",
-      "amount": "2000",
+      "no": 1,
+      "date": 30,
+      "amount": 2000,
       "remarks": ""
     },
     {
-      "no": "2",
-      "date": "24.9.24",
-      "amount": "2000",
+      "no": 2,
+      "date": 25,
+      "amount": 2000,
       "remarks": ""
     },
     {
-      "no": "3",
-      "date": "01.9.24",
-      "amount": "2000",
+      "no": 3,
+      "date": 2,
+      "amount": 2000,
       "remarks": ""
     },
     {
-      "no": "4",
-      "date": "1.8.24",
-      "amount": "6000",
+      "no": 4,
+      "date": 2,
+      "amount": 6000,
       "remarks": ""
     },
     {
-      "no": "5",
-      "date": "18.8.24",
-      "amount": "6000",
+      "no": 5,
+      "date": 19,
+      "amount": 6000,
       "remarks": ""
     },
     {
-      "no": "6",
-      "date": "12.8.24",
-      "amount": "6000",
+      "no": 6,
+      "date": 13,
+      "amount": 6000,
       "remarks": ""
     },
     {
-      "no": "7",
-      "date": "18.8.24",
-      "amount": "2000",
+      "no": 7,
+      "date": 19,
+      "amount": 2000,
       "remarks": ""
     },
     {
-      "no": "8",
-      "date": "4.9.24",
-      "amount": "6000",
+      "no": 8,
+      "date": 5,
+      "amount": 6000,
       "remarks": ""
     },
     {
-      "no": "9",
-      "date": "18.9.24",
-      "amount": "8000",
+      "no": 9,
+      "date": 19,
+      "amount": 8000,
       "remarks": ""
     },
     {
-      "no": "10",
-      "date": "15.9.24",
-      "amount": "2000",
+      "no": 10,
+      "date": 16,
+      "amount": 2000,
       "remarks": ""
     },
     {
-      "no": "11",
-      "date": "2.10.24",
-      "amount": "6000",
+      "no": 11,
+      "date": 2,
+      "amount": 6000,
       "remarks": ""
     },
     {
-      "no": "12",
-      "date": "4.10.24",
-      "amount": "6000",
+      "no": 12,
+      "date": 4,
+      "amount": 6000,
       "remarks": ""
     },
     {
-      "no": "13",
-      "date": "16.10.24",
-      "amount": "2000",
+      "no": 13,
+      "date": 16,
+      "amount": 2000,
       "remarks": ""
     },
     {
-      "no": "14",
-      "date": "11.10.24",
-      "amount": "2000",
+      "no": 14,
+      "date": 11,
+      "amount": 2000,
       "remarks": ""
     },
     {
-      "no": "10.10.24",
-      "date": "10.10.24",
-      "amount": "2000",
+      "no": 10,
+      "date": 10,
+      "amount": 2000,
       "remarks": ""
     },
     {
-      "no": "16",
-      "date": "01.10.24",
-      "amount": "2000",
+      "no": 16,
+      "date": 1,
+      "amount": 2000,
       "remarks": ""
     },
     {
-      "no": "17",
-      "date": "15.11.24",
-      "amount": "2000",
+      "no": 17,
+      "date": 15,
+      "amount": 2000,
       "remarks": ""
     },
     {
-      "no": "18",
-      "date": "16.11.24",
-      "amount": "2000",
+      "no": 18,
+      "date": 16,
+      "amount": 2000,
       "remarks": ""
     },
     {
-      "no": "19",
-      "date": "10.11.24",
-      "amount": "6000",
+      "no": 19,
+      "date": 10,
+      "amount": 6000,
       "remarks": ""
     },
     {
-      "no": "20",
-      "date": "29.11.24",
-      "amount": "4000",
+      "no": 20,
+      "date": 29,
+      "amount": 4000,
       "remarks": ""
     },
     {
-      "no": "21",
-      "date": "4.11.24",
-      "amount": "6000",
+      "no": 21,
+      "date": 4,
+      "amount": 6000,
       "remarks": ""
     },
     {
-      "no": "22",
-      "date": "12.11.24",
-      "amount": "2000",
+      "no": 22,
+      "date": 12,
+      "amount": 2000,
       "remarks": ""
     },
     {
-      "no": "23",
-      "date": "18.11.24",
-      "amount": "2000",
+      "no": 23,
+      "date": 18,
+      "amount": 2000,
       "remarks": ""
     },
     {
-      "no": "24",
-      "date": "24.11.24",
-      "amount": "6000",
+      "no": 24,
+      "date": 24,
+      "amount": 6000,
       "remarks": ""
     },
     {
-      "no": "25",
-      "date": "29.11.24",
-      "amount": "2000",
+      "no": 25,
+      "date": 29,
+      "amount": 2000,
       "remarks": ""
     },
     {
-      "no": "26",
-      "date": "2.12.24",
-      "amount": "6000",
+      "no": 26,
+      "date": 2,
+      "amount": 6000,
       "remarks": ""
     },
     {
-      "no": "27",
-      "date": "6.12.24",
-      "amount": "6000",
+      "no": 27,
+      "date": 6,
+      "amount": 6000,
       "remarks": ""
     },
     {
-      "no": "28",
-      "date": "14.12.24",
-      "amount": "6000",
+      "no": 28,
+      "date": 14,
+      "amount": 6000,
       "remarks": ""
     },
     {
-      "no": "29",
-      "date": "12.12.24",
-      "amount": "6000",
+      "no": 29,
+      "date": 12,
+      "amount": 6000,
       "remarks": ""
     },
     {
-      "no": "30",
-      "date": "01.12.24",
-      "amount": "22000",
+      "no": 30,
+      "date": 1,
+      "amount": 22000,
       "remarks": ""
     },
     {
-      "no": "31",
-      "date": "4.12.24",
-      "amount": "6000",
+      "no": 31,
+      "date": 4,
+      "amount": 6000,
       "remarks": ""
     },
     {
-      "no": "32",
-      "date": "10.12.24",
-      "amount": "6000",
+      "no": 32,
+      "date": 10,
+      "amount": 6000,
       "remarks": ""
     },
     {
-      "no": "33",
-      "date": "12.12.24",
-      "amount": "8000",
+      "no": 33,
+      "date": 12,
+      "amount": 8000,
       "remarks": ""
     }
   ]

@@ -1,18 +1,18 @@
 {
-  "party_name": "মায়িম সাং",
-  "phone": null,
+  "party_name": "",
+  "phone": "",
   "ledger_page_number": "45",
   "credit_table": [
     {
-      "no": "1",
-      "date": "15.06.24",
-      "amount": "1500",
+      "no": 1,
+      "date": 15,
+      "amount": 1500,
       "remarks": "নগদ"
     },
     {
-      "no": "2",
-      "date": "15.06.24",
-      "amount": "1500",
+      "no": 2,
+      "date": 15,
+      "amount": 1500,
       "remarks": "নগদ"
     }
   ]
