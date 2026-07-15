@@ -700,6 +700,11 @@ function createDashboardSheet(ss) {
     sheet = ss.insertSheet("Dashboard");
   }
   
+  // Ensure enough columns exist for the chart to anchor without fallback
+  if (sheet.getMaxColumns() < 15) {
+    sheet.insertColumnsAfter(sheet.getMaxColumns(), 15 - sheet.getMaxColumns());
+  }
+  
   var fontName = "Segoe UI";
   
   // 1. Title Banner
@@ -822,13 +827,14 @@ function createDashboardSheet(ss) {
           .setChartType(Charts.ChartType.COLUMN)
           .addRange(sheet.getRange("B6:B" + (totalRow-1))) // Client Names
           .addRange(sheet.getRange("G6:G" + (totalRow-1))) // Outstanding Balances
-          .setPosition(3, 10, 0, 0) // Anchor at J3 (inside frozen pane)
+          .setPosition(3, 8, 0, 0) // Anchor at H3 (inside frozen pane)
           .setOption("title", "গ্রাহকদের বকেয়া হিসাব (Client Outstanding Balances)")
           .setOption("colors", ["#C62828"])
           .setOption("width", 650)
           .setOption("height", 118) // Fits completely inside frozen Rows 3 & 4 (total height 120px)
           .build();
       sheet.insertChart(chart);
+      SpreadsheetApp.flush(); // Commit changes immediately
     }
   }
   
