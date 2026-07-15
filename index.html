@@ -821,8 +821,8 @@
                             <button id="printBtn" onclick="printClientLedger()" style="display: flex; align-items: center; gap: 4px; padding: 6px 12px; font-size: 11px; font-weight: bold; border-radius: 8px; cursor: pointer; border: 1.5px solid var(--border); background: #f8fafc; color: var(--text);">
                                 🖨️ প্রিন্ট করুন
                             </button>
-                            <button id="downloadBtn" onclick="downloadClientCSV()" style="display: flex; align-items: center; gap: 4px; padding: 6px 12px; font-size: 11px; font-weight: bold; border-radius: 8px; cursor: pointer; border: none; background: var(--primary); color: #ffffff;">
-                                📥 ডাউনলোড (Excel)
+                            <button id="downloadBtn" onclick="downloadClientPDF()" style="display: flex; align-items: center; gap: 4px; padding: 6px 12px; font-size: 11px; font-weight: bold; border-radius: 8px; cursor: pointer; border: none; background: var(--primary); color: #ffffff;">
+                                📥 ডাউনলোড (PDF)
                             </button>
                         </div>
                     </div>
@@ -1241,91 +1241,8 @@
             window.print();
         }
 
-        function downloadClientCSV() {
-            if (!currentSelectedClient) {
-                alert("কোনো গ্রাহক সিলেক্ট করা নেই!");
-                return;
-            }
-            
-            let csvContent = "\ufeff"; // UTF-8 BOM to support Bengali characters in Excel
-            
-            // Client Metadata
-            csvContent += `গ্রাহকের নাম (Client Name),${currentSelectedClient.party_name}\n`;
-            csvContent += `ঠিকানা (Address),${currentSelectedClient.address || ''}\n`;
-            csvContent += `লেজার পৃষ্ঠা (Page),${currentSelectedClient.page || ''}\n`;
-            csvContent += `ফোন নম্বর (Phone),${currentSelectedClient.phone || ''}\n`;
-            csvContent += `ইনডেক্স মন্তব্য (Notes),${currentSelectedClient.notes || ''}\n\n`;
-            
-            // KPI metrics
-            let totalDebit = 0;
-            currentSelectedDebits.forEach(row => {
-                let total = cleanNum(row.total);
-                let qty = cleanNum(row.qty);
-                let rate = cleanNum(row.taka);
-                if (total === 0 && qty > 0 && rate > 0) total = qty * rate;
-                totalDebit += total;
-            });
-            let totalCredit = 0;
-            currentSelectedCredits.forEach(row => {
-                totalCredit += cleanNum(row.amount);
-            });
-            let outstanding = totalDebit - totalCredit;
-            
-            csvContent += `মোট ক্রয় (Total Purchases),${totalDebit} ৳\n`;
-            csvContent += `মোট পরিশোধ (Total Payments),${totalCredit} ৳\n`;
-            csvContent += `বকেয়া (Outstanding),${outstanding} ৳\n\n`;
-            
-            // Section: Debit Entries
-            csvContent += "ডেবিট এন্ট্রি সমূহ (Debit - Bills/Sales)\n";
-            csvContent += "নং (No),তারিখ (Date),বিঃ কাঃ (Details),বিবরণ (Description),সাইজ (Size),মডেল (Model),পরিমাণ (Qty),দর (Rate),মোট (Total),মন্তব্য (Remarks)\n";
-            currentSelectedDebits.forEach(row => {
-                let total = cleanNum(row.total);
-                let qty = cleanNum(row.qty);
-                let rate = cleanNum(row.taka);
-                if (total === 0 && qty > 0 && rate > 0) total = qty * rate;
-                
-                let line = [
-                    row.no || '',
-                    row.date || '',
-                    row.bi_ka || '',
-                    row.description || '',
-                    row.size || '',
-                    row.model || '',
-                    row.qty || '',
-                    row.taka || '',
-                    total,
-                    row.remarks || ''
-                ].map(val => `"${String(val).replace(/"/g, '""')}"`).join(",");
-                csvContent += line + "\n";
-            });
-            
-            csvContent += "\n";
-            
-            // Section: Credit Entries
-            csvContent += "ক্রেডিট এন্ট্রি সমূহ (Credit - Payments)\n";
-            csvContent += "নং (No),তারিখ (Date),পরিমাণ (Amount),মন্তব্য (Remarks)\n";
-            currentSelectedCredits.forEach(row => {
-                let line = [
-                    row.no || '',
-                    row.date || '',
-                    row.amount || '',
-                    row.remarks || ''
-                ].map(val => `"${String(val).replace(/"/g, '""')}"`).join(",");
-                csvContent += line + "\n";
-            });
-            
-            // Trigger download
-            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-            const link = document.createElement("a");
-            const url = URL.createObjectURL(blob);
-            link.setAttribute("href", url);
-            
-            let sanitizedName = currentSelectedClient.party_name.replace(/[\\\/\?\:\*\[\]]/g, "");
-            link.setAttribute("download", `${sanitizedName}_khotiyan.csv`);
-            link.style.visibility = 'hidden';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+        function downloadClientPDF() {
+            window.print();
         }
     </script>
 </body>
