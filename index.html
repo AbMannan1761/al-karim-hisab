@@ -1672,7 +1672,29 @@
         function calculateTransTotal() {
             const qty = parseFloat(document.getElementById('transQtyInput').value) || 0;
             const rate = parseFloat(document.getElementById('transRateInput').value) || 0;
-            document.getElementById('transTotalInput').value = Math.round(qty * rate);
+            const rowTotal = Math.round(qty * rate);
+            document.getElementById('transPdInput').value = rowTotal; // "মোট" (PD) = Qty * Rate
+            
+            // Calculate "সর্বশেষ বিল" (Total) = Previous Running Total + rowTotal
+            let prevTotal = 0;
+            if (debitTable && debitTable.length > 0) {
+                const isEdit = document.getElementById('transactionModalTitle').innerText.includes('সম্পাদনা');
+                if (isEdit) {
+                    const editNo = String(document.getElementById('transNoDisplay').value || "").trim();
+                    // Sum all rows before this No
+                    for (let i = 0; i < debitTable.length; i++) {
+                        if (String(debitTable[i].no).trim() === editNo) {
+                            break;
+                        }
+                        const rTotal = parseFloat(debitTable[i].pd) || (parseFloat(debitTable[i].qty) * parseFloat(debitTable[i].taka)) || 0;
+                        prevTotal += rTotal;
+                    }
+                } else {
+                    const lastRow = debitTable[debitTable.length - 1];
+                    prevTotal = parseFloat(lastRow.total) || 0;
+                }
+            }
+            document.getElementById('transTotalInput').value = prevTotal + rowTotal;
         }
 
         function openTransactionModal(type, isNew, rowData = null) {
@@ -2378,7 +2400,7 @@
                         </div>
                         <div class="form-group">
                             <label for="transPdInput">মোট</label>
-                            <input type="text" id="transPdInput" class="form-control" placeholder="টাকা কলামের অতিরিক্ত বিবরণ">
+                            <input type="number" id="transPdInput" class="form-control" readonly placeholder="অটো ক্যালকুলেট হবে">
                         </div>
                     </div>
                     <div class="form-row">

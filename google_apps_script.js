@@ -631,6 +631,7 @@ function syncClientSheets(ss, targetClientName) {
       var debitData = debitSheet.getDataRange().getValues();
       for (var d = 1; d < debitData.length; d++) {
         if (String(debitData[d][0]).trim() === partyName) {
+          var rowNum = 9 + debits.length;
           debits.push([
             debitData[d][2], // No
             debitData[d][3], // Date
@@ -641,8 +642,8 @@ function syncClientSheets(ss, targetClientName) {
             debitData[d][8], // Bill No
             debitData[d][9], // Qty
             debitData[d][10], // Rate
-            debitData[d][11], // PD
-            debitData[d][12], // Total
+            "=H" + rowNum + "*I" + rowNum, // মোট (previously PD)
+            "=SUM(J$9:J" + rowNum + ")", // সর্বশেষ বিল (previously Total)
             debitData[d][13]  // Remarks
           ]);
         }
@@ -1063,22 +1064,34 @@ function onEdit(e) {
 
   // Case 1: Edit on Debit_Transactions
   if (sheetName === "Debit_Transactions") {
-    if (row < 2 || col < 3) return; // Skip headers/metadata (Client Name, Ledger Page)
+    if (col < 3) return; // Skip headers/metadata (Client Name, Ledger Page)
     var clientName = sheet.getRange(row, 1).getValue();
     var rowNo = sheet.getRange(row, 3).getValue();
     if (!clientName || !rowNo) return;
     
+    // Auto-calculate "মোট" (Column 12) if Qty (10) or Rate (11) is edited
+    if (col === 10 || col === 11) {
+      var qty = parseFloat(sheet.getRange(row, 10).getValue()) || 0;
+      var rate = parseFloat(sheet.getRange(row, 11).getValue()) || 0;
+      var currentPdCell = sheet.getRange(row, 12);
+      var calculatedPd = Math.round(qty * rate);
+      if (currentPdCell.getValue() !== calculatedPd) {
+        currentPdCell.setValue(calculatedPd);
+      }
+    }
+    
+    // Recalculate running totals in Column 13 ("সর্বশেষ বিল") for this client
+    recalculateRunningTotalsInDebitTransactions(sheet, clientName);
+    
+    // Update the client sheet
     var clientSheet = getClientSheetByName(ss, clientName);
     if (clientSheet) {
-      var clientRow = findRowInClientSheet(clientSheet, 1, rowNo);
-      if (clientRow !== -1) {
-        clientSheet.getRange(clientRow, col - 2).setValue(newValue);
-      }
+      syncClientSheets(ss, clientName);
     }
   }
   // Case 2: Edit on Credit_Transactions
   else if (sheetName === "Credit_Transactions") {
-    if (row < 2 || col < 3) return;
+    if (col < 3) return;
     var clientName = sheet.getRange(row, 1).getValue();
     var rowNo = sheet.getRange(row, 3).getValue();
     if (!clientName || !rowNo) return;
@@ -1087,7 +1100,10 @@ function onEdit(e) {
     if (clientSheet) {
       var clientRow = findRowInClientSheet(clientSheet, 14, rowNo);
       if (clientRow !== -1) {
-        clientSheet.getRange(clientRow, col + 11).setValue(newValue);
+        var cell = clientSheet.getRange(clientRow, col + 11);
+        if (cell.getValue() !== newValue) {
+          cell.setValue(newValue);
+        }
       }
     }
   }
@@ -1104,7 +1120,14 @@ function onEdit(e) {
       if (debitSheet) {
         var debitRow = findRowInTransactionSheet(debitSheet, clientName, rowNo);
         if (debitRow !== -1) {
-          debitSheet.getRange(debitRow, col + 2).setValue(newValue);
+          var targetCol = col + 2;
+          var cell = debitSheet.getRange(debitRow, targetCol);
+          if (cell.getValue() !== newValue) {
+            cell.setValue(newValue);
+            
+            // If Qty (8) or Rate (9) was edited in client sheet, we let the Case 1 trigger handle
+            // the pd/total recalculation in Debit_Transactions, which will then sync back!
+          }
         }
       }
     } else if (col >= 14 && col <= 17) { // Credit Edit
@@ -1114,7 +1137,10 @@ function onEdit(e) {
       if (creditSheet) {
         var creditRow = findRowInTransactionSheet(creditSheet, clientName, rowNo);
         if (creditRow !== -1) {
-          creditSheet.getRange(creditRow, col - 11).setValue(newValue);
+          var cell = creditSheet.getRange(creditRow, col - 11);
+          if (cell.getValue() !== newValue) {
+            cell.setValue(newValue);
+          }
         }
       }
     }
@@ -1159,4 +1185,19 @@ function findRowInTransactionSheet(sheet, clientName, rowNo) {
     }
   }
   return -1;
+}
+
+function recalculateRunningTotalsInDebitTransactions(sheet, clientName) {
+  var data = sheet.getDataRange().getValues();
+  var runningTotal = 0;
+  for (var i = 1; i < data.length; i++) {
+    if (String(data[i][0]).trim() === String(clientName).trim()) {
+      var rowTotal = parseFloat(data[i][11]) || 0; // Column L (12th)
+      runningTotal += rowTotal;
+      var cell = sheet.getRange(i + 1, 13); // Column M (13th)
+      if (cell.getValue() !== runningTotal) {
+        cell.setValue(runningTotal);
+      }
+    }
+  }
 }
