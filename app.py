@@ -412,11 +412,11 @@ elif menu == "📊 গ্রাহক খতিয়ান (Client Ledger Sheet)":
                 "description": str(row.get("Description", row.get("কাপড়", ""))),
                 "size": str(row.get("Size", "")),
                 "model": str(row.get("Model", "")),
-                "pd": str(row.get("PD", "")),
+                "pd": str(row.get("PD", row.get("মোট", ""))),
                 "bill": str(row.get("Bill No", "")),
                 "qty": str(row.get("Qty", "")),
                 "taka": str(row.get("Rate", "")),
-                "total": str(row.get("Total", "")),
+                "total": str(row.get("Total", row.get("সর্বশেষ বিল", ""))),
                 "remarks": str(row.get("Remarks", ""))
             })
             

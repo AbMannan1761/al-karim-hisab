@@ -77,7 +77,7 @@ function doPost(e) {
     // 2. Setup Debit Sheet in bulk
     var debitSheet = ss.getSheetByName("Debit_Transactions") || ss.insertSheet("Debit_Transactions");
     debitSheet.clear();
-    var debitHeaders = ["Client Name", "Ledger Page", "No", "Date", "বিবরণ", "কাপড়", "Size", "Model", "Bill No", "Qty", "Rate", "PD", "Total", "Remarks"];
+    var debitHeaders = ["Client Name", "Ledger Page", "No", "Date", "বিবরণ", "কাপড়", "Size", "Model", "Bill No", "Qty", "Rate", "মোট", "সর্বশেষ বিল", "Remarks"];
     var debitValues = [debitHeaders];
     params.debit_data.forEach(function(row) {
       debitValues.push([
@@ -446,6 +446,21 @@ function syncClientSheets(ss, targetClientName) {
           }
         }
         
+        // Force update headers in Row 8 even if skipping full format
+        var fontName = "Segoe UI";
+        var debitHeaders = ["No", "Date", "Details (বিঃ কাঃ)", "Description", "Size", "Model", "Bill No", "Qty", "Rate", "মোট", "সর্বশেষ বিল", "Remarks"];
+        debitHeaders.forEach(function(headerText, index) {
+          var cell = sheet.getRange(8, index + 1);
+          cell.setValue(headerText)
+              .setFontFamily(fontName)
+              .setFontSize(10)
+              .setFontWeight("bold")
+              .setFontColor("#FFFFFF")
+              .setBackground("#5C82AD")
+              .setHorizontalAlignment("center")
+              .setVerticalAlignment("middle");
+        });
+        
         continue; // Skip formatting if metadata is identical
       }
       sheet.clear();
@@ -576,7 +591,7 @@ function syncClientSheets(ss, targetClientName) {
     sheet.setRowHeight(7, 24);
     
     // Column Sub-headers (Row 8)
-    var debitHeaders = ["No", "Date", "Details (বিঃ কাঃ)", "Description", "Size", "Model", "Bill No", "Qty", "Rate", "PD", "Total", "Remarks"];
+    var debitHeaders = ["No", "Date", "Details (বিঃ কাঃ)", "Description", "Size", "Model", "Bill No", "Qty", "Rate", "মোট", "সর্বশেষ বিল", "Remarks"];
     var creditHeaders = ["No", "Date", "Amount", "Remarks"];
     
     debitHeaders.forEach(function(headerText, index) {

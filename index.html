@@ -1341,11 +1341,11 @@
                     description: String(row["Description"] || row["কাপড়"] || ""),
                     size: String(row["Size"] || ""),
                     model: String(row["Model"] || ""),
-                    pd: String(row["PD"] || ""),
+                    pd: String(row["PD"] || row["মোট"] || ""),
                     bill: String(row["Bill No"] || ""),
                     qty: String(row["Qty"] || ""),
                     taka: String(row["Rate"] || ""),
-                    total: String(row["Total"] || ""),
+                    total: String(row["Total"] || row["সর্বশেষ বিল"] || ""),
                     remarks: String(row["Remarks"] || "")
                 }));
 
@@ -2373,11 +2373,11 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="transTotalInput">মোট (Total)</label>
+                            <label for="transTotalInput">সর্বশেষ বিল</label>
                             <input type="number" id="transTotalInput" class="form-control" readonly placeholder="অটো ক্যালকুলেট হবে">
                         </div>
                         <div class="form-group">
-                            <label for="transPdInput">PD/টাকা</label>
+                            <label for="transPdInput">মোট</label>
                             <input type="text" id="transPdInput" class="form-control" placeholder="টাকা কলামের অতিরিক্ত বিবরণ">
                         </div>
                     </div>

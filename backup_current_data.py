@@ -80,11 +80,11 @@ def main():
                 "description": row.get("Description", row.get("কাপড়", "")),
                 "size": row.get("Size", ""),
                 "model": row.get("Model", ""),
-                "pd": row.get("PD", ""),
+                "pd": row.get("PD", row.get("মোট", "")),
                 "bill": row.get("Bill No", ""),
                 "qty": row.get("Qty", ""),
                 "taka": row.get("Rate", ""),
-                "total": row.get("Total", ""),
+                "total": row.get("Total", row.get("সর্বশেষ বিল", "")),
                 "remarks": row.get("Remarks", "")
             })
             
