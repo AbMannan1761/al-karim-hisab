@@ -76,8 +76,8 @@ def main():
             debits_by_page[p_num].append({
                 "no": row.get("No", ""),
                 "date": row.get("Date", ""),
-                "bi_ka": row.get("Details", ""),
-                "description": row.get("Description", ""),
+                "bi_ka": row.get("Details", row.get("বিবরণ", "")),
+                "description": row.get("Description", row.get("কাপড়", "")),
                 "size": row.get("Size", ""),
                 "model": row.get("Model", ""),
                 "pd": row.get("PD", ""),

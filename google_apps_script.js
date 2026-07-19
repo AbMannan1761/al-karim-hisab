@@ -77,7 +77,7 @@ function doPost(e) {
     // 2. Setup Debit Sheet in bulk
     var debitSheet = ss.getSheetByName("Debit_Transactions") || ss.insertSheet("Debit_Transactions");
     debitSheet.clear();
-    var debitHeaders = ["Client Name", "Ledger Page", "No", "Date", "Details", "Description", "Size", "Model", "PD", "Bill No", "Qty", "Rate", "Total", "Remarks"];
+    var debitHeaders = ["Client Name", "Ledger Page", "No", "Date", "বিবরণ", "কাপড়", "Size", "Model", "Bill No", "Qty", "Rate", "PD", "Total", "Remarks"];
     var debitValues = [debitHeaders];
     params.debit_data.forEach(function(row) {
       debitValues.push([
@@ -89,10 +89,10 @@ function doPost(e) {
         String(row.description || ""),
         String(row.size || ""),
         String(row.model || ""),
-        String(row.pd || ""),
         String(row.bill || ""),
         row.qty !== null ? parseNumeric(row.qty) : "",
         row.taka !== null ? parseNumeric(row.taka) : "",
+        String(row.pd || ""),
         row.total !== null ? parseNumeric(row.total) : "",
         String(row.remarks || "")
       ]);
@@ -127,8 +127,8 @@ function doPost(e) {
     var sheet = ss.getSheetByName("Debit_Transactions");
     sheet.appendRow([
       params.party_name, params.ledger_page, params.no, params.date, params.bi_ka,
-      params.description, params.size, params.model, params.pd, params.bill,
-      parseNumeric(params.qty), parseNumeric(params.taka), parseNumeric(params.total), params.remarks
+      params.description, params.size, params.model, params.bill, parseNumeric(params.qty),
+      parseNumeric(params.taka), params.pd, parseNumeric(params.total), params.remarks
     ]);
     return ContentService.createTextOutput(JSON.stringify({status: "success"}))
       .setMimeType(ContentService.MimeType.JSON);
@@ -191,10 +191,10 @@ function doPost(e) {
           sheet.getRange(i+1, 6).setValue(params.description);
           sheet.getRange(i+1, 7).setValue(params.size);
           sheet.getRange(i+1, 8).setValue(params.model);
-          sheet.getRange(i+1, 9).setValue(params.pd);
-          sheet.getRange(i+1, 10).setValue(params.bill);
-          sheet.getRange(i+1, 11).setValue(parseNumeric(params.qty));
-          sheet.getRange(i+1, 12).setValue(parseNumeric(params.taka));
+          sheet.getRange(i+1, 9).setValue(params.bill);
+          sheet.getRange(i+1, 10).setValue(parseNumeric(params.qty));
+          sheet.getRange(i+1, 11).setValue(parseNumeric(params.taka));
+          sheet.getRange(i+1, 12).setValue(params.pd);
           sheet.getRange(i+1, 13).setValue(parseNumeric(params.total));
           sheet.getRange(i+1, 14).setValue(params.remarks);
         }
@@ -224,6 +224,104 @@ function doPost(e) {
         break;
       }
     }
+    return ContentService.createTextOutput(JSON.stringify({status: "success"}))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+  
+  if (action === "add_client") {
+    var sheet = ss.getSheetByName("Client_Index");
+    var data = sheet.getDataRange().getValues();
+    var newNo = 1;
+    if (data.length > 1) {
+      var maxNo = 0;
+      for (var i = 1; i < data.length; i++) {
+        var num = parseInt(data[i][0], 10);
+        if (!isNaN(num) && num > maxNo) {
+          maxNo = num;
+        }
+      }
+      newNo = maxNo + 1;
+    }
+    sheet.appendRow([
+      newNo,
+      params.party_name,
+      params.address,
+      params.ledger_page,
+      params.pdf_page || "",
+      params.notes || ""
+    ]);
+    SpreadsheetApp.flush();
+    syncClientSheets(ss, params.party_name);
+    return ContentService.createTextOutput(JSON.stringify({status: "success", client_no: newNo}))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+  
+  if (action === "delete_client") {
+    var sheet = ss.getSheetByName("Client_Index");
+    var data = sheet.getDataRange().getValues();
+    var clientNo = params.client_no;
+    var partyName = "";
+    for (var i = 1; i < data.length; i++) {
+      if (String(data[i][0]) === String(clientNo)) {
+        partyName = String(data[i][1]).trim();
+        sheet.deleteRow(i + 1);
+        break;
+      }
+    }
+    if (partyName) {
+      var cleanName = partyName.replace(/[\\\/\?\:\*\[\]]/g, "");
+      var sheetName = clientNo + ". " + cleanName;
+      if (sheetName.length > 31) sheetName = sheetName.substring(0, 31);
+      var clientSheet = ss.getSheetByName(sheetName);
+      if (clientSheet) {
+        ss.deleteSheet(clientSheet);
+      }
+      
+      var debitSheet = ss.getSheetByName("Debit_Transactions");
+      if (debitSheet) {
+        var debitData = debitSheet.getDataRange().getValues();
+        for (var i = debitData.length - 1; i >= 1; i--) {
+          if (String(debitData[i][0]).trim() === partyName) {
+            debitSheet.deleteRow(i + 1);
+          }
+        }
+      }
+      var creditSheet = ss.getSheetByName("Credit_Transactions");
+      if (creditSheet) {
+        var creditData = creditSheet.getDataRange().getValues();
+        for (var i = creditData.length - 1; i >= 1; i--) {
+          if (String(creditData[i][0]).trim() === partyName) {
+            creditSheet.deleteRow(i + 1);
+          }
+        }
+      }
+    }
+    return ContentService.createTextOutput(JSON.stringify({status: "success"}))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
+  if (action === "bulk_add_debit") {
+    var sheet = ss.getSheetByName("Debit_Transactions");
+    var rows = params.rows;
+    rows.forEach(function(row) {
+      sheet.appendRow([
+        row.party_name, row.ledger_page, row.no, row.date, row.bi_ka,
+        row.description, row.size, row.model, row.bill, parseNumeric(row.qty),
+        parseNumeric(row.taka), row.pd, parseNumeric(row.total), row.remarks
+      ]);
+    });
+    return ContentService.createTextOutput(JSON.stringify({status: "success"}))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
+  if (action === "bulk_add_credit") {
+    var sheet = ss.getSheetByName("Credit_Transactions");
+    var rows = params.rows;
+    rows.forEach(function(row) {
+      sheet.appendRow([
+        row.party_name, row.ledger_page, row.no, row.date, parseNumeric(row.amount), row.remarks
+      ]);
+    });
     return ContentService.createTextOutput(JSON.stringify({status: "success"}))
       .setMimeType(ContentService.MimeType.JSON);
   }
@@ -468,7 +566,7 @@ function syncClientSheets(ss, targetClientName) {
     sheet.setRowHeight(7, 24);
     
     // Column Sub-headers (Row 8)
-    var debitHeaders = ["No", "Date", "Details (বিঃ কাঃ)", "Description", "Size", "Model", "PD", "Bill No", "Qty", "Rate", "Total", "Remarks"];
+    var debitHeaders = ["No", "Date", "Details (বিঃ কাঃ)", "Description", "Size", "Model", "Bill No", "Qty", "Rate", "PD", "Total", "Remarks"];
     var creditHeaders = ["No", "Date", "Amount", "Remarks"];
     
     debitHeaders.forEach(function(headerText, index) {

@@ -337,7 +337,7 @@ def export():
             sheet.row_dimensions[10].height = 24
             
             # Column Headers (Row 11)
-            debit_headers = ["No", "Date", "Details (বিঃ কাঃ)", "Description", "Size", "Model", "PD", "Bill No", "Qty", "Rate (Taka)", "Total", "Remarks"]
+            debit_headers = ["No", "Date", "Details (বিঃ কাঃ)", "Description", "Size", "Model", "Bill No", "Qty", "Rate (Taka)", "PD", "Total", "Remarks"]
             credit_headers = ["No", "Date", "Amount", "Remarks"]
             
             for col_idx, text in enumerate(debit_headers, start=1):
@@ -368,16 +368,16 @@ def export():
                         row_data.get("Description", ""),
                         row_data.get("Size", ""),
                         row_data.get("Model", ""),
-                        row_data.get("PD", ""),
                         row_data.get("Bill No", ""),
                         row_data.get("Qty", ""),
                         row_data.get("Rate (Taka)", ""),
+                        row_data.get("PD", ""),
                         row_data.get("Total", ""),
                         row_data.get("Remarks", "")
                     ]
                     for col_idx, val in enumerate(debit_values, start=1):
                         cell = sheet.cell(row=row_idx, column=col_idx, value=val)
-                        if col_idx in [9, 10, 11] and isinstance(val, (int, float)):
+                        if col_idx in [8, 9, 10, 11] and isinstance(val, (int, float)):
                             cell.number_format = "#,##0"
                             cell.alignment = Alignment(horizontal="right")
                         else:

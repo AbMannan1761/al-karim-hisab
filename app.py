@@ -408,8 +408,8 @@ elif menu == "📊 গ্রাহক খতিয়ান (Client Ledger Sheet)":
             debit_list.append({
                 "no": str(row.get("No", "")),
                 "date": str(row.get("Date", "")),
-                "bi_ka": str(row.get("Details", "")),
-                "description": str(row.get("Description", "")),
+                "bi_ka": str(row.get("Details", row.get("বিবরণ", ""))),
+                "description": str(row.get("Description", row.get("কাপড়", ""))),
                 "size": str(row.get("Size", "")),
                 "model": str(row.get("Model", "")),
                 "pd": str(row.get("PD", "")),

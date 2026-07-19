@@ -1337,8 +1337,8 @@
                 debitTable = (sheetsDB.Debit_Transactions || []).filter(x => String(x["Client Name"]) === name).map(row => ({
                     no: String(row["No"] || ""),
                     date: String(row["Date"] || ""),
-                    bi_ka: String(row["Details"] || ""),
-                    description: String(row["Description"] || ""),
+                    bi_ka: String(row["Details"] || row["বিবরণ"] || ""),
+                    description: String(row["Description"] || row["কাপড়"] || ""),
                     size: String(row["Size"] || ""),
                     model: String(row["Model"] || ""),
                     pd: String(row["PD"] || ""),
