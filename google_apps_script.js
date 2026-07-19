@@ -706,9 +706,9 @@ function syncClientSheets(ss, targetClientName) {
     }
   }
   
-  // Create business dashboard and monthly pivot sheets
+  // Create business dashboard sheets
   createDashboardSheet(ss);
-  createPivotTableSheet(ss);
+  // createPivotTableSheet(ss);
 }
 
 function sortSheetsMenu() {
