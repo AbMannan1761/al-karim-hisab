@@ -1155,6 +1155,18 @@
             return String(numStr).split('').map(char => bengaliDigits[char] || char).join('');
         }
 
+        // Helper to format Date string to YYYY-MM-DD
+        function formatDateString(dateStr) {
+            if (!dateStr) return '';
+            if (dateStr.includes('T')) {
+                return dateStr.split('T')[0];
+            }
+            if (dateStr.includes(' ')) {
+                return dateStr.split(' ')[0];
+            }
+            return dateStr;
+        }
+
         // Clean numbers
         function cleanNum(val) {
             if (val === null || val === undefined) return 0;
@@ -1336,7 +1348,7 @@
             if (googleSheetsURL && sheetsDB) {
                 debitTable = (sheetsDB.Debit_Transactions || []).filter(x => String(x["Client Name"]) === name).map(row => ({
                     no: String(row["No"] || ""),
-                    date: String(row["Date"] || ""),
+                    date: formatDateString(String(row["Date"] || "")),
                     bi_ka: String(row["Details"] || row["বিবরণ"] || ""),
                     description: String(row["Description"] || row["কাপড়"] || ""),
                     size: String(row["Size"] || ""),
@@ -1351,7 +1363,7 @@
 
                 creditTable = (sheetsDB.Credit_Transactions || []).filter(x => String(x["Client Name"]) === name).map(row => ({
                     no: String(row["No"] || ""),
-                    date: String(row["Date"] || ""),
+                    date: formatDateString(String(row["Date"] || "")),
                     amount: String(row["Amount"] || ""),
                     remarks: String(row["Remarks"] || "")
                 }));
@@ -1370,8 +1382,8 @@
                     if (resRight.ok) rightData = await resRight.json();
                 } catch (e) {}
 
-                debitTable = leftData.debit_table || [];
-                creditTable = rightData.credit_table || [];
+                debitTable = (leftData.debit_table || []).map(row => ({ ...row, date: formatDateString(String(row.date || "")) }));
+                creditTable = (rightData.credit_table || []).map(row => ({ ...row, date: formatDateString(String(row.date || "")) }));
                 phone_number = leftData.phone || "N/A";
             }
 
