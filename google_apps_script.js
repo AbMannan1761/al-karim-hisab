@@ -427,12 +427,13 @@ function syncClientSheets(ss, targetClientName) {
       sheet = ss.insertSheet(sheetName);
       isNew = true;
     } else {
-      // Check if D2 (Name), D3 (Address), D4 (Notes) match in a single call to improve performance
       var metaValues = sheet.getRange("D2:D4").getValues();
       var currentName = String(metaValues[0][0] || "").trim();
       var currentAddress = String(metaValues[1][0] || "").trim();
       var currentNotes = String(metaValues[2][0] || "").trim();
-      if (currentName === partyName && currentAddress === address && currentNotes === notes) {
+      var currentHeaders = sheet.getRange("A8:L8").getValues()[0];
+      var headersMatch = currentHeaders[6] === "Bill No" && currentHeaders[9] === "মোট";
+      if (currentName === partyName && currentAddress === address && currentNotes === notes && headersMatch) {
         sheet.setFrozenRows(8); // Ensure rows are frozen even if we skip formatting
         
         // Ensure column widths are updated to 75px (~1 inch) for existing skipped sheets
