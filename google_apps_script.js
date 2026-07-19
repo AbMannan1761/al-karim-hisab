@@ -130,6 +130,7 @@ function doPost(e) {
       params.description, params.size, params.model, params.bill, parseNumeric(params.qty),
       parseNumeric(params.taka), params.pd, parseNumeric(params.total), params.remarks
     ]);
+    syncClientSheets(ss, params.party_name);
     return ContentService.createTextOutput(JSON.stringify({status: "success"}))
       .setMimeType(ContentService.MimeType.JSON);
   }
@@ -139,6 +140,7 @@ function doPost(e) {
     sheet.appendRow([
       params.party_name, params.ledger_page, params.no, params.date, parseNumeric(params.amount), params.remarks
     ]);
+    syncClientSheets(ss, params.party_name);
     return ContentService.createTextOutput(JSON.stringify({status: "success"}))
       .setMimeType(ContentService.MimeType.JSON);
   }
@@ -201,6 +203,7 @@ function doPost(e) {
         break;
       }
     }
+    syncClientSheets(ss, name);
     return ContentService.createTextOutput(JSON.stringify({status: "success"}))
       .setMimeType(ContentService.MimeType.JSON);
   }
@@ -224,6 +227,7 @@ function doPost(e) {
         break;
       }
     }
+    syncClientSheets(ss, name);
     return ContentService.createTextOutput(JSON.stringify({status: "success"}))
       .setMimeType(ContentService.MimeType.JSON);
   }
@@ -310,6 +314,9 @@ function doPost(e) {
         parseNumeric(row.taka), row.pd, parseNumeric(row.total), row.remarks
       ]);
     });
+    if (rows.length > 0) {
+      syncClientSheets(ss, rows[0].party_name);
+    }
     return ContentService.createTextOutput(JSON.stringify({status: "success"}))
       .setMimeType(ContentService.MimeType.JSON);
   }
@@ -322,6 +329,9 @@ function doPost(e) {
         row.party_name, row.ledger_page, row.no, row.date, parseNumeric(row.amount), row.remarks
       ]);
     });
+    if (rows.length > 0) {
+      syncClientSheets(ss, rows[0].party_name);
+    }
     return ContentService.createTextOutput(JSON.stringify({status: "success"}))
       .setMimeType(ContentService.MimeType.JSON);
   }
@@ -594,9 +604,57 @@ function syncClientSheets(ss, targetClientName) {
     });
     sheet.setRowHeight(8, 24);
     
-    // 5. Insert filter formulas in Row 9
-    sheet.getRange("A9").setFormula('=IFERROR(FILTER(Debit_Transactions!C2:N, Debit_Transactions!A2:A = D2), "")');
-    sheet.getRange("N9").setFormula('=IFERROR(FILTER(Credit_Transactions!C2:F, Credit_Transactions!A2:A = D2), "")');
+    // 5. Clear old data and write static values
+    if (sheet.getLastRow() >= 9) {
+      sheet.getRange(9, 1, sheet.getLastRow() - 8, 12).clearContent();
+      sheet.getRange(9, 14, sheet.getLastRow() - 8, 4).clearContent();
+    }
+    
+    var debits = [];
+    var debitSheet = ss.getSheetByName("Debit_Transactions");
+    if (debitSheet) {
+      var debitData = debitSheet.getDataRange().getValues();
+      for (var d = 1; d < debitData.length; d++) {
+        if (String(debitData[d][0]).trim() === partyName) {
+          debits.push([
+            debitData[d][2], // No
+            debitData[d][3], // Date
+            debitData[d][4], // Details
+            debitData[d][5], // Description
+            debitData[d][6], // Size
+            debitData[d][7], // Model
+            debitData[d][8], // Bill No
+            debitData[d][9], // Qty
+            debitData[d][10], // Rate
+            debitData[d][11], // PD
+            debitData[d][12], // Total
+            debitData[d][13]  // Remarks
+          ]);
+        }
+      }
+    }
+    if (debits.length > 0) {
+      sheet.getRange(9, 1, debits.length, 12).setValues(debits);
+    }
+    
+    var credits = [];
+    var creditSheet = ss.getSheetByName("Credit_Transactions");
+    if (creditSheet) {
+      var creditData = creditSheet.getDataRange().getValues();
+      for (var cr = 1; cr < creditData.length; cr++) {
+        if (String(creditData[cr][0]).trim() === partyName) {
+          credits.push([
+            creditData[cr][2], // No
+            creditData[cr][3], // Date
+            creditData[cr][4], // Amount
+            creditData[cr][5]  // Remarks
+          ]);
+        }
+      }
+    }
+    if (credits.length > 0) {
+      sheet.getRange(9, 14, credits.length, 4).setValues(credits);
+    }
     
     // Format dynamic formula data columns (Row 9:1000) to be centered, top-aligned, and wrapped
     var dataRange = sheet.getRange("A9:Q1000");
@@ -604,7 +662,7 @@ function syncClientSheets(ss, targetClientName) {
              .setVerticalAlignment("top")
              .setWrap(true);
              
-    sheet.getRange("I9:K1000").setNumberFormat("#,##0");
+    sheet.getRange(9, 8, 992, 4).setNumberFormat("#,##0"); // Columns H to K (Qty, Rate, PD, Total)
     sheet.getRange("P9:P1000").setNumberFormat("#,##0");
     
     // Freeze rows 1-8 so the dashboard header remains visible when scrolling down
@@ -971,4 +1029,119 @@ function createPivotTableSheet(ss) {
   
   // Values: Total (Column M, index 13)
   pivotTable.addPivotValue(13, SpreadsheetApp.PivotTableSummarizeFunction.SUM).setDisplayName("Total Sales");
+}
+
+// ==============================================
+// LIVE TWO-WAY SYNCHRONIZATION ON EDIT
+// ==============================================
+function onEdit(e) {
+  var range = e.range;
+  var sheet = range.getSheet();
+  var sheetName = sheet.getName();
+  var row = range.getRow();
+  var col = range.getColumn();
+  var newValue = e.value;
+  var ss = e.source;
+
+  // Prevent running on header/metadata rows
+  if (row < 2) return;
+
+  // Case 1: Edit on Debit_Transactions
+  if (sheetName === "Debit_Transactions") {
+    if (row < 2 || col < 3) return; // Skip headers/metadata (Client Name, Ledger Page)
+    var clientName = sheet.getRange(row, 1).getValue();
+    var rowNo = sheet.getRange(row, 3).getValue();
+    if (!clientName || !rowNo) return;
+    
+    var clientSheet = getClientSheetByName(ss, clientName);
+    if (clientSheet) {
+      var clientRow = findRowInClientSheet(clientSheet, 1, rowNo);
+      if (clientRow !== -1) {
+        clientSheet.getRange(clientRow, col - 2).setValue(newValue);
+      }
+    }
+  }
+  // Case 2: Edit on Credit_Transactions
+  else if (sheetName === "Credit_Transactions") {
+    if (row < 2 || col < 3) return;
+    var clientName = sheet.getRange(row, 1).getValue();
+    var rowNo = sheet.getRange(row, 3).getValue();
+    if (!clientName || !rowNo) return;
+    
+    var clientSheet = getClientSheetByName(ss, clientName);
+    if (clientSheet) {
+      var clientRow = findRowInClientSheet(clientSheet, 14, rowNo);
+      if (clientRow !== -1) {
+        clientSheet.getRange(clientRow, col + 11).setValue(newValue);
+      }
+    }
+  }
+  // Case 3: Edit on Client Sheet
+  else if (/^\d+\.\s*/.test(sheetName) || /^P\d+\s*-/.test(sheetName)) {
+    if (row < 9) return; // Data starts at row 9
+    var clientName = sheet.getRange("D2").getValue();
+    if (!clientName) return;
+
+    if (col >= 1 && col <= 12) { // Debit Edit
+      var rowNo = sheet.getRange(row, 1).getValue();
+      if (!rowNo) return;
+      var debitSheet = ss.getSheetByName("Debit_Transactions");
+      if (debitSheet) {
+        var debitRow = findRowInTransactionSheet(debitSheet, clientName, rowNo);
+        if (debitRow !== -1) {
+          debitSheet.getRange(debitRow, col + 2).setValue(newValue);
+        }
+      }
+    } else if (col >= 14 && col <= 17) { // Credit Edit
+      var rowNo = sheet.getRange(row, 14).getValue();
+      if (!rowNo) return;
+      var creditSheet = ss.getSheetByName("Credit_Transactions");
+      if (creditSheet) {
+        var creditRow = findRowInTransactionSheet(creditSheet, clientName, rowNo);
+        if (creditRow !== -1) {
+          creditSheet.getRange(creditRow, col - 11).setValue(newValue);
+        }
+      }
+    }
+  }
+}
+
+// Helpers
+function getClientSheetByName(ss, clientName) {
+  var indexSheet = ss.getSheetByName("Client_Index");
+  if (!indexSheet) return null;
+  var data = indexSheet.getDataRange().getValues();
+  for (var i = 1; i < data.length; i++) {
+    if (String(data[i][1]).trim() === String(clientName).trim()) {
+      var clientNo = String(data[i][0]).trim();
+      var cleanName = String(clientName).replace(/[\\\/\?\:\*\[\]]/g, "");
+      var name1 = clientNo + ". " + cleanName;
+      if (name1.length > 31) name1 = name1.substring(0, 31);
+      var s = ss.getSheetByName(name1);
+      if (s) return s;
+    }
+  }
+  return null;
+}
+
+function findRowInClientSheet(sheet, colIndex, rowNo) {
+  var lastRow = sheet.getLastRow();
+  if (lastRow < 9) return -1;
+  var data = sheet.getRange(9, colIndex, lastRow - 8, 1).getValues();
+  for (var i = 0; i < data.length; i++) {
+    if (String(data[i][0]).trim() === String(rowNo).trim()) {
+      return i + 9;
+    }
+  }
+  return -1;
+}
+
+function findRowInTransactionSheet(sheet, clientName, rowNo) {
+  var data = sheet.getDataRange().getValues();
+  for (var i = 1; i < data.length; i++) {
+    if (String(data[i][0]).trim() === String(clientName).trim() && String(data[i][2]).trim() === String(rowNo).trim()) {
+      return i + 1;
+    }
+  }
+  return -1;
 }
