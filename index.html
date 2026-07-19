@@ -6,6 +6,8 @@
     <title>আল কারিম কম্পিউটার এন্ড এমব্রয়ডারি গার্মেন্টস পোর্টাল</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Load Local Gemini Trial Key (Ignored in Git) -->
+    <script src="gemini_key.js"></script>
     <style>
         :root {
             --primary: #10b981;
@@ -748,6 +750,200 @@
                 color: #000000 !important;
             }
         }
+
+        /* Modal Background styling */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        .modal-content {
+            background-color: #ffffff;
+            border-radius: 16px;
+            width: 95%;
+            max-width: 550px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border: 2px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .modal-content.large {
+            max-width: 950px;
+        }
+
+        .modal-header {
+            padding: 16px 20px;
+            border-bottom: 1.5px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, #10b981, #047857);
+            color: #ffffff;
+            border-radius: 14px 14px 0 0;
+        }
+
+        .modal-header h3 {
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 20px;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .modal-body {
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .modal-footer {
+            padding: 14px 20px;
+            border-top: 1.5px solid var(--border);
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            background-color: #f8fafc;
+            border-radius: 0 0 14px 14px;
+        }
+
+        /* Form styling */
+        .form-group {
+            margin-bottom: 14px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1.5px solid var(--border);
+            border-radius: 8px;
+            font-size: 13px;
+            outline: none;
+            transition: var(--transition);
+            background-color: #ffffff;
+            color: var(--text);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        /* Drag & Drop OCR styling */
+        .ocr-upload-box {
+            border: 2px dashed var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            background-color: #f8fafc;
+            transition: var(--transition);
+            margin-bottom: 16px;
+        }
+
+        .ocr-upload-box:hover {
+            border-color: var(--primary);
+            background-color: var(--primary-light);
+        }
+
+        .ocr-upload-box p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        .ocr-preview-img {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 8px;
+            margin-top: 10px;
+            border: 1px solid var(--border);
+            display: none;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .ocr-loading {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--border);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 14px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .action-cell button {
+            transition: var(--transition);
+        }
+        .action-cell button:hover {
+            transform: scale(1.1);
+        }
+        
+        .editable-cell-input {
+            width: 100%;
+            padding: 4px 6px;
+            border: 1.5px solid var(--primary);
+            border-radius: 6px;
+            font-size: 11px;
+            box-sizing: border-box;
+            background-color: #ffffff;
+            color: var(--text);
+        }
     </style>
 </head>
 <body>
@@ -761,7 +957,11 @@
         </div>
         <div class="header-left">
             <h1>📖 আল কারিম কম্পিউটার এন্ড এমব্রয়ডারি গার্মেন্টস</h1>
-            <p style="margin-top: 4px; font-size: 11px; color: #a7f3d0; font-weight: 500; display: flex; align-items: center; gap: 4px;">📍 শহীদনগর, গেন্ডারিয়া, পুরান ঢাকা</p>
+            <div style="margin-top: 4px; display: flex; align-items: center; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                <p style="font-size: 11px; color: #a7f3d0; font-weight: 500; display: flex; align-items: center; gap: 4px; margin: 0;">📍 শহীদনগর, গেন্ডারিয়া, পুরান ঢাকা</p>
+                <button id="ocrScannerBtn" onclick="openOcrModal()" style="background: rgba(255,255,255,0.25); border: 1px solid rgba(255,255,255,0.4); color: #fff; padding: 4px 10px; border-radius: 8px; font-size: 11px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 4px; transition: var(--transition);" onmouseover="this.style.background='rgba(255,255,255,0.35)'" onmouseout="this.style.background='rgba(255,255,255,0.25)'">📷 এআই স্ক্যানার (OCR)</button>
+                <button id="apiSettingsBtn" onclick="openSettingsModal()" style="background: transparent; border: none; color: #a7f3d0; font-size: 14px; cursor: pointer; display: flex; align-items: center; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" title="জেমিনি এপিআই কি সেটিং">⚙️</button>
+            </div>
         </div>
         <div class="header-summary" id="headerSummary">
             <div class="summary-item">
@@ -784,11 +984,14 @@
         <div class="sidebar">
             <div class="sidebar-header">
                 <h2>👥 গ্রাহক তালিকা</h2>
-                <button id="refreshBtn" onclick="loadData(true)" title="রিলোড করুন">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
-                    </svg>
-                </button>
+                <div style="display: flex; gap: 6px; align-items: center;">
+                    <button id="addClientBtn" onclick="openClientModal(true)" title="নতুন গ্রাহক যোগ করুন" style="background: var(--primary); border: none; color: white; border-radius: 6px; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: bold; font-size: 14px; transition: var(--transition);" onmouseover="this.style.background='var(--primary-hover)'" onmouseout="this.style.background='var(--primary)'">+</button>
+                    <button id="refreshBtn" onclick="loadData(true)" title="রিলোড করুন">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+                        </svg>
+                    </button>
+                </div>
             </div>
             <input type="text" id="searchInput" class="search-box" placeholder="গ্রাহকের নাম বা ঠিকানা লিখুন...">
             <div class="client-list-container">
@@ -826,6 +1029,12 @@
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
                         <div class="profile-title" id="clientName" style="margin-bottom: 0;">গ্রাহকের নাম</div>
                         <div class="banner-actions" style="display: flex; gap: 8px;">
+                            <button id="editProfileBtn" onclick="openClientModal(false)" style="display: flex; align-items: center; gap: 4px; padding: 6px 12px; font-size: 11px; font-weight: bold; border-radius: 8px; cursor: pointer; border: 1.5px solid var(--border); background: #f8fafc; color: var(--text);">
+                                ✏️ প্রোফাইল এডিট
+                            </button>
+                            <button id="deleteClientBtn" onclick="confirmDeleteClient()" style="display: flex; align-items: center; gap: 4px; padding: 6px 12px; font-size: 11px; font-weight: bold; border-radius: 8px; cursor: pointer; border: 1.5px solid #fca5a5; background: #fef2f2; color: var(--danger);">
+                                🗑️ গ্রাহক ডিলিট
+                            </button>
                             <button id="printBtn" onclick="printClientLedger()" style="display: flex; align-items: center; gap: 4px; padding: 6px 12px; font-size: 11px; font-weight: bold; border-radius: 8px; cursor: pointer; border: 1.5px solid var(--border); background: #f8fafc; color: var(--text);">
                                 🖨️ প্রিন্ট করুন
                             </button>
@@ -874,11 +1083,14 @@
                 <div class="tables-grid">
                     <!-- Debit Left Table -->
                     <div class="table-section">
-                        <h3>📈 ডেবিট এন্ট্রি সমূহ (Debit - Bills/Sales)</h3>
+                        <h3 style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                            <span>📈 ডেবিট এন্ট্রি সমূহ (Debit - Bills/Sales)</span>
+                            <button onclick="openTransactionModal('debit', true)" style="background: #3b82f6; border: none; color: white; padding: 4px 10px; border-radius: 6px; font-size: 11px; cursor: pointer; font-weight: bold; transition: var(--transition);" onmouseover="this.style.filter='brightness(0.9)'" onmouseout="this.style.filter='none'">➕ নতুন ডেবিট যোগ</button>
+                        </h3>
                         <table>
                             <thead>
                                 <tr>
-                                    <th>নং</th>
+                                    <th style="width: 30px;">নং</th>
                                     <th>তারিখ</th>
                                     <th>বিঃ কাঃ</th>
                                     <th>বিবরণ</th>
@@ -888,6 +1100,7 @@
                                     <th>দর</th>
                                     <th class="amount-col">মোট</th>
                                     <th>মন্তব্য</th>
+                                    <th style="width: 65px; text-align: center;">অ্যাকশন</th>
                                 </tr>
                             </thead>
                             <tbody id="debitTableBody">
@@ -898,14 +1111,18 @@
 
                     <!-- Credit Right Table -->
                     <div class="table-section">
-                        <h3>📉 ক্রেডিট এন্ট্রি সমূহ (Credit - Payments)</h3>
+                        <h3 style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                            <span>📉 ক্রেডিট এন্ট্রি সমূহ (Credit - Payments)</span>
+                            <button onclick="openTransactionModal('credit', true)" style="background: var(--primary); border: none; color: white; padding: 4px 10px; border-radius: 6px; font-size: 11px; cursor: pointer; font-weight: bold; transition: var(--transition);" onmouseover="this.style.filter='brightness(0.9)'" onmouseout="this.style.filter='none'">➕ নতুন ক্রেডিট যোগ</button>
+                        </h3>
                         <table>
                             <thead>
                                 <tr>
-                                    <th>নং</th>
+                                    <th style="width: 30px;">নং</th>
                                     <th>তারিখ</th>
                                     <th class="amount-col">পরিমাণ</th>
                                     <th>মন্তব্য</th>
+                                    <th style="width: 65px; text-align: center;">অ্যাকশন</th>
                                 </tr>
                             </thead>
                             <tbody id="creditTableBody">
@@ -1177,9 +1394,9 @@
             let totalDebit = 0;
 
             if (debitTable.length === 0) {
-                debitBody.innerHTML = `<tr><td colspan="10" style="text-align: center; color: var(--text-muted);">কোনো বিক্রয় রেকর্ড পাওয়া যায়নি।</td></tr>`;
+                debitBody.innerHTML = `<tr><td colspan="11" style="text-align: center; color: var(--text-muted);">কোনো বিক্রয় রেকর্ড পাওয়া যায়নি।</td></tr>`;
             } else {
-                debitTable.forEach(row => {
+                debitTable.forEach((row, index) => {
                     let total = cleanNum(row.total);
                     let qty = cleanNum(row.qty);
                     let rate = cleanNum(row.taka);
@@ -1199,6 +1416,10 @@
                         <td>${translateToBengaliDigits(row.taka || '')}</td>
                         <td class="amount-col">${formatNumberBengali(total)}</td>
                         <td>${row.remarks || ''}</td>
+                        <td style="text-align: center; white-space: nowrap;" class="action-cell">
+                            <button onclick="editDebitRow(${index})" style="border: none; background: none; cursor: pointer; padding: 2px 4px; font-size: 12px;" title="এডিট">✏️</button>
+                            <button onclick="deleteDebitRow(${index})" style="border: none; background: none; cursor: pointer; padding: 2px 4px; font-size: 12px; color: var(--danger);" title="ডিলিট">🗑️</button>
+                        </td>
                     `;
                     debitBody.appendChild(tr);
                 });
@@ -1210,9 +1431,9 @@
             let totalCredit = 0;
 
             if (creditTable.length === 0) {
-                creditBody.innerHTML = `<tr><td colspan="4" style="text-align: center; color: var(--text-muted);">কোনো পেমেন্ট রেকর্ড পাওয়া যায়নি।</td></tr>`;
+                creditBody.innerHTML = `<tr><td colspan="5" style="text-align: center; color: var(--text-muted);">কোনো পেমেন্ট রেকর্ড পাওয়া যায়নি।</td></tr>`;
             } else {
-                creditTable.forEach(row => {
+                creditTable.forEach((row, index) => {
                     let amount = cleanNum(row.amount);
                     totalCredit += amount;
 
@@ -1222,6 +1443,10 @@
                         <td>${translateToBengaliDigits(row.date || '')}</td>
                         <td class="amount-col">${formatNumberBengali(amount)}</td>
                         <td>${row.remarks || ''}</td>
+                        <td style="text-align: center; white-space: nowrap;" class="action-cell">
+                            <button onclick="editCreditRow(${index})" style="border: none; background: none; cursor: pointer; padding: 2px 4px; font-size: 12px;" title="এডিট">✏️</button>
+                            <button onclick="deleteCreditRow(${index})" style="border: none; background: none; cursor: pointer; padding: 2px 4px; font-size: 12px; color: var(--danger);" title="ডিলিট">🗑️</button>
+                        </td>
                     `;
                     creditBody.appendChild(tr);
                 });
@@ -1252,6 +1477,1030 @@
         function downloadClientPDF() {
             window.print();
         }
+
+        // ==============================================
+        // JavaScript CRUD and OCR Scanner logic
+        // ==============================================
+        
+        // --- Modal Helper Functions ---
+        function openModal(id) {
+            document.getElementById(id).style.display = 'flex';
+        }
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+
+        // --- Settings Management ---
+        function openSettingsModal() {
+            const key = localStorage.getItem('gemini_api_key') || '';
+            const inputEl = document.getElementById('geminiApiKeyInput');
+            inputEl.value = key;
+            
+            const noticeEl = document.getElementById('trialNotice');
+            if (window.GEMINI_TRIAL_KEY) {
+                inputEl.placeholder = "ফ্রি ট্রায়াল সক্রিয় রয়েছে (অথবা আপনার নিজের API Key দিন)...";
+                if (noticeEl) noticeEl.style.display = 'inline';
+            } else {
+                inputEl.placeholder = "AI OCR ব্যবহারের জন্য আপনার API Key দিন...";
+                if (noticeEl) noticeEl.style.display = 'none';
+            }
+            
+            openModal('settingsModal');
+        }
+        function saveApiKeySetting() {
+            const key = document.getElementById('geminiApiKeyInput').value.trim();
+            localStorage.setItem('gemini_api_key', key);
+            closeModal('settingsModal');
+            alert('জেমিনি এপিআই কি সেভ করা হয়েছে!');
+        }
+
+        // --- CRUD Google Sheets Integration Helper ---
+        async function callSheetsAPI(payload) {
+            if (!googleSheetsURL) {
+                alert('প্যানেলে গুগল শিট লিংক করা নেই! settings.json ফাইলটি চেক করুন।');
+                return null;
+            }
+            try {
+                // Apps Script CORS requirement: Send body as text/plain to avoid CORS preflight OPTIONS request
+                const response = await fetch(googleSheetsURL, {
+                    method: 'POST',
+                    body: JSON.stringify(payload)
+                });
+                if (response.ok) {
+                    return await response.json();
+                } else {
+                    console.error('API Error:', response.status);
+                    return null;
+                }
+            } catch (err) {
+                console.error('Network Error:', err);
+                return null;
+            }
+        }
+
+        // --- Client Profile CRUD ---
+        function openClientModal(isNew) {
+            const titleEl = document.getElementById('clientModalTitle');
+            const noValEl = document.getElementById('clientNoVal');
+            const nameEl = document.getElementById('clientNameInput');
+            const addrEl = document.getElementById('clientAddressInput');
+            const pageEl = document.getElementById('clientPageInput');
+            const pdfEl = document.getElementById('clientPdfPageInput');
+            const notesEl = document.getElementById('clientNotesInput');
+            
+            nameEl.readOnly = false;
+            
+            if (isNew) {
+                titleEl.innerText = '👤 নতুন গ্রাহক যোগ করুন';
+                noValEl.value = '';
+                nameEl.value = '';
+                addrEl.value = '';
+                pageEl.value = '';
+                pdfEl.value = '';
+                notesEl.value = '';
+            } else {
+                titleEl.innerText = '✏️ প্রোফাইল এডিট করুন';
+                noValEl.value = currentSelectedClient.no;
+                nameEl.value = currentSelectedClient.party_name;
+                nameEl.readOnly = true;
+                addrEl.value = currentSelectedClient.address || '';
+                pageEl.value = currentSelectedClient.page || '';
+                pdfEl.value = Math.floor(currentSelectedClient.page / 2) || '';
+                notesEl.value = currentSelectedClient.notes || '';
+            }
+            openModal('clientModal');
+        }
+
+        async function saveClientProfile() {
+            const no = document.getElementById('clientNoVal').value;
+            const name = document.getElementById('clientNameInput').value.trim();
+            const addr = document.getElementById('clientAddressInput').value.trim();
+            const page = document.getElementById('clientPageInput').value.trim();
+            const pdf = document.getElementById('clientPdfPageInput').value.trim();
+            const notes = document.getElementById('clientNotesInput').value.trim();
+
+            if (!name || !page) {
+                alert('গ্রাহকের নাম ও লেজার পৃষ্ঠা অবশ্যই দিতে হবে!');
+                return;
+            }
+
+            const saveBtn = document.getElementById('saveClientProfileBtn');
+            saveBtn.disabled = true;
+            saveBtn.innerText = 'সেভ হচ্ছে...';
+
+            let payload = {};
+            if (!no) { // Create new
+                payload = {
+                    action: 'add_client',
+                    party_name: name,
+                    address: addr,
+                    ledger_page: parseInt(page),
+                    pdf_page: pdf ? parseInt(pdf) : null,
+                    notes: notes
+                };
+            } else { // Edit
+                payload = {
+                    action: 'edit_profile',
+                    client_no: cleanNum(no),
+                    party_name: name,
+                    address: addr,
+                    notes: notes
+                };
+            }
+
+            const res = await callSheetsAPI(payload);
+            if (res && res.status === 'success') {
+                closeModal('clientModal');
+                alert('গ্রাহকের প্রোফাইল সফলভাবে আপডেট করা হয়েছে!');
+                await loadData(true);
+            } else {
+                alert('সেভ করতে ব্যর্থ হয়েছে! অনুগ্রহ করে আবার চেষ্টা করুন।');
+            }
+            saveBtn.disabled = false;
+            saveBtn.innerText = 'সংরক্ষণ করুন';
+        }
+
+        // Delete client variables
+        let clientToDelete = null;
+        let transToDelete = null;
+
+        function confirmDeleteClient() {
+            clientToDelete = currentSelectedClient;
+            transToDelete = null;
+            document.getElementById('deleteModalMsg').innerText = `আপনি কি নিশ্চিতভাবে গ্রাহক "${currentSelectedClient.party_name}" এবং তার সমস্ত খতিয়ান লেনদেন ডিলিট করতে চান? এই কাজটি আর ফিরিয়ে আনা যাবে না!`;
+            openModal('deleteModal');
+        }
+
+        async function executeConfirmedDelete() {
+            closeModal('deleteModal');
+            
+            if (clientToDelete) {
+                const payload = {
+                    action: 'delete_client',
+                    client_no: cleanNum(clientToDelete.no)
+                };
+                const res = await callSheetsAPI(payload);
+                if (res && res.status === 'success') {
+                    alert('গ্রাহক ডিলিট করা হয়েছে!');
+                    clientToDelete = null;
+                    document.getElementById('ledgerView').style.display = 'none';
+                    document.getElementById('noSelectionView').style.display = 'flex';
+                    await loadData(true);
+                } else {
+                    alert('গ্রাহক ডিলিট করতে ব্যর্থ হয়েছে!');
+                }
+            } else if (transToDelete) {
+                const isDebit = transToDelete.type === 'debit';
+                const payload = {
+                    action: isDebit ? 'delete_debit' : 'delete_credit',
+                    party_name: currentSelectedClient.party_name,
+                    ledger_page: isDebit ? currentSelectedClient.page : (currentSelectedClient.page + 1),
+                    no: String(transToDelete.no)
+                };
+                const res = await callSheetsAPI(payload);
+                if (res && res.status === 'success') {
+                    alert('লেনদেন সফলভাবে ডিলিট করা হয়েছে!');
+                    transToDelete = null;
+                    await loadData(true);
+                } else {
+                    alert('লেনদেন ডিলিট করতে ব্যর্থ হয়েছে!');
+                }
+            }
+        }
+
+        // --- Transaction Row CRUD ---
+        function calculateTransTotal() {
+            const qty = parseFloat(document.getElementById('transQtyInput').value) || 0;
+            const rate = parseFloat(document.getElementById('transRateInput').value) || 0;
+            document.getElementById('transTotalInput').value = Math.round(qty * rate);
+        }
+
+        function openTransactionModal(type, isNew, rowData = null) {
+            document.getElementById('transTypeVal').value = type;
+            const titleEl = document.getElementById('transactionModalTitle');
+            const noEl = document.getElementById('transNoDisplay');
+            const dateEl = document.getElementById('transDateInput');
+            const debitFields = document.getElementById('debitFormFields');
+            const creditFields = document.getElementById('creditFormFields');
+            const remarksEl = document.getElementById('transRemarksInput');
+            
+            const today = new Date();
+            const defaultDateStr = `${String(today.getDate()).padStart(2, '0')}.${String(today.getMonth() + 1).padStart(2, '0')}.${String(today.getFullYear()).substring(2)}`;
+            
+            noEl.readOnly = false;
+            
+            if (type === 'debit') {
+                debitFields.style.display = 'block';
+                creditFields.style.display = 'none';
+                
+                if (isNew) {
+                    titleEl.innerText = '📈 নতুন ডেবিট এন্ট্রি (Debit - Sales)';
+                    let maxNo = 0;
+                    currentSelectedDebits.forEach(row => {
+                        let num = parseInt(row.no, 10);
+                        if (!isNaN(num) && num > maxNo) maxNo = num;
+                    });
+                    noEl.value = maxNo + 1;
+                    dateEl.value = defaultDateStr;
+                    document.getElementById('transBiKaInput').value = '';
+                    document.getElementById('transDescInput').value = '';
+                    document.getElementById('transSizeInput').value = '';
+                    document.getElementById('transModelInput').value = '';
+                    document.getElementById('transQtyInput').value = '';
+                    document.getElementById('transRateInput').value = '';
+                    document.getElementById('transTotalInput').value = '';
+                    document.getElementById('transPdInput').value = '';
+                    document.getElementById('transBillInput').value = '';
+                    remarksEl.value = '';
+                } else {
+                    titleEl.innerText = '✏️ ডেবিট এন্ট্রি সম্পাদনা';
+                    noEl.value = rowData.no;
+                    noEl.readOnly = true;
+                    dateEl.value = rowData.date;
+                    document.getElementById('transBiKaInput').value = rowData.bi_ka || '';
+                    document.getElementById('transDescInput').value = rowData.description || '';
+                    document.getElementById('transSizeInput').value = rowData.size || '';
+                    document.getElementById('transModelInput').value = rowData.model || '';
+                    document.getElementById('transQtyInput').value = rowData.qty || '';
+                    document.getElementById('transRateInput').value = rowData.taka || '';
+                    document.getElementById('transTotalInput').value = rowData.total || '';
+                    document.getElementById('transPdInput').value = rowData.pd || '';
+                    document.getElementById('transBillInput').value = rowData.bill || '';
+                    remarksEl.value = rowData.remarks || '';
+                }
+            } else {
+                debitFields.style.display = 'none';
+                creditFields.style.display = 'block';
+                
+                if (isNew) {
+                    titleEl.innerText = '📉 নতুন ক্রেডিট এন্ট্রি (Credit - Payment)';
+                    let maxNo = 0;
+                    currentSelectedCredits.forEach(row => {
+                        let num = parseInt(row.no, 10);
+                        if (!isNaN(num) && num > maxNo) maxNo = num;
+                    });
+                    noEl.value = maxNo + 1;
+                    dateEl.value = defaultDateStr;
+                    document.getElementById('transAmountInput').value = '';
+                    document.getElementById('transCreditRemarksInput').value = '';
+                } else {
+                    titleEl.innerText = '✏️ ক্রেডিট এন্ট্রি সম্পাদনা';
+                    noEl.value = rowData.no;
+                    noEl.readOnly = true;
+                    dateEl.value = rowData.date;
+                    document.getElementById('transAmountInput').value = cleanNum(rowData.amount);
+                    document.getElementById('transCreditRemarksInput').value = rowData.remarks || '';
+                }
+            }
+            document.getElementById('transNoVal').value = isNew ? '' : rowData.no;
+            openModal('transactionModal');
+        }
+
+        async function saveTransactionRow() {
+            const type = document.getElementById('transTypeVal').value;
+            const isEdit = document.getElementById('transNoVal').value !== '';
+            const no = document.getElementById('transNoDisplay').value.trim();
+            const date = document.getElementById('transDateInput').value.trim();
+
+            if (!no || !date) {
+                alert('নং এবং তারিখ অবশ্যই দিতে হবে!');
+                return;
+            }
+
+            const saveBtn = document.getElementById('saveTransBtn');
+            saveBtn.disabled = true;
+            saveBtn.innerText = 'সেভ হচ্ছে...';
+
+            let payload = {
+                party_name: currentSelectedClient.party_name,
+                no: no,
+                date: date
+            };
+
+            if (type === 'debit') {
+                const qty = document.getElementById('transQtyInput').value;
+                const rate = document.getElementById('transRateInput').value;
+                
+                payload.action = isEdit ? 'edit_debit' : 'add_debit';
+                payload.ledger_page = currentSelectedClient.page;
+                payload.bi_ka = document.getElementById('transBiKaInput').value.trim();
+                payload.description = document.getElementById('transDescInput').value.trim();
+                payload.size = document.getElementById('transSizeInput').value.trim();
+                payload.model = document.getElementById('transModelInput').value.trim();
+                payload.pd = document.getElementById('transPdInput').value.trim();
+                payload.bill = document.getElementById('transBillInput').value.trim();
+                payload.qty = qty ? parseFloat(qty) : null;
+                payload.taka = rate ? parseFloat(rate) : null;
+                payload.total = document.getElementById('transTotalInput').value ? parseFloat(document.getElementById('transTotalInput').value) : null;
+                payload.remarks = document.getElementById('transRemarksInput').value.trim();
+            } else {
+                const amt = document.getElementById('transAmountInput').value;
+                if (!amt) {
+                    alert('পরিমাণ অবশ্যই দিতে হবে!');
+                    saveBtn.disabled = false;
+                    saveBtn.innerText = 'সংরক্ষণ করুন';
+                    return;
+                }
+                
+                payload.action = isEdit ? 'edit_credit' : 'add_credit';
+                payload.ledger_page = currentSelectedClient.page + 1;
+                payload.amount = parseFloat(amt);
+                payload.remarks = document.getElementById('transCreditRemarksInput').value.trim();
+            }
+
+            const res = await callSheetsAPI(payload);
+            if (res && res.status === 'success') {
+                closeModal('transactionModal');
+                alert('এন্ট্রি সফলভাবে সেভ করা হয়েছে!');
+                await loadData(true);
+            } else {
+                alert('সেভ করতে ব্যর্থ হয়েছে! অনুগ্রহ করে আবার চেষ্টা করুন।');
+            }
+            saveBtn.disabled = false;
+            saveBtn.innerText = 'সংরক্ষণ করুন';
+        }
+
+        // Action Handlers
+        function editDebitRow(idx) {
+            const rowData = currentSelectedDebits[idx];
+            openTransactionModal('debit', false, rowData);
+        }
+
+        function deleteDebitRow(idx) {
+            const rowData = currentSelectedDebits[idx];
+            clientToDelete = null;
+            transToDelete = { type: 'debit', no: rowData.no };
+            document.getElementById('deleteModalMsg').innerText = `আপনি কি নিশ্চিতভাবে ডেবিট এন্ট্রি নং "${rowData.no}" ডিলিট করতে চান?`;
+            openModal('deleteModal');
+        }
+
+        function editCreditRow(idx) {
+            const rowData = currentSelectedCredits[idx];
+            openTransactionModal('credit', false, rowData);
+        }
+
+        function deleteCreditRow(idx) {
+            const rowData = currentSelectedCredits[idx];
+            clientToDelete = null;
+            transToDelete = { type: 'credit', no: rowData.no };
+            document.getElementById('deleteModalMsg').innerText = `আপনি কি নিশ্চিতভাবে ক্রেডিট এন্ট্রি নং "${rowData.no}" ডিলিট করতে চান?`;
+            openModal('deleteModal');
+        }
+
+        // --- AI OCR Scanner Integration ---
+        let ocrFileBase64 = null;
+        let ocrFileType = 'image/jpeg';
+        let ocrTranscribedRows = [];
+
+        function openOcrModal() {
+            const clientSelect = document.getElementById('ocrClientSelect');
+            clientSelect.innerHTML = '';
+            indexData.forEach(client => {
+                const opt = document.createElement('option');
+                opt.value = client.party_name;
+                opt.dataset.page = client.page;
+                opt.innerText = `${client.party_name} (পৃষ্ঠা ${client.page})`;
+                clientSelect.appendChild(opt);
+            });
+            
+            if (currentSelectedClient) {
+                clientSelect.value = currentSelectedClient.party_name;
+            }
+            
+            document.getElementById('ocrStepUpload').style.display = 'block';
+            document.getElementById('ocrStepLoading').style.display = 'none';
+            document.getElementById('ocrStepReview').style.display = 'none';
+            
+            document.getElementById('ocrPreviewImage').style.display = 'none';
+            document.getElementById('ocrFileInput').value = '';
+            document.getElementById('ocrDropArea').style.display = 'block';
+            
+            document.getElementById('ocrSaveBtn').style.display = 'none';
+            document.getElementById('ocrScanBtn').style.display = 'block';
+            document.getElementById('ocrScanBtn').disabled = true;
+            document.getElementById('ocrCancelBtn').style.display = 'block';
+            
+            ocrFileBase64 = null;
+            ocrTranscribedRows = [];
+            
+            openModal('ocrModal');
+        }
+
+        function toggleOcrClientSelection() {
+            // Placeholder
+        }
+
+        function handleOcrFileSelect(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            ocrFileType = file.type;
+            
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                const base64Data = evt.target.result.split(',')[1];
+                ocrFileBase64 = base64Data;
+                
+                const previewImg = document.getElementById('ocrPreviewImage');
+                previewImg.src = evt.target.result;
+                previewImg.style.display = 'block';
+                
+                document.getElementById('ocrDropArea').style.display = 'none';
+                document.getElementById('ocrScanBtn').disabled = false;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const dropArea = document.getElementById('ocrDropArea');
+            if (dropArea) {
+                ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                    dropArea.addEventListener(eventName, preventDefault, false);
+                });
+                function preventDefault(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+                
+                ['dragenter', 'dragover'].forEach(eventName => {
+                    dropArea.addEventListener(eventName, () => dropArea.style.borderColor = 'var(--primary)', false);
+                });
+                
+                ['dragleave', 'drop'].forEach(eventName => {
+                    dropArea.addEventListener(eventName, () => dropArea.style.borderColor = 'var(--border)', false);
+                });
+                
+                dropArea.addEventListener('drop', (e) => {
+                    const dt = e.dataTransfer;
+                    const files = dt.files;
+                    if (files && files.length > 0) {
+                        document.getElementById('ocrFileInput').files = files;
+                        handleOcrFileSelect({target: {files: files}});
+                    }
+                }, false);
+            }
+        });
+
+        async function runOcrScan() {
+            let key = localStorage.getItem('gemini_api_key') || '';
+            let isTrial = false;
+            if (!key) {
+                key = window.GEMINI_TRIAL_KEY || '';
+                if (key) {
+                    isTrial = true;
+                } else {
+                    alert('OCR ব্যবহারের জন্য আগে সেটিংসে গিয়ে আপনার Gemini API Key প্রদান করুন!');
+                    openSettingsModal();
+                    return;
+                }
+            }
+            
+            const selectedClientName = document.getElementById('ocrClientSelect').value;
+            const pageType = document.getElementById('ocrTypeSelect').value;
+            
+            document.getElementById('ocrStepUpload').style.display = 'none';
+            document.getElementById('ocrStepLoading').style.display = 'flex';
+            document.getElementById('ocrScanBtn').disabled = true;
+            document.getElementById('ocrCancelBtn').style.display = 'none';
+            
+            const statusMsg = document.getElementById('ocrStatusMsg');
+            statusMsg.innerText = 'ছবি প্রসেস করা হচ্ছে...';
+            
+            let prompt = '';
+            if (pageType === 'debit') {
+                prompt = `This is a photo of a handwritten ledger sheet representing Debit (Sales/Bills) entries.
+                Transcribe all row records from the table into a JSON array of objects.
+                The columns are: No (নং), Date (তারিখ), Details (বিঃ কাঃ), Description (বিবরণ), Size (সাইজ), Model (مডেল), Qty (পিস), Bill No (বিল), Rate (দর), Amount (টাকা), Total (মোট), Remarks (মন্তব্য).
+                Return a JSON array of objects. Return EXACTLY this format without markdown code blocks:
+                [
+                  {
+                    "no": "row number (convert Bengali digits to English)",
+                    "date": "date (convert to DD.MM.YY format, e.g. 17.04.25)",
+                    "bi_ka": "bi_ka/details (Bengali text)",
+                    "description": "item description (keep in Bengali)",
+                    "size": "size (e.g. 36-40)",
+                    "model": "model string",
+                    "qty": "quantity/pice (convert to English number)",
+                    "taka": "rate/price (convert to English number)",
+                    "total": "total amount (convert to English number)",
+                    "remarks": "remarks (keep in Bengali)"
+                  }
+                ]
+                Convert all Bengali digits to English digits for no, date, qty, taka, total. Do not translate Bengali text to English.`;
+            } else {
+                prompt = `This is a photo of a handwritten ledger sheet representing Credit (Payments/Cash Received) entries.
+                Transcribe all row records from the table into a JSON array of objects.
+                The columns are: No (নং), Date (তারিখ), Amount (নগদ), Remarks (মন্তব্য).
+                Return a JSON array of objects. Return EXACTLY this format without markdown code blocks:
+                [
+                  {
+                    "no": "row number (convert Bengali digits to English)",
+                    "date": "date (convert to DD.MM.YY format, e.g. 17.04.25)",
+                    "amount": "amount paid (convert to English number)",
+                    "remarks": "remarks (keep in Bengali)"
+                  }
+                ]
+                Convert all Bengali digits to English digits for no, date, amount. Keep Bengali text in Bengali.`;
+            }
+            
+            statusMsg.innerText = isTrial ? 'ফ্রি ট্রায়াল জেমিনি এআই দিয়ে এনালাইসিস করা হচ্ছে...' : 'জেমিনি এআই দিয়ে এনালাইসিস করা হচ্ছে...';
+            
+            try {
+                const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${key}`;
+                const payload = {
+                    contents: [{
+                        parts: [
+                            { text: prompt },
+                            {
+                                inlineData: {
+                                    mimeType: ocrFileType,
+                                    data: ocrFileBase64
+                                }
+                            }
+                        ]
+                    }],
+                    generationConfig: {
+                        responseMimeType: "application/json"
+                    }
+                };
+                
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`Gemini API returned status ${response.status}`);
+                }
+                
+                const resJson = await response.json();
+                let text = resJson.candidates[0].content.parts[0].text;
+                text = text.replace(/```json/g, "").replace(/```/g, "").trim();
+                
+                ocrTranscribedRows = JSON.parse(text);
+                
+                statusMsg.innerText = 'রিভিউ টেবিল লোড করা হচ্ছে...';
+                
+                document.getElementById('ocrStepLoading').style.display = 'none';
+                document.getElementById('ocrStepReview').style.display = 'block';
+                document.getElementById('ocrClientNameBadge').innerText = `গ্রাহক: ${selectedClientName} (${pageType === 'debit' ? 'ডেবিট' : 'ক্রেডিট'})`;
+                
+                renderOcrReviewTable(pageType);
+                
+                document.getElementById('ocrScanBtn').style.display = 'none';
+                document.getElementById('ocrSaveBtn').style.display = 'block';
+                document.getElementById('ocrCancelBtn').style.display = 'block';
+                
+            } catch (err) {
+                console.error(err);
+                alert(`স্ক্যান ব্যর্থ হয়েছে: ${err.message || err}. আপনার এপিআই কি সঠিক আছে কিনা নিশ্চিত করুন।`);
+                document.getElementById('ocrStepLoading').style.display = 'none';
+                document.getElementById('ocrStepUpload').style.display = 'block';
+                document.getElementById('ocrScanBtn').disabled = false;
+                document.getElementById('ocrCancelBtn').style.display = 'block';
+            }
+        }
+
+        function renderOcrReviewTable(type) {
+            const header = document.getElementById('ocrReviewTableHeader');
+            const body = document.getElementById('ocrReviewTableBody');
+            
+            body.innerHTML = '';
+            
+            if (type === 'debit') {
+                header.innerHTML = `
+                    <tr>
+                        <th style="width:40px;">নং</th>
+                        <th style="width:80px;">তারিখ</th>
+                        <th style="width:50px;">বিঃ কাঃ</th>
+                        <th>বিবরণ</th>
+                        <th style="width:60px;">সাইজ</th>
+                        <th style="width:60px;">মডেল</th>
+                        <th style="width:60px;">পিস (Qty)</th>
+                        <th style="width:60px;">দর (Rate)</th>
+                        <th style="width:80px;">মোট (Total)</th>
+                        <th>মন্তব্য</th>
+                        <th style="width:30px;">ডিলিট</th>
+                    </tr>
+                `;
+                
+                ocrTranscribedRows.forEach((row, idx) => {
+                    const tr = document.createElement('tr');
+                    tr.dataset.index = idx;
+                    tr.innerHTML = `
+                        <td><input type="text" value="${row.no || ''}" class="editable-cell-input ocr-no"></td>
+                        <td><input type="text" value="${row.date || ''}" class="editable-cell-input ocr-date"></td>
+                        <td><input type="text" value="${row.bi_ka || ''}" class="editable-cell-input ocr-bika"></td>
+                        <td><input type="text" value="${row.description || ''}" class="editable-cell-input ocr-desc"></td>
+                        <td><input type="text" value="${row.size || ''}" class="editable-cell-input ocr-size"></td>
+                        <td><input type="text" value="${row.model || ''}" class="editable-cell-input ocr-model"></td>
+                        <td><input type="number" value="${row.qty || ''}" class="editable-cell-input ocr-qty" oninput="recalcOcrRowTotal(this)"></td>
+                        <td><input type="number" value="${row.taka || ''}" class="editable-cell-input ocr-rate" oninput="recalcOcrRowTotal(this)"></td>
+                        <td><input type="number" value="${row.total || ''}" class="editable-cell-input ocr-total"></td>
+                        <td><input type="text" value="${row.remarks || ''}" class="editable-cell-input ocr-remarks"></td>
+                        <td style="text-align:center;"><button onclick="removeOcrRow(this)" style="background:none; border:none; color:var(--danger); cursor:pointer; font-size:12px;">🗑️</button></td>
+                    `;
+                    body.appendChild(tr);
+                });
+            } else {
+                header.innerHTML = `
+                    <tr>
+                        <th style="width:40px;">নং</th>
+                        <th style="width:80px;">তারিখ</th>
+                        <th>পরিমাণ (Amount)</th>
+                        <th>মন্তব্য</th>
+                        <th style="width:30px;">ডিলিট</th>
+                    </tr>
+                `;
+                
+                ocrTranscribedRows.forEach((row, idx) => {
+                    const tr = document.createElement('tr');
+                    tr.dataset.index = idx;
+                    tr.innerHTML = `
+                        <td><input type="text" value="${row.no || ''}" class="editable-cell-input ocr-no"></td>
+                        <td><input type="text" value="${row.date || ''}" class="editable-cell-input ocr-date"></td>
+                        <td><input type="number" value="${row.amount || ''}" class="editable-cell-input ocr-amount"></td>
+                        <td><input type="text" value="${row.remarks || ''}" class="editable-cell-input ocr-remarks"></td>
+                        <td style="text-align:center;"><button onclick="removeOcrRow(this)" style="background:none; border:none; color:var(--danger); cursor:pointer; font-size:12px;">🗑️</button></td>
+                    `;
+                    body.appendChild(tr);
+                });
+            }
+        }
+
+        function recalcOcrRowTotal(input) {
+            const tr = input.closest('tr');
+            const qty = parseFloat(tr.querySelector('.ocr-qty').value) || 0;
+            const rate = parseFloat(tr.querySelector('.ocr-rate').value) || 0;
+            tr.querySelector('.ocr-total').value = Math.round(qty * rate);
+        }
+
+        function addOcrRowToPreview() {
+            const pageType = document.getElementById('ocrTypeSelect').value;
+            const body = document.getElementById('ocrReviewTableBody');
+            
+            let maxNo = 0;
+            const noInputs = body.querySelectorAll('.ocr-no');
+            noInputs.forEach(inp => {
+                let num = parseInt(inp.value, 10);
+                if (!isNaN(num) && num > maxNo) maxNo = num;
+            });
+            const nextNo = maxNo + 1;
+            
+            const today = new Date();
+            const defaultDateStr = `${String(today.getDate()).padStart(2, '0')}.${String(today.getMonth() + 1).padStart(2, '0')}.${String(today.getFullYear()).substring(2)}`;
+            
+            const tr = document.createElement('tr');
+            if (pageType === 'debit') {
+                tr.innerHTML = `
+                    <td><input type="text" value="${nextNo}" class="editable-cell-input ocr-no"></td>
+                    <td><input type="text" value="${defaultDateStr}" class="editable-cell-input ocr-date"></td>
+                    <td><input type="text" value="" class="editable-cell-input ocr-bika"></td>
+                    <td><input type="text" value="" class="editable-cell-input ocr-desc"></td>
+                    <td><input type="text" value="" class="editable-cell-input ocr-size"></td>
+                    <td><input type="text" value="" class="editable-cell-input ocr-model"></td>
+                    <td><input type="number" value="" class="editable-cell-input ocr-qty" oninput="recalcOcrRowTotal(this)"></td>
+                    <td><input type="number" value="" class="editable-cell-input ocr-rate" oninput="recalcOcrRowTotal(this)"></td>
+                    <td><input type="number" value="" class="editable-cell-input ocr-total"></td>
+                    <td><input type="text" value="" class="editable-cell-input ocr-remarks"></td>
+                    <td style="text-align:center;"><button onclick="removeOcrRow(this)" style="background:none; border:none; color:var(--danger); cursor:pointer; font-size:12px;">🗑️</button></td>
+                `;
+            } else {
+                tr.innerHTML = `
+                    <td><input type="text" value="${nextNo}" class="editable-cell-input ocr-no"></td>
+                    <td><input type="text" value="${defaultDateStr}" class="editable-cell-input ocr-date"></td>
+                    <td><input type="number" value="" class="editable-cell-input ocr-amount"></td>
+                    <td><input type="text" value="" class="editable-cell-input ocr-remarks"></td>
+                    <td style="text-align:center;"><button onclick="removeOcrRow(this)" style="background:none; border:none; color:var(--danger); cursor:pointer; font-size:12px;">🗑️</button></td>
+                `;
+            }
+            body.appendChild(tr);
+        }
+
+        function removeOcrRow(btn) {
+            btn.closest('tr').remove();
+        }
+
+        async function saveOcrDataToSheets() {
+            const pageType = document.getElementById('ocrTypeSelect').value;
+            const targetClientName = document.getElementById('ocrClientSelect').value;
+            const clientSelect = document.getElementById('ocrClientSelect');
+            const selectedOption = clientSelect.options[clientSelect.selectedIndex];
+            const clientPage = parseInt(selectedOption.dataset.page);
+            
+            const trs = document.getElementById('ocrReviewTableBody').querySelectorAll('tr');
+            if (trs.length === 0) {
+                alert('শীটে সেভ করার জন্য কোনো তথ্য নেই!');
+                return;
+            }
+            
+            const saveBtn = document.getElementById('ocrSaveBtn');
+            saveBtn.disabled = true;
+            saveBtn.innerText = 'সেভ হচ্ছে...';
+            
+            const rowsPayload = [];
+            
+            if (pageType === 'debit') {
+                trs.forEach(tr => {
+                    rowsPayload.push({
+                        party_name: targetClientName,
+                        ledger_page: String(clientPage),
+                        no: tr.querySelector('.ocr-no').value.trim(),
+                        date: tr.querySelector('.ocr-date').value.trim(),
+                        bi_ka: tr.querySelector('.ocr-bika').value.trim(),
+                        description: tr.querySelector('.ocr-desc').value.trim(),
+                        size: tr.querySelector('.ocr-size').value.trim(),
+                        model: tr.querySelector('.ocr-model').value.trim(),
+                        qty: tr.querySelector('.ocr-qty').value ? parseFloat(tr.querySelector('.ocr-qty').value) : null,
+                        taka: tr.querySelector('.ocr-rate').value ? parseFloat(tr.querySelector('.ocr-rate').value) : null,
+                        total: tr.querySelector('.ocr-total').value ? parseFloat(tr.querySelector('.ocr-total').value) : null,
+                        remarks: tr.querySelector('.ocr-remarks').value.trim()
+                    });
+                });
+            } else {
+                trs.forEach(tr => {
+                    rowsPayload.push({
+                        party_name: targetClientName,
+                        ledger_page: String(clientPage + 1),
+                        no: tr.querySelector('.ocr-no').value.trim(),
+                        date: tr.querySelector('.ocr-date').value.trim(),
+                        amount: tr.querySelector('.ocr-amount').value ? parseFloat(tr.querySelector('.ocr-amount').value) : null,
+                        remarks: tr.querySelector('.ocr-remarks').value.trim()
+                    });
+                });
+            }
+            
+            const payload = {
+                action: pageType === 'debit' ? 'bulk_add_debit' : 'bulk_add_credit',
+                rows: rowsPayload
+            };
+            
+            const res = await callSheetsAPI(payload);
+            if (res && res.status === 'success') {
+                closeModal('ocrModal');
+                alert('স্ক্যানকৃত হিসাব সফলভাবে সংরক্ষণ করা হয়েছে!');
+                if (currentSelectedClient && currentSelectedClient.party_name === targetClientName) {
+                    await loadData(true);
+                } else {
+                    await loadData(false);
+                }
+            } else {
+                alert('সেভ করতে ব্যর্থ হয়েছে! অনুগ্রহ করে আবার চেষ্টা করুন।');
+            }
+            
+            saveBtn.disabled = false;
+            saveBtn.innerText = 'শীটে সেভ করুন';
+        }
     </script>
+    
+    <!-- ============================================== -->
+    <!-- MODALS HTML -->
+    <!-- ============================================== -->
+    <!-- 1. API Key Settings Modal -->
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>⚙️ জেমিনি এপিআই কি সেটিং (Gemini API Key)</h3>
+                <button class="modal-close" onclick="closeModal('settingsModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="geminiApiKeyInput">Gemini API Key</label>
+                    <input type="password" id="geminiApiKeyInput" class="form-control" placeholder="AI OCR ব্যবহারের জন্য আপনার API Key দিন...">
+                    <p style="font-size: 11px; color: var(--text-muted); margin-top: 6px;">এই কি-টি আপনার ব্রাউজারে সুরক্ষিত থাকবে এবং সরাসরি গুগলের সার্ভারে রিকোয়েস্ট পাঠাতে ব্যবহৃত হবে। <span id="trialNotice" style="color: var(--primary); font-weight: bold; display: none;"><br>🎁 ফ্রি ট্রায়াল এপিআই কি উপলব্ধ রয়েছে।</span></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button onclick="closeModal('settingsModal')" style="padding: 6px 12px; border: 1.5px solid var(--border); background: #f8fafc; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 12px;">বন্ধ করুন</button>
+                <button onclick="saveApiKeySetting()" style="padding: 6px 12px; background: var(--primary); border: none; color: white; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 12px;">সংরক্ষণ করুন</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Client Profile Form Modal (Add & Edit) -->
+    <div id="clientModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="clientModalTitle">👤 নতুন গ্রাহক যোগ করুন</h3>
+                <button class="modal-close" onclick="closeModal('clientModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="clientNoVal">
+                <div class="form-group">
+                    <label for="clientNameInput">গ্রাহকের নাম (Party Name) *</label>
+                    <input type="text" id="clientNameInput" class="form-control" required placeholder="উদা: যমুনা গার্মেন্টস">
+                </div>
+                <div class="form-group">
+                    <label for="clientAddressInput">ঠিকানা (Address)</label>
+                    <input type="text" id="clientAddressInput" class="form-control" placeholder="উদা: মুন কমপ্লেক্স, সদরঘাট">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="clientPageInput">লেজার পৃষ্ঠা (Ledger Page) *</label>
+                        <input type="number" id="clientPageInput" class="form-control" required placeholder="উদা: ৭২">
+                    </div>
+                    <div class="form-group">
+                        <label for="clientPdfPageInput">PDF পৃষ্ঠা (PDF Page)</label>
+                        <input type="number" id="clientPdfPageInput" class="form-control" placeholder="উদা: ৩৬">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="clientNotesInput">মন্তব্য (Notes)</label>
+                    <input type="text" id="clientNotesInput" class="form-control" placeholder="গ্রাহক সম্পর্কিত অতিরিক্ত তথ্য...">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button onclick="closeModal('clientModal')" style="padding: 6px 12px; border: 1.5px solid var(--border); background: #f8fafc; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 12px;">বাতিল</button>
+                <button onclick="saveClientProfile()" id="saveClientProfileBtn" style="padding: 6px 12px; background: var(--primary); border: none; color: white; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 12px;">সংরক্ষণ করুন</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Transaction Form Modal (Add & Edit Debit/Credit) -->
+    <div id="transactionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="transactionModalTitle">➕ নতুন এন্ট্রি যোগ করুন</h3>
+                <button class="modal-close" onclick="closeModal('transactionModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="transTypeVal">
+                <input type="hidden" id="transNoVal">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="transNoDisplay">নং (No) *</label>
+                        <input type="text" id="transNoDisplay" class="form-control" required placeholder="উদা: ১">
+                    </div>
+                    <div class="form-group">
+                        <label for="transDateInput">তারিখ (Date) *</label>
+                        <input type="text" id="transDateInput" class="form-control" required placeholder="DD.MM.YY">
+                    </div>
+                </div>
+
+                <!-- Debit Fields -->
+                <div id="debitFormFields">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="transBiKaInput">বিঃ কাঃ (Details)</label>
+                            <input type="text" id="transBiKaInput" class="form-control" placeholder="উদা: এ-১">
+                        </div>
+                        <div class="form-group">
+                            <label for="transDescInput">বিবরণ (Description)</label>
+                            <input type="text" id="transDescInput" class="form-control" placeholder="উদা: সাদা পাঞ্জাবী">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="transSizeInput">সাইজ (Size)</label>
+                            <input type="text" id="transSizeInput" class="form-control" placeholder="উদা: ৩৬-৪২">
+                        </div>
+                        <div class="form-group">
+                            <label for="transModelInput">মডেল (Model)</label>
+                            <input type="text" id="transModelInput" class="form-control" placeholder="উদা: এম-২">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="transQtyInput">পরিমাণ/পিস (Qty) *</label>
+                            <input type="number" id="transQtyInput" class="form-control" oninput="calculateTransTotal()" placeholder="উদা: ১২০">
+                        </div>
+                        <div class="form-group">
+                            <label for="transRateInput">দর (Rate) *</label>
+                            <input type="number" id="transRateInput" class="form-control" oninput="calculateTransTotal()" placeholder="উদা: ২৫০">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="transTotalInput">মোট (Total)</label>
+                            <input type="number" id="transTotalInput" class="form-control" readonly placeholder="অটো ক্যালকুলেট হবে">
+                        </div>
+                        <div class="form-group">
+                            <label for="transPdInput">PD/টাকা</label>
+                            <input type="text" id="transPdInput" class="form-control" placeholder="টাকা কলামের অতিরিক্ত বিবরণ">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="transBillInput">বিল নং (Bill No)</label>
+                            <input type="text" id="transBillInput" class="form-control" placeholder="উদা: ৪২৬">
+                        </div>
+                        <div class="form-group">
+                            <label for="transRemarksInput">মন্তব্য (Remarks)</label>
+                            <input type="text" id="transRemarksInput" class="form-control" placeholder="অতিরিক্ত মন্তব্য...">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Credit Fields -->
+                <div id="creditFormFields" style="display: none;">
+                    <div class="form-group">
+                        <label for="transAmountInput">পরিমাণ/আদায় (Amount) *</label>
+                        <input type="number" id="transAmountInput" class="form-control" placeholder="নগদ বা আদায়কৃত মোট টাকা">
+                    </div>
+                    <div class="form-group">
+                        <label for="transCreditRemarksInput">মন্তব্য (Remarks)</label>
+                        <input type="text" id="transCreditRemarksInput" class="form-control" placeholder="উদা: নগদ/চেক...">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button onclick="closeModal('transactionModal')" style="padding: 6px 12px; border: 1.5px solid var(--border); background: #f8fafc; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 12px;">বাতিল</button>
+                <button onclick="saveTransactionRow()" id="saveTransBtn" style="padding: 6px 12px; background: var(--primary); border: none; color: white; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 12px;">সংরক্ষণ করুন</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. AI Bill OCR Scanner Modal -->
+    <div id="ocrModal" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3>📷 এআই বিল ও খতিয়ান স্ক্যানার (AI OCR Ledger Scanner)</h3>
+                <button class="modal-close" onclick="closeModal('ocrModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Step 1: Upload & Config -->
+                <div id="ocrStepUpload">
+                    <div class="form-row" style="margin-bottom: 16px;">
+                        <div class="form-group">
+                            <label for="ocrTypeSelect">পাতার ধরণ (Page Type)</label>
+                            <select id="ocrTypeSelect" class="form-control" onchange="toggleOcrClientSelection()">
+                                <option value="debit">ডেবিট পাতা (ক্রয়/বিক্রয় বিল)</option>
+                                <option value="credit">ক্রেডিট পাতা (আদায়/পেমেন্ট)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="ocrClientSelect">গ্রাহক নির্বাচন করুন (Target Client) *</label>
+                            <select id="ocrClientSelect" class="form-control">
+                                <!-- Loaded dynamically -->
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="ocr-upload-box" id="ocrDropArea" onclick="document.getElementById('ocrFileInput').click()">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin: 0 auto;">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        <p>এখানে ড্রাগ-এন্ড-ড্রপ করুন অথবা ক্লিক করে খতিয়ানের ছবি সিলেক্ট করুন</p>
+                        <input type="file" id="ocrFileInput" accept="image/*" style="display: none;" onchange="handleOcrFileSelect(event)">
+                    </div>
+                    
+                    <img id="ocrPreviewImage" class="ocr-preview-img">
+                </div>
+
+                <!-- Loading Animation -->
+                <div id="ocrStepLoading" class="ocr-loading">
+                    <div class="spinner"></div>
+                    <h4 style="font-weight: 700; color: var(--primary-dark); margin-bottom: 8px;">এআই দিয়ে বিল প্রসেস করা হচ্ছে...</h4>
+                    <p style="font-size: 12px; color: var(--text-muted);" id="ocrStatusMsg">ছবি লোড হচ্ছে...</p>
+                </div>
+
+                <!-- Step 2: Edit & Review Table -->
+                <div id="ocrStepReview" style="display: none;">
+                    <div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
+                        <h4 style="font-weight: 700; color: var(--primary-dark);">রিভিউ এবং এডিট করুন (Transcribed Data)</h4>
+                        <span style="font-size: 11px; background: var(--primary-light); color: var(--primary-dark); padding: 4px 8px; border-radius: 6px; font-weight: bold;" id="ocrClientNameBadge">গ্রাহক: যমুনা</span>
+                    </div>
+                    
+                    <div style="overflow-x: auto; max-height: 400px; border: 1.5px solid var(--border); border-radius: 12px;">
+                        <table style="width: 100%; border-collapse: collapse; font-size: 11px;" id="ocrReviewTable">
+                            <thead id="ocrReviewTableHeader">
+                                <!-- Loaded dynamically based on type -->
+                            </thead>
+                            <tbody id="ocrReviewTableBody">
+                                <!-- Rows will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <button onclick="addOcrRowToPreview()" style="margin-top: 10px; background: #3b82f6; border: none; color: white; padding: 6px 12px; border-radius: 6px; font-size: 11px; font-weight: bold; cursor: pointer;">➕ আরেকটি রো যোগ করুন</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button onclick="closeModal('ocrModal')" style="padding: 6px 12px; border: 1.5px solid var(--border); background: #f8fafc; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 12px;" id="ocrCancelBtn">বাতিল</button>
+                <button onclick="runOcrScan()" id="ocrScanBtn" style="padding: 6px 12px; background: var(--primary); border: none; color: white; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 12px;">স্ক্যান শুরু করুন</button>
+                <button onclick="saveOcrDataToSheets()" id="ocrSaveBtn" style="padding: 6px 12px; background: var(--success); border: none; color: white; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 12px; display: none;">শীটে সেভ করুন</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. Delete Confirmation Modal -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content" style="max-width: 400px;">
+            <div class="modal-header" style="background: linear-gradient(135deg, #ef4444, #b91c1c);">
+                <h3>⚠️ নিশ্চিতকরণ (Confirmation)</h3>
+                <button class="modal-close" onclick="closeModal('deleteModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="deleteModalMsg" style="font-size: 13px; color: var(--text);">আপনি কি নিশ্চিতভাবে এই রেকর্ডটি ডিলিট করতে চান?</p>
+            </div>
+            <div class="modal-footer">
+                <button onclick="closeModal('deleteModal')" style="padding: 6px 12px; border: 1.5px solid var(--border); background: #f8fafc; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 12px;">না</button>
+                <button onclick="executeConfirmedDelete()" style="padding: 6px 12px; background: var(--danger); border: none; color: white; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 12px;">হ্যাঁ, ডিলিট করুন</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
