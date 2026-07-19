@@ -77,7 +77,7 @@ function doPost(e) {
     // 2. Setup Debit Sheet in bulk
     var debitSheet = ss.getSheetByName("Debit_Transactions") || ss.insertSheet("Debit_Transactions");
     debitSheet.clear();
-    var debitHeaders = ["Client Name", "Ledger Page", "No", "Date", "বিবরণ", "কাপড়", "Size", "Model", "Bill No", "Qty", "Rate", "মোট", "সর্বশেষ বিল", "Remarks"];
+    var debitHeaders = ["Client Name", "Ledger Page", "No", "Date", "বিবরণ", "কাপড়", "Size", "Model", "Bill No", "Qty", "Rate", "মোট টাকা", "সর্বশেষ বিল", "Remarks"];
     var debitValues = [debitHeaders];
     params.debit_data.forEach(function(row) {
       debitValues.push([
@@ -634,6 +634,13 @@ function syncClientSheets(ss, targetClientName) {
     var debits = [];
     var debitSheet = ss.getSheetByName("Debit_Transactions");
     if (debitSheet) {
+      // Force update headers of Debit_Transactions
+      debitSheet.getRange(1, 12).setValue("মোট টাকা");
+      debitSheet.getRange(1, 13).setValue("সর্বশেষ বিল");
+      
+      // Force recalculate Qty*Rate and running totals for this client first!
+      recalculateRunningTotalsInDebitTransactions(debitSheet, partyName);
+      
       var debitData = debitSheet.getDataRange().getValues();
       for (var d = 1; d < debitData.length; d++) {
         if (String(debitData[d][0]).trim() === partyName) {
@@ -1200,7 +1207,16 @@ function recalculateRunningTotalsInDebitTransactions(sheet, clientName) {
   var runningTotal = 0;
   for (var i = 1; i < data.length; i++) {
     if (String(data[i][0]).trim() === String(clientName).trim()) {
-      var rowTotal = parseFloat(data[i][11]) || 0; // Column L (12th)
+      var qty = parseFloat(data[i][9]) || 0; // Column J (10th)
+      var rate = parseFloat(data[i][10]) || 0; // Column K (11th)
+      var rowTotal = Math.round(qty * rate);
+      
+      // Update Column L (12th) if it doesn't match
+      var pdCell = sheet.getRange(i + 1, 12);
+      if (pdCell.getValue() !== rowTotal) {
+        pdCell.setValue(rowTotal);
+      }
+      
       runningTotal += rowTotal;
       var cell = sheet.getRange(i + 1, 13); // Column M (13th)
       if (cell.getValue() !== runningTotal) {
