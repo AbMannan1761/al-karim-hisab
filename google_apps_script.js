@@ -411,7 +411,7 @@ function syncClientSheets(ss, targetClientName) {
     if (!partyName || !ledgerPage) continue;
     
     // If targetClientName is provided, only process that specific client
-    if (targetClientName && partyName !== targetClientName) {
+    if (targetClientName && cleanNameForCompare(partyName) !== cleanNameForCompare(targetClientName)) {
       continue;
     }
     
@@ -643,7 +643,7 @@ function syncClientSheets(ss, targetClientName) {
       
       var debitData = debitSheet.getDataRange().getValues();
       for (var d = 1; d < debitData.length; d++) {
-        if (String(debitData[d][0]).trim() === partyName) {
+        if (cleanNameForCompare(debitData[d][0]) === cleanNameForCompare(partyName)) {
           var rowNum = 9 + debits.length;
           debits.push([
             debitData[d][2], // No
@@ -671,7 +671,7 @@ function syncClientSheets(ss, targetClientName) {
     if (creditSheet) {
       var creditData = creditSheet.getDataRange().getValues();
       for (var cr = 1; cr < creditData.length; cr++) {
-        if (String(creditData[cr][0]).trim() === partyName) {
+        if (cleanNameForCompare(creditData[cr][0]) === cleanNameForCompare(partyName)) {
           credits.push([
             creditData[cr][2], // No
             creditData[cr][3], // Date
@@ -1195,7 +1195,7 @@ function findRowInClientSheet(sheet, colIndex, rowNo) {
 function findRowInTransactionSheet(sheet, clientName, rowNo) {
   var data = sheet.getDataRange().getValues();
   for (var i = 1; i < data.length; i++) {
-    if (String(data[i][0]).trim() === String(clientName).trim() && String(data[i][2]).trim() === String(rowNo).trim()) {
+    if (cleanNameForCompare(data[i][0]) === cleanNameForCompare(clientName) && String(data[i][2]).trim() === String(rowNo).trim()) {
       return i + 1;
     }
   }
@@ -1206,7 +1206,7 @@ function recalculateRunningTotalsInDebitTransactions(sheet, clientName) {
   var data = sheet.getDataRange().getValues();
   var runningTotal = 0;
   for (var i = 1; i < data.length; i++) {
-    if (String(data[i][0]).trim() === String(clientName).trim()) {
+    if (cleanNameForCompare(data[i][0]) === cleanNameForCompare(clientName)) {
       var qty = parseFloat(data[i][9]) || 0; // Column J (10th)
       var rate = parseFloat(data[i][10]) || 0; // Column K (11th)
       var rowTotal = Math.round(qty * rate);
@@ -1224,4 +1224,13 @@ function recalculateRunningTotalsInDebitTransactions(sheet, clientName) {
       }
     }
   }
+}
+
+// Clean and standardize client names for safe comparison (strips leading numbers, spaces, and casing)
+function cleanNameForCompare(name) {
+  if (!name) return "";
+  return String(name)
+    .replace(/^[\d\u09E6-\u09EF]+\.\s*/, "") // Strip English and Bengali leading numbers like "2. " or "২. "
+    .toLowerCase()
+    .replace(/[\s_-]/g, ""); // Strip whitespace, hyphens, underscores
 }
