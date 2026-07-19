@@ -98,6 +98,7 @@ function doPost(e) {
       ]);
     });
     debitSheet.getRange(1, 1, debitValues.length, debitHeaders.length).setValues(debitValues);
+    debitSheet.getRange("D2:D").setNumberFormat("dd-MM-yyyy");
     
     // 3. Setup Credit Sheet in bulk
     var creditSheet = ss.getSheetByName("Credit_Transactions") || ss.insertSheet("Credit_Transactions");
@@ -115,6 +116,7 @@ function doPost(e) {
       ]);
     });
     creditSheet.getRange(1, 1, creditValues.length, creditHeaders.length).setValues(creditValues);
+    creditSheet.getRange("D2:D").setNumberFormat("dd-MM-yyyy");
     
     SpreadsheetApp.flush(); // Commit all pending sheet writes to allow pivot range validation
     syncClientSheets(ss);
@@ -461,6 +463,9 @@ function syncClientSheets(ss, targetClientName) {
               .setVerticalAlignment("middle");
         });
         
+        sheet.getRange("B9:B1000").setNumberFormat("dd-MM-yyyy");
+        sheet.getRange("O9:O1000").setNumberFormat("dd-MM-yyyy");
+        
         continue; // Skip formatting if metadata is identical
       }
       sheet.clear();
@@ -680,6 +685,8 @@ function syncClientSheets(ss, targetClientName) {
              
     sheet.getRange(9, 8, 992, 4).setNumberFormat("#,##0"); // Columns H to K (Qty, Rate, PD, Total)
     sheet.getRange("P9:P1000").setNumberFormat("#,##0");
+    sheet.getRange("B9:B1000").setNumberFormat("dd-MM-yyyy");
+    sheet.getRange("O9:O1000").setNumberFormat("dd-MM-yyyy");
     
     // Freeze rows 1-8 so the dashboard header remains visible when scrolling down
     sheet.setFrozenRows(8);
